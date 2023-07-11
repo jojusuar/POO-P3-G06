@@ -18,10 +18,33 @@ public class Estudiante {
     correo = c;
     matricula = m;
   }
-  public void usarComodin(Tipo comodin t){
-    
+  public void usarComodin(TipoComodin t){
+  
   }
-    
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+  
 }
 
