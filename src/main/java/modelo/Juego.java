@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package modelo;
-
+import java.util.ArrayList;
+import java.util.Random;
 /**
  *
  * @author jojusuar
@@ -14,6 +15,7 @@ public class Juego {//atributos
     private Paralelo paralelo;
     private Estudiante participante;
     private Estudiante companero;
+    private int intentoComodines = 3;
     private int puntuacion;
     private int tiempo;
     private String premio;
@@ -28,7 +30,10 @@ public class Juego {//atributos
         tiempo = t;
         premio = h;
         comodin = k;
+        
     }
+ 
+    
     //getters
     public Materia getMateria(){
         return materia;
@@ -78,5 +83,40 @@ public class Juego {//atributos
     }
     public void setComodin(TipoComodin k){
         comodin = k;
+    }
+    public void usarComodin(TipoComodin comodin,Paralelo companeros, Pregunta opciones){
+     if (intentoComodines >0){   
+     switch(comodin){
+        case Fifty_Fifty://comodin de 50 50 
+            Random random = new Random();
+            for(int i = 0; i<2;i++){// for para eliminar dos respuestas al azar
+             ArrayList<String> literales = opciones.Opciones();//metodo que crea la lista de opciones
+             int tamanio = literales.size();
+             int valorAleatorio = random.nextInt(tamanio);
+             String seleccionado = literales.get(valorAleatorio);
+             if (seleccionado.equals(opciones.getCorrecta())){//condiciones para ver cual literal fue escogido y eliinar segun eso
+                 opciones.setCorrecta("Respuesta eliiminada");
+             }
+             else if(seleccionado.equals(opciones.getPosible1())) {
+                 opciones.setPosible1("Respuesta eliiminada");
+             }
+             else if(seleccionado.equals(opciones.getPosible2())) {
+                 opciones.setPosible2("Respuesta eliiminada");
+                 
+            }
+             else if(seleccionado.equals(opciones.getPosible3())) {
+                 opciones.setPosible3("Respuesta eliiminada");
+           
+             }
+            }
+        case ConsultaCompanero:
+            
+            ;
+        case ConsultaClase:
+            ;
+     
+     }
+     }
+     intentoComodines = intentoComodines - 1;
     }
 }

@@ -13,27 +13,13 @@ public class Estudiante {
     private String nombre;
     private String correo;
     private String matricula;
-    private Pregunta preguntas;//pruebita
+   
   public Estudiante(String n, String c, String m){
     nombre = n;
     correo = c;
     matricula = m;
   }
-  public void usarComodin(TipoComodin t){
-    switch(t){//pruebita de enums
-        case Fifty_Fifty:
-            preguntas.setPosible1("Respuesta eliminada");
-            preguntas.setPosible2("Respuesta eliminada");
-        case ConsultaCompanero:
-            
-            ;
-        case ConsultaClase:
-            ;
-            
-    
-    }
-            
-  }
+ 
 
     public String getNombre() {
         return nombre;
