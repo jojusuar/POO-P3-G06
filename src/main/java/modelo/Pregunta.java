@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
-
+import java.util.ArrayList;
 /**
  *
  * @author jojusuar
@@ -64,5 +64,12 @@ public class Pregunta { //atributos
     public void setPosible3(String z){
         posible3 = z;
     }
-    
+     public ArrayList<String> Opciones(){//metodo que me da la lista de opciones
+     ArrayList<String> literales = new ArrayList<>();
+     literales.add(correcta);
+     literales.add(posible1);
+     literales.add(posible2);
+     literales.add(posible3);
+     return literales;
+    }
 }
