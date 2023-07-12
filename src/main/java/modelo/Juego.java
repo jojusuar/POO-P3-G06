@@ -84,7 +84,7 @@ public class Juego {//atributos
     public void setComodin(TipoComodin k){
         comodin = k;
     }
-    public void usarComodin(TipoComodin comodin,Paralelo companeros, Pregunta opciones){
+    public void usarComodin(TipoComodin comodin,Paralelo companeros, Pregunta opciones, Estudiante companiero){
      if (intentoComodines >0){   
      switch(comodin){
         case Fifty_Fifty://comodin de 50 50 
@@ -110,9 +110,10 @@ public class Juego {//atributos
              }
             }
         case ConsultaCompanero:
-            
+            System.out.println("consultar al compañero"+companiero.getNombre());
             ;
         case ConsultaClase:
+            System.out.println("consultar al salon de clase");
             ;
      
      }
