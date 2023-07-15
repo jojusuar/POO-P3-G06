@@ -47,4 +47,7 @@ public class Paralelo {//atributos
     public void setNumero(int n){
         numero = n;
     }
+    public void agregarEstudiantes(Estudiante e){
+        estudiantes.add(e);
+    }
 }

@@ -84,6 +84,7 @@ public class Main {
                 break;
         }
         }while(flagMenu);
+        input.close();
     }
     
 }
