@@ -21,8 +21,10 @@ public class Juego {//atributos
     private String premio;
     private TipoComodin comodin;
     private PreguntaTrucada preguntaTrucada;
+    private String fechajuego;
+    private int nivelJugador;
     //constructor
-    public Juego(Materia m, Paralelo p, Estudiante x, Estudiante y, int s, int t, String h, TipoComodin k){
+    public Juego(Materia m, Paralelo p, Estudiante x, Estudiante y, int s, int t, String h, TipoComodin k, String f){
         materia = m;
         paralelo = p;
         participante = x;
@@ -32,6 +34,8 @@ public class Juego {//atributos
         tiempo = t;
         premio = h;
         comodin = k;
+        fechajuego = f;
+        nivelJugador = 1;
     }
     //getters
     public Materia getMateria(){
@@ -135,5 +139,10 @@ public class Juego {//atributos
      intentoComodines--;
          }
      }
+    }
+
+    public String toString(){
+        String cadena = "Fecha del juego: " + fechajuego + " - Participante: " + participante + " - Nivel Maximo alcanzado: " + nivelJugador + " - Tiempo: " + tiempo + " - Cantidad de preguntas contestadas: " + (nivelJugador-1) + " - Comodines utilizados: " +(2-intentoComodines)+ " - Premio: " + premio;
+        return cadena;
     }
 }

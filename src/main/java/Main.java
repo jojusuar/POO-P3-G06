@@ -133,56 +133,16 @@ public class Main {
                 break;
                 
             case 3:
-                int query6 = 0;
-                flagConfig = false;
-                do{
-                    System.out.println("Reporte");
-                    System.out.println("1. Administrar términos académicos");
-                    System.out.println("2. Administrar materias y paralelos");
-                    System.out.println("3. Administrar preguntas");
-                    System.out.println("4. Regresar");
-                    query6 = input.nextInt();
-                    input.nextLine();
-                    flagConfig = false;
-                    switch(query6){
-                        case 1:
-                            int query7 = 0;
-                            boolean flagTermino = false;
-                            do{
-                                System.out.println("-----Administrar términos académicos-----");
-                                System.out.println("<<MOSTRANDO LISTA DE TÉRMINOS>>");
-                                System.out.println("1. Ingresar término");
-                                System.out.println("2. Editar término");
-                                System.out.println("3. Configurar término para juego");
-                                System.out.println("4. Regresar");
-                                query7 = input.nextInt();
-                                input.nextLine();
-                                flagTermino = false;
-                                switch(query7){
-                                    case 1:
-                                        System.out.println("<<INGRESANDO TÉRMINO>>");
-                                        flagTermino = true;
-                                        break;
-                                    case 2:
-                                        System.out.println("<<EDITANDO TÉRMINO>>");
-                                        flagTermino = true;
-                                        break;
-                                    case 3:
-                                        System.out.println("<<SELECCIONANDO TÉRMINO>>");
-                                        flagTermino = true;
-                                        break;
-                                    case 4:
-                                        flagConfig = true;
-                                        break;
-                                        
-                                }
-                            }while(flagTermino);
-                            break;
-                        case 4:
-                            flagMenu = true;
-                            break;
-                    }
-                }while(flagConfig);
+                System.out.println("----Generar Reporte----");
+                System.out.print("Ingrese el termino academico: ");
+                String termino = input.nextLine();
+                System.out.print("Ingrese el codigo de materia: ");
+                String codigo = input.nextLine();
+                System.out.print("Ingrese el paralelo:          ");
+                String paralelo = input.nextLine();
+                input.nextLine();
+                System.out.println("<<GENERANDO REPORTE>>");
+                
                 break;
                 
             case 4:
