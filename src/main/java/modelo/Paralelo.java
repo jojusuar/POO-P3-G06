@@ -50,4 +50,8 @@ public class Paralelo {//atributos
     public void agregarEstudiantes(Estudiante e){
         estudiantes.add(e);
     }
+    public String toString(){
+        String cadena = "Materia: "+ materia +", Termino academico: "+ termino +", Numero de Paralelo: " + numero;
+        return cadena;
+    }
 }

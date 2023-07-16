@@ -31,4 +31,8 @@ public class Termino {//atributos
     public void setNumTermino(int n){
         numTermino = n;
     }
+    public String toString(){
+        String cadena = anio + "-" + numTermino;
+        return cadena;
+    }
 }
