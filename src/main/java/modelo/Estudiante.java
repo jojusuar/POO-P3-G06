@@ -39,4 +39,7 @@ public class Estudiante { //atributos
     public void setMatricula(String m){
         matricula = m;
     }
+    public String toString(){
+        return nombre;
+    }
 }

@@ -20,6 +20,7 @@ public class Main {
         ArrayList<Materia> materias = new ArrayList<>(); 
         ArrayList<Paralelo> paralelos = new ArrayList<>();
         ArrayList<Termino> terminos = new ArrayList<>();
+        ArrayList<Juego> juegos = new ArrayList<>();
         Termino t1 = new Termino(2023,1);//creando terminos academicos
         Termino t2 = new Termino(2023,1);
         Termino t3 = new Termino(2023,1);
@@ -209,6 +210,7 @@ public class Main {
                     
                     System.out.println("Ingrese el paralelo");
                     int paralel = input.nextInt();
+                    input.nextLine();
                     for(Paralelo elemento:paralelos){
                      if(paralel<=elemento.getNumero()&&paralel>=elemento.getNumero()){
                      paraleloEscogido = elemento;
@@ -274,7 +276,6 @@ public class Main {
                     
                     TipoComodin comodin = null;
                     Juego j1 = new Juego(materiaEscogida,paraleloEscogido,estudiante,apoyo,puntuacion,tiempo,premio,comodin,fechaJuego);
-                    
                     System.out.println("Comenzando juego...");
                     System.out.println("Cargando...");
                     int incorrectas = 0;
@@ -284,7 +285,7 @@ public class Main {
                      ArrayList<Pregunta> preguntando = materiaEscogida.getPreguntas();
                      for(Pregunta prt: preguntando){
                        prt.mostrarOpciones(prt);
-                         System.out.println("Ingrese su respuesta:");
+                         System.out.println("Ingrese su respuesta (no el literal) o ingrese * para usar un comodín:");
                          String respuesta = input.next();
                          input.nextLine();
                          if (respuesta.equals(prt.getCorrecta())){
@@ -306,7 +307,7 @@ public class Main {
                              
                              }
                          }
-                               
+                   juegos.add(j1);           
                          
                          }
                      
@@ -328,6 +329,9 @@ public class Main {
                 System.out.println("Ingrese el paralelo:          ");
                 String paralelo = input.nextLine();
                 System.out.println("<<GENERANDO REPORTE>>");
+                for(Juego j: juegos){
+                    System.out.println(j);
+                }
                 flagMenu = true;
                 break;
                 
