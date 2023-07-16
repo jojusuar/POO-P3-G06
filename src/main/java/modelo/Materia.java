@@ -15,7 +15,9 @@ public class Materia { //atributos
     private int niveles;
     private ArrayList<Pregunta> preguntas;
     //constructor
-    public Materia(String c, String n, int v, ArrayList<Pregunta> p){
+    public Materia(){
+    }
+        public Materia(String c, String n, int v, ArrayList<Pregunta> p){
         codigo = c;
         nombre = n;
         niveles = v;

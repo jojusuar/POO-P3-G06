@@ -20,6 +20,8 @@ public class Pregunta { //atributos
     private String posible3;
     
     //constructor
+    public Pregunta(){
+    }
     public Pregunta(String e, int n, String t, String x, String y, String z){
         enunciado = e;
         nivel = n;
