@@ -533,10 +533,12 @@ public class Main {
                         }
                     }
                 }
+                //Se presentan los resultados, si no hay reportes que coincidan con la busqueda se da un mensaje
                 if(juegosReporte.size() == 0){
                     System.out.println("<<NO EXISTEN REPORTES QUE COINCIDAN CON EL REGISTRO>>");
                 }else{
                     int cont = 1;
+                    //Se presentan los juegos del reporte en orden
                     for(Juego jreporte: juegosReporte){
                         System.out.println(cont+ ". " +jreporte);
                         cont++;
