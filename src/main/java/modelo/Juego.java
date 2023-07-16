@@ -153,6 +153,8 @@ public class Juego {//atributos
         System.out.println(k.ConsultaCompanero);
         System.out.println(k.ConsultaClase);
         
+        
+        
      }
      
      
