@@ -25,8 +25,8 @@ public class Main {
         Termino t2 = new Termino(2023,1);
         Termino t3 = new Termino(2023,1);
         Materia m1 = new Materia("001","mate",3,preguntas);//generando materias
-        Materia m2 = new Materia("001","fisica",3,preguntas);
-        Materia m3 = new Materia("001","poo",3,preguntas);
+        Materia m2 = new Materia("002","fisica",3,preguntas);
+        Materia m3 = new Materia("003","poo",3,preguntas);
         Paralelo p1 = new Paralelo(participantes,m1,t1,1);//creando paralelos
         Paralelo p2 = new Paralelo(participantes,m2,t2,2);
         Paralelo p3 = new Paralelo(participantes,m2,t3,3);
