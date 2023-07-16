@@ -21,9 +21,9 @@ public class Main {
         ArrayList<Paralelo> paralelos = new ArrayList<>();
         ArrayList<Termino> terminos = new ArrayList<>();
         ArrayList<Juego> juegos = new ArrayList<>();
-        Termino t1 = new Termino(2023,1);//creando terminos academicos
-        Termino t2 = new Termino(2023,1);
-        Termino t3 = new Termino(2023,1);
+        Termino t1 = new Termino(2020,1);//creando terminos academicos
+        Termino t2 = new Termino(2021,1);
+        Termino t3 = new Termino(2022,1);
         Materia m1 = new Materia("001","mate",3,preguntasMatematica);//generando materias
         Materia m2 = new Materia("002","fisica",3,preguntasMatematica);
         Materia m3 = new Materia("003","poo",3,preguntasMatematica);
@@ -81,32 +81,54 @@ public class Main {
                     System.out.println("");
                     flagConfig = false;
                     switch(query2){
-                        case 1:
+                        case 1://opciones para terminos academicos
                             int query3 = 0;
                             boolean flagTermino = false;
                             do{
-                                System.out.println("-----Administrar términos académicos-----");
+                                System.out.println("-----Administrar términos académicos-----");//
+                                
                                 System.out.println("<<MOSTRANDO LISTA DE TÉRMINOS>>");
+                                for(Termino t: terminos){
+                                    System.out.println("PAO "+t.getNumTermino()+" "+t.getAnio());
+                                  }
                                 System.out.println("1. Ingresar término");
                                 System.out.println("2. Editar término");
                                 System.out.println("3. Configurar término para juego");
                                 System.out.println("4. Regresar");
-                                System.out.print("Seleccione una opcion: ");
                                 query3 = input.nextInt();
                                 input.nextLine();
-                                System.out.println("");
                                 flagTermino = false;
                                 switch(query3){
                                     case 1:
                                         System.out.println("<<INGRESANDO TÉRMINO>>");
+                                        System.out.println("INGRESE ANIO ACADEMICO");
+                                        int anioAcademico = input.nextInt();
+                                        System.out.println("INGRESE TERMINO ACADEMICO");
+                                        int tAcademico = input.nextInt();
+                                        Termino t = new Termino(anioAcademico,tAcademico);
+                                        terminos.add(t);
                                         flagTermino = true;
                                         break;
                                     case 2:
                                         System.out.println("<<EDITANDO TÉRMINO>>");
+                                        System.out.println("SELECCIONE EL TERMINO A EDITAR");
+                                        int pEditar = input.nextInt()-1;
+                                        Termino tEditar = terminos.get(pEditar);
+                                        System.out.println("INGRESE EL NUEVO ANIO ACADEMICO");
+                                        int nAnio = input.nextInt();
+                                        System.out.println("INGRESE EL NUEVO TERMINO ACADEMICO");
+                                        int nTermino = input.nextInt();
+                                        tEditar.setAnio(nAnio);
+                                        tEditar.setNumTermino(nTermino);                                                                                                                                                                                                  
                                         flagTermino = true;
                                         break;
                                     case 3:
                                         System.out.println("<<SELECCIONANDO TÉRMINO>>");
+                                        System.out.println("SELECCIONE EL TERMINO PARA EL JUEGO");
+                                        int opcion = input.nextInt()-1;
+                                        Termino tJuego = terminos.get(opcion);
+                                        System.out.println("Termino seleccionado:"+"PAO "+tJuego.getNumTermino()+" "+tJuego.getAnio());
+                                        
                                         flagTermino = true;
                                         break;
                                     case 4:
