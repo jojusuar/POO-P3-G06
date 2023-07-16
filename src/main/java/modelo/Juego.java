@@ -87,7 +87,6 @@ public class Juego {//atributos
     public void setComodin(TipoComodin k){
         comodin = k;
     }
-   
     public void usarComodin(TipoComodin comodin,Paralelo curso, Pregunta pregunta, Estudiante companiero){
      if (intentoComodines >0){
          ArrayList<String> opciones = pregunta.opciones();
@@ -104,7 +103,8 @@ public class Juego {//atributos
                  break;
              case ConsultaCompanero:
                  int index = (int)(opciones.size()*Math.random());
-                 String sugerencia = opciones.get(index);
+                 String[] literales = {"A)","B)","C)","D)"};
+                 String sugerencia = literales[index];
                  System.out.println(companiero.getNombre()+" cree que la respuesta es: "+sugerencia);
                  break;
              case ConsultaClase:
@@ -123,28 +123,31 @@ public class Juego {//atributos
                   int[] votos = {votos1, votos2, votos3, votos4};
                   int max = Arrays.stream(votos).max().getAsInt();
                   if(votos1==max){
-                      System.out.println("El concenso es: "+pregunta.getCorrecta());
+                      System.out.println("La mayoría de la clase cree que es: A)");
                   }
                   else if(votos2==max){
-                      System.out.println("El concenso es: "+pregunta.getPosible1());
+                      System.out.println("La mayoría de la clase cree que es: B)");
                   }
                   else if(votos3==max){
-                      System.out.println("El concenso es: "+pregunta.getPosible2());
+                      System.out.println("La mayoría de la clase cree que es: C)");
                   }
                   else if(votos4==max){
-                      System.out.println("El concenso es: "+pregunta.getPosible3());
+                      System.out.println("La mayoría de la clase cree que es: D)");
                   }
                   else{
                       System.out.println("No hubo concenso");
                   }
-                      System.out.println("consultar al salon de clase");
+                      System.out.println("consultar al salón de clase");
                   break;
                  }
-                 
-     intentoComodines--;
+                 intentoComodines--;
+                 pregunta.mostrarOpciones(pregunta);
          }
      }
     }
+   
+    
+    
     public void mostrarComodines(TipoComodin k){
         System.out.println(k.Fifty_Fifty);
         System.out.println(k.ConsultaCompanero);

@@ -431,17 +431,9 @@ public class Main {
                              System.out.println("Comodines disponiles");
                              j1.mostrarComodines(comodin);
                              System.out.println("Ingrese comodin a usar");
-                             String komodin=input.next();
-                             input.nextLine();
-                             switch(komodin){
-                                 case "Fifty_Fifty":
-                                  j1.usarComodin(comodin.Fifty_Fifty, paraleloEscogido, prt, apoyo);
-                                     //prt.mostrarOpciones(prt);
-                                     System.out.println("Ingrese su respuesta:");
-                                     respuesta = input.next();
-                                     input.nextLine();
-                             
-                             }
+                             String komodin=input.nextLine();
+                             TipoComodin k = TipoComodin.valueOf(komodin);
+                             j1.usarComodin( k, p3, prt, apoyo);
                          }
                             
                          
