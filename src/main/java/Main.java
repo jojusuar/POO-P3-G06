@@ -25,8 +25,8 @@ public class Main {
         Termino t2 = new Termino(2023,1);
         Termino t3 = new Termino(2023,1);
         Materia m1 = new Materia("001","mate",3,preguntas);//generando materias
-        Materia m2 = new Materia("001","fisica",3,preguntas);
-        Materia m3 = new Materia("001","poo",3,preguntas);
+        Materia m2 = new Materia("002","fisica",3,preguntas);
+        Materia m3 = new Materia("003","poo",3,preguntas);
         Paralelo p1 = new Paralelo(participantes,m1,t1,1);//creando paralelos
         Paralelo p2 = new Paralelo(participantes,m2,t2,2);
         Paralelo p3 = new Paralelo(participantes,m2,t3,3);
@@ -161,15 +161,55 @@ public class Main {
                                 flagTermino = false;
                                 switch(query5){
                                     case 1:
-                                        System.out.println("<<VISUALIZANDO PREGUNTAS>>");
+                                        System.out.println("Seleccione la materia ingresando su código:");
+                                        for(Materia m: materias){
+                                            System.out.println(m);
+                                        }
+                                        String code = input.nextLine();
+                                        for(Materia m: materias){
+                                            if(code.equals(m.getCodigo())){
+                                                System.out.println(m.getPreguntas());
+                                            }
+                                        }
                                         flagTermino = true;
                                         break;
                                     case 2:
-                                        System.out.println("<<AGREGANDO PREGUNTA>>");
+                                        System.out.println("Seleccione la materia ingresando su código:");
+                                        String code2 = input.nextLine();
+                                        for(Materia m: materias){
+                                            if(code2.equals(m.getCodigo())){
+                                                System.out.println("Ingrese el enunciado:");
+                                                String enunciado = input.nextLine();
+                                                System.out.println("Ingrese el literal correcto:");
+                                                String t = input.nextLine();
+                                                System.out.println("Ingrese literal falso 1:");
+                                                String s = input.nextLine();
+                                                System.out.println("Ingrese literal falso 2:");
+                                                String x = input.nextLine();
+                                                System.out.println("Ingrese literal falso 3:");
+                                                String y = input.nextLine();
+                                                System.out.println("Ingrese el nivel de la pregunta (de 1 a "+m.getNiveles()+")");
+                                                int z = input.nextInt();
+                                                input.nextLine();
+                                                m.setPregunta(new Pregunta(enunciado, z, t, s, x, y));
+                                            }
+                                        }
                                         flagTermino = true;
                                         break;
                                     case 3:
-                                        System.out.println("<<ELIMINANDO PREGUNTA>>");
+                                        System.out.println("Seleccione la materia ingresando su código:");
+                                        String code3 = input.nextLine();
+                                        for(Materia m: materias){
+                                            if(code3.equals(m.getCodigo())){
+                                                System.out.println("Ingrese el enunciado de la pregunta a eliminar:");
+                                                String del = input.nextLine();
+                                                for(Pregunta p: m.getPreguntas()){
+                                                    if(del.equals(p.getEnunciado())){
+                                                        m.removePregunta(p);
+                                                    }
+                                                }
+                                            }
+                                        }
                                         flagTermino = true;
                                         break;
                                     case 4:
@@ -216,7 +256,7 @@ public class Main {
                      paraleloEscogido = elemento;
                      }}
                    
-                    System.out.println("Ingrese el numero de preguntas por nivel");
+                    System.out.println("Ingrese los");
                     nPreguntas = input.nextInt();
                    
                     while(nPreguntas!=materias.get(0).getNiveles()){

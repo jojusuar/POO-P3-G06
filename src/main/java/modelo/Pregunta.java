@@ -84,6 +84,8 @@ public class Pregunta { //atributos
          System.out.println("D)"+literales.get(3));
         }
         
-        
+      public String toString(){
+          return enunciado;
+      }  
      }   
 
