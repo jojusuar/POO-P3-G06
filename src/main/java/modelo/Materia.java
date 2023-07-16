@@ -44,7 +44,13 @@ public class Materia { //atributos
     public void setNiveles(int v){
         niveles = v;
     }
-    public void setPreguntas(ArrayList<Pregunta> p){
-        preguntas = p;
+    public void setPregunta(Pregunta p){
+        preguntas.add(p);
+    }
+    public void removePregunta(Pregunta p){
+        preguntas.remove(p);
+    }
+    public String toString(){
+        return nombre+": "+codigo;
     }
 }
