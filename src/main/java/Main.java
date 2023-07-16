@@ -110,6 +110,73 @@ public class Main {
                                 }
                             }while(flagTermino);
                             break;
+                        case 2:
+                            int query4 = 0;
+                            flagTermino = false;
+                            do{
+                                System.out.println("-----Administrar materias y paralelos-----");
+                                System.out.println("1. Ingresar materia");
+                                System.out.println("2. Editar materia");
+                                System.out.println("3. Agregar paralelo");
+                                System.out.println("4. Eliminar paralelo");
+                                System.out.println("5. Regresar");
+                                query4 = input.nextInt();
+                                input.nextLine();
+                                flagTermino = false;
+                                switch(query4){
+                                    case 1:
+                                        System.out.println("<<INGRESANDO MATERIA>>");
+                                        flagTermino = true;
+                                        break;
+                                    case 2:
+                                        System.out.println("<<EDITANDO MATERIA>>");
+                                        flagTermino = true;
+                                        break;
+                                    case 3:
+                                        System.out.println("<<AGREGANDO PARALELO>>");
+                                        flagTermino = true;
+                                        break;
+                                    case 4:
+                                        System.out.println("<<ELIMINANDO PARALELO>>");
+                                        flagTermino = true;
+                                        break;
+                                    case 5:
+                                        flagConfig = true;
+                                        break;
+                                }
+                            }while(flagTermino);
+                            break;
+                        case 3:
+                            int query5 = 0;
+                            flagTermino = false;
+                            do{
+                                System.out.println("-----Administrar preguntas-----");
+                                System.out.println("1. Visualizar preguntas");
+                                System.out.println("2. Agregar pregunta");
+                                System.out.println("3. Eliminar pregunta");
+                                System.out.println("4. Regresar");
+                                query5 = input.nextInt();
+                                input.nextLine();
+                                flagTermino = false;
+                                switch(query5){
+                                    case 1:
+                                        System.out.println("<<VISUALIZANDO PREGUNTAS>>");
+                                        flagTermino = true;
+                                        break;
+                                    case 2:
+                                        System.out.println("<<AGREGANDO PREGUNTA>>");
+                                        flagTermino = true;
+                                        break;
+                                    case 3:
+                                        System.out.println("<<ELIMINANDO PREGUNTA>>");
+                                        flagTermino = true;
+                                        break;
+                                    case 4:
+                                        flagConfig = true;
+                                        break;
+                                }
+                            }while(flagTermino);
+                            break;
                         case 4:
                             flagMenu = true;
                             break;
