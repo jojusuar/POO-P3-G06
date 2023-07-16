@@ -11,7 +11,6 @@ import java.util.Arrays;
  * @author jojusuar
  */
 public class Juego {//atributos
-    private Materia materia;
     private Paralelo paralelo;
     private Estudiante participante;
     private Estudiante companero;
@@ -24,8 +23,7 @@ public class Juego {//atributos
     private String fechajuego;
     private int nivelJugador;
     //constructor
-    public Juego(Materia m, Paralelo p, Estudiante x, Estudiante y, int s, int t, String h, TipoComodin k, String f){
-        materia = m;
+    public Juego(Paralelo p, Estudiante x, Estudiante y, int s, int t, String h, TipoComodin k, String f){
         paralelo = p;
         participante = x;
         companero = y;
@@ -38,9 +36,6 @@ public class Juego {//atributos
         nivelJugador = 1;
     }
     //getters
-    public Materia getMateria(){
-        return materia;
-    }
     public Paralelo getParalelo(){
         return paralelo;
     }
@@ -63,9 +58,6 @@ public class Juego {//atributos
         return comodin;
     }
     //setters
-    public void setMateria(Materia m){
-        materia = m;
-    }
     public void setParalelo(Paralelo p){
         paralelo = p;
     }
