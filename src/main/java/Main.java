@@ -29,7 +29,7 @@ public class Main {
         Materia m3 = new Materia("003","poo",3,preguntasMatematica);
         Paralelo p1 = new Paralelo(participantes,m1,t1,1);//creando paralelos
         Paralelo p2 = new Paralelo(participantes,m2,t2,2);
-        Paralelo p3 = new Paralelo(participantes,m2,t3,3);
+        Paralelo p3 = new Paralelo(participantes,m3,t3,3);
         Estudiante al1 = new Estudiante("Angello","angbeand","202105946");//generando estudiantes
         Estudiante al2 = new Estudiante("Julio","euclase","202105856");
         Estudiante al3 = new Estudiante("Mateo","MateoTuPapa","202105976");
@@ -433,7 +433,7 @@ public class Main {
                     int puntuacion=0;
                     
                     TipoComodin comodin = null;
-                    Juego j1 = new Juego(materiaEscogida,paraleloEscogido,estudiante,apoyo,puntuacion,tiempo,premio,comodin,fechaJuego);
+                    Juego j1 = new Juego(paraleloEscogido,estudiante,apoyo,puntuacion,tiempo,premio,comodin,fechaJuego);
                     System.out.println("Comenzando juego...");
                     System.out.println("Cargando...");
                     int incorrectas = 0;
@@ -472,15 +472,47 @@ public class Main {
                 
             case 3:
                 System.out.println("----Generar Reporte----");
-                System.out.print("Ingrese el termino academico: ");
+                //solicita los datos para generar el reporte
+                System.out.print("Ingrese el termino academico (2023-1): ");
                 String termino = input.nextLine();
-                System.out.print("Ingrese el codigo de materia: ");
+                System.out.print("Ingrese el codigo de materia:          ");
                 String codigo = input.nextLine();
-                System.out.print("Ingrese el paralelo:          ");
-                String paralelo = input.nextLine();
+                System.out.print("Ingrese el numero de paralelo:         ");
+                int paralelo = input.nextInt();
+                input.nextLine();
                 System.out.println("<<GENERANDO REPORTE>>");
+                System.out.println("");
+                //Crea un arrayList vacio que va a almacenar las los juegos que cumplan con los parametros
+                ArrayList<Juego> juegosReporte = new ArrayList<>();
+                //recorre la lista para validar uno por uno
                 for(Juego j: juegos){
-                    System.out.println(j);
+                    Paralelo pJuego = j.getParalelo();
+                    Materia mJuego = pJuego.getMateria();
+                    Termino tJuego = pJuego.getTermino();
+                    String cmJuego = mJuego.getCodigo();
+                    //valida el codigo de la materia
+                    if(codigo.equals(cmJuego)){
+                        String[] cadena = termino.split("-");
+                        int aniojuego = Integer.parseInt(cadena[0]);
+                        int terminojuego = Integer.parseInt(cadena[1]);
+                        //Valida el termino deseado
+                        if ((aniojuego == tJuego.getAnio())&&(terminojuego == tJuego.getNumTermino())){
+                            //valida el paralelo deseado
+                            if(paralelo == pJuego.getNumero()){
+                                juegosReporte.add(j);
+                            }
+                        }
+                    }
+                }
+                if(juegosReporte.size() == 0){
+                    System.out.println("<<NO EXISTEN REPORTES QUE COINCIDAN CON EL REGISTRO>>");
+                }else{
+                    int cont = 1;
+                    for(Juego jreporte: juegosReporte){
+                        System.out.println(cont+ ". " +jreporte);
+                        cont++;
+                    }
+                    System.out.println("");
                 }
                 flagMenu = true;
                 break;
