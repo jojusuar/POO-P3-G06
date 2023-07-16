@@ -142,7 +142,9 @@ public class Main {
                                         System.out.print("Ingrese la cantidad de niveles : ");
                                         int nivelesM = input.nextInt();
                                         input.nextLine();
-
+                                        ArrayList<Pregunta> preguntas = new ArrayList<>();
+                                        Materia nuevaMateria = new Materia(codigoM, nombreM, nivelesM, preguntas);
+                                        materias.add(nuevaMateria);
                                         flagTermino = true;
                                         break;
                                     case 2:
