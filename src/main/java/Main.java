@@ -25,8 +25,8 @@ public class Main {
         Termino t2 = new Termino(2023,1);
         Termino t3 = new Termino(2023,1);
         Materia m1 = new Materia("001","mate",3,preguntas);//generando materias
-        Materia m2 = new Materia("002","fisica",3,preguntas);
-        Materia m3 = new Materia("003","poo",3,preguntas);
+        Materia m2 = new Materia("001","fisica",3,preguntas);
+        Materia m3 = new Materia("001","poo",3,preguntas);
         Paralelo p1 = new Paralelo(participantes,m1,t1,1);//creando paralelos
         Paralelo p2 = new Paralelo(participantes,m2,t2,2);
         Paralelo p3 = new Paralelo(participantes,m2,t3,3);
@@ -127,16 +127,58 @@ public class Main {
                                 switch(query4){
                                     case 1:
                                         System.out.println("<<INGRESANDO MATERIA>>");
-                                        System.out.println("Ingrese el codigo de la materia: ");
-                                        System.out.println("Ingrese el nombre de la materia: ");
+                                        System.out.print("Ingrese el codigo de la materia: ");
+                                        String codigoM = input.nextLine();
+                                        System.out.print("Ingrese el nombre de la materia: ");
+                                        String nombreM = input.nextLine();
+                                        System.out.print("Ingrese la cantidad de niveles : ");
+                                        int nivelesM = input.nextInt();
+                                        input.nextLine();
+
                                         flagTermino = true;
                                         break;
                                     case 2:
                                         System.out.println("<<EDITANDO MATERIA>>");
+                                        System.out.print("Ingrese el codigo o el nombre de la materia a editar: ");
+                                        String entrada = input.nextLine();
+                                        for(Materia m: materias){
+                                            String nMateria = m.getNombre();
+                                            String cMateria = m.getCodigo();
+                                            if ((entrada.equals(nMateria))||(entrada.equals(cMateria))){
+                                                System.out.print("Ingrese nuevo nombre (ingrese '*' si no desea modificar): ");
+                                                String nuevoNombre = input.nextLine();
+                                                System.out.print("Ingrese nueva cantidad de niveles (ingrese '0' si no desea modificar): ");
+                                                int nuevoNivel = input.nextInt();
+                                                input.nextLine();
+                                                if(!(nuevoNombre.equals("*"))){
+                                                    m.setNombre(nuevoNombre);
+                                                }
+                                                if(nuevoNivel != 0){
+                                                    m.setNiveles(nuevoNivel);
+                                                }
+                                            }
+                                        }
+                                        System.out.println("");
                                         flagTermino = true;
                                         break;
                                     case 3:
-                                        System.out.println("<<AGREGANDO PARALELO>>");
+                                        System.out.println("Seleccione la materia en la cual se desee crear el nuevo paralelo:");
+                                        /*String materia = input.nextLine();
+                                        System.out.print("Ingrese termino academico (####-##): ");
+                                        String terminoA = input.nextLine();
+                                        System.out.print("Ingrese el numero de paralelo      : ");
+                                        int numPar = input.nextInt();
+                                        input.nextLine();
+                                        Materia materiaParalelo;
+                                        System.out.println("");
+                                        for(Materia m: materias){
+                                            String nMateria = m.getNombre();
+                                            if(materia.equals(nMateria)){
+                                                materiaParalelo = m;
+                                            }
+                                        }
+                                        
+                                        Paralelo p = new Paralelo(participantes, materiaParalelo,, numPar);*/
                                         flagTermino = true;
                                         break;
                                     case 4:
