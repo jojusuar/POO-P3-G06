@@ -62,8 +62,10 @@ public class Main {
             System.out.println("2. Nuevo juego");
             System.out.println("3. Reporte");
             System.out.println("4. Salir");
+            System.out.print("Seleccione una opcion: ");
             query = input.nextInt();
             input.nextLine();
+            System.out.println("");
             switch(query){
             case 1:
                 int query2 = 0;
@@ -74,8 +76,10 @@ public class Main {
                     System.out.println("2. Administrar materias y paralelos");
                     System.out.println("3. Administrar preguntas");
                     System.out.println("4. Regresar");
+                    System.out.print("Seleccione una opcion: ");
                     query2 = input.nextInt();
                     input.nextLine();
+                    System.out.println("");
                     flagConfig = false;
                     switch(query2){
                         case 1:
@@ -88,8 +92,10 @@ public class Main {
                                 System.out.println("2. Editar término");
                                 System.out.println("3. Configurar término para juego");
                                 System.out.println("4. Regresar");
+                                System.out.print("Seleccione una opcion: ");
                                 query3 = input.nextInt();
                                 input.nextLine();
+                                System.out.println("");
                                 flagTermino = false;
                                 switch(query3){
                                     case 1:
@@ -121,8 +127,10 @@ public class Main {
                                 System.out.println("3. Agregar paralelo");
                                 System.out.println("4. Eliminar paralelo");
                                 System.out.println("5. Regresar");
+                                System.out.print("Seleccione una opcion: ");
                                 query4 = input.nextInt();
                                 input.nextLine();
+                                System.out.println("");
                                 flagTermino = false;
                                 switch(query4){
                                     case 1:
@@ -139,17 +147,21 @@ public class Main {
                                         break;
                                     case 2:
                                         System.out.println("<<EDITANDO MATERIA>>");
+                                        //Se pide nombre o codigo de materia
                                         System.out.print("Ingrese el codigo o el nombre de la materia a editar: ");
                                         String entrada = input.nextLine();
                                         for(Materia m: materias){
                                             String nMateria = m.getNombre();
                                             String cMateria = m.getCodigo();
+                                            //Se compara con el nombre y codigo de cada materia con OR
                                             if ((entrada.equals(nMateria))||(entrada.equals(cMateria))){
+                                                //Se pide nuevo nombre y nueva cantidad de niveles
                                                 System.out.print("Ingrese nuevo nombre (ingrese '*' si no desea modificar): ");
                                                 String nuevoNombre = input.nextLine();
                                                 System.out.print("Ingrese nueva cantidad de niveles (ingrese '0' si no desea modificar): ");
                                                 int nuevoNivel = input.nextInt();
                                                 input.nextLine();
+                                                //Se modifican los nombres y niveles
                                                 if(!(nuevoNombre.equals("*"))){
                                                     m.setNombre(nuevoNombre);
                                                 }
@@ -162,27 +174,58 @@ public class Main {
                                         flagTermino = true;
                                         break;
                                     case 3:
+                                        //Se imprimen las materias disponibles
                                         System.out.println("Seleccione la materia en la cual se desee crear el nuevo paralelo:");
-                                        /*String materia = input.nextLine();
-                                        System.out.print("Ingrese termino academico (####-##): ");
+                                        int i = 0;
+                                        for(Materia m: materias){
+                                            String nombreMateria = m.getNombre();
+                                            System.out.println(i +". "+nombreMateria);
+                                            i++;
+                                        }
+                                        //Se selecciona la materia deseada
+                                        System.out.print("Seleccione el numero de materia: ");
+                                        int indiceMateria = input.nextInt();
+                                        input.nextLine();
+                                        Materia materiaPar = materias.get(indiceMateria);
+                                        //Se ingresa el termino academico
+                                        System.out.print("Ingrese termino academico (2023-1): ");
                                         String terminoA = input.nextLine();
+                                        String [] cadena = terminoA.split("-");
+                                        String anioc = cadena[0];
+                                        int anio = Integer.parseInt(anioc);
+                                        String terminoc = cadena[1];
+                                        int numTermino = Integer.parseInt(terminoc);
+                                        //Se crea el objeto termino
+                                        Termino termino = new Termino(anio, numTermino);
+                                        //Se pide el numero de paralelo
                                         System.out.print("Ingrese el numero de paralelo      : ");
                                         int numPar = input.nextInt();
                                         input.nextLine();
-                                        Materia materiaParalelo;
-                                        System.out.println("");
-                                        for(Materia m: materias){
-                                            String nMateria = m.getNombre();
-                                            if(materia.equals(nMateria)){
-                                                materiaParalelo = m;
-                                            }
-                                        }
-                                        
-                                        Paralelo p = new Paralelo(participantes, materiaParalelo,, numPar);*/
+                                        //Se crea el objeto paralelo
+                                        Paralelo paraleloGenerado = new Paralelo(participantes, materiaPar, termino, numPar);
+                                        //Se añade nuestro paralelo a la lista de paralelos.
+                                        paralelos.add(paraleloGenerado);
+                                        System.out.println("<<PARALELO CREADO>>");
                                         flagTermino = true;
                                         break;
                                     case 4:
-                                        System.out.println("<<ELIMINANDO PARALELO>>");
+                                        System.out.println("Seleccione el paralelo que desea eliminar:");
+                                        int n = 0;
+                                        for(Paralelo p: paralelos){
+                                            System.out.println(n + ". " + p);
+                                            n++;
+                                        }
+                                        System.out.print("Ingrese el numero del paralelo o '*' si desea cancelar: ");
+                                        String seleccion = input.nextLine();
+                                        if(seleccion.equals("*")){
+                                            System.out.println("<<CANCELANDO>>");
+                                        }else{
+                                            int seleccionN = Integer.parseInt(seleccion);
+                                            paralelos.remove(seleccionN);
+                                            System.out.println("<<ELIMINANDO PARALELO>>");
+                                        }
+                                        
+
                                         flagTermino = true;
                                         break;
                                     case 5:
@@ -218,7 +261,7 @@ public class Main {
                                         flagTermino = true;
                                         break;
                                     case 2:
-                                        System.out.println("Seleccione la materia ingresando su código:");
+                                        System.out.println("Seleccione la materia ingresando su código: ");
                                         String code2 = input.nextLine();
                                         for(Materia m: materias){
                                             if(code2.equals(m.getCodigo())){
