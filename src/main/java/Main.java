@@ -261,7 +261,7 @@ public class Main {
                                         flagTermino = true;
                                         break;
                                     case 2:
-                                        System.out.println("Seleccione la materia ingresando su código: ");
+                                        System.out.println("Seleccione la materia ingresando su código:");
                                         String code2 = input.nextLine();
                                         for(Materia m: materias){
                                             if(code2.equals(m.getCodigo())){
