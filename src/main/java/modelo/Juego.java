@@ -23,6 +23,9 @@ public class Juego {//atributos
     private PreguntaTrucada preguntaTrucada;
     private String fechajuego;
     private int nivelJugador;
+    private int com50=3;
+    private int comCon=3;
+    private int comSal=3;
     //constructor
     public Juego(Materia m, Paralelo p, Estudiante x, Estudiante y, int s, int t, String h, TipoComodin k, String f){
         materia = m;
@@ -62,6 +65,9 @@ public class Juego {//atributos
     public TipoComodin getComodin(){
         return comodin;
     }
+    public int getIntentoComodines(){
+        return intentoComodines;
+    }
     //setters
     public void setMateria(Materia m){
         materia = m;
@@ -100,12 +106,14 @@ public class Juego {//atributos
                  preguntaTrucada = new PreguntaTrucada(pregunta.getEnunciado(), pregunta.getNivel(), pregunta.getCorrecta(), opciones.get(0));//creo una copia especial de la pregunta en la cual solo hay la respuesta correcta y una falsa
                  System.out.println(preguntaTrucada.getCorrecta());
                  System.out.println(preguntaTrucada.getPosible());
+                 intentoComodines--;
                  break;
              case ConsultaCompanero:
                  int index = (int)(opciones.size()*Math.random());
                  String[] literales = {"A)","B)","C)","D)"};
                  String sugerencia = literales[index];
                  System.out.println(companiero.getNombre()+" cree que la respuesta es: "+sugerencia);
+                 intentoComodines--;
                  break;
              case ConsultaClase:
                  int votos1 = 0;
@@ -138,9 +146,10 @@ public class Juego {//atributos
                       System.out.println("No hubo concenso");
                   }
                       System.out.println("consultar al salón de clase");
+                  intentoComodines--;
                   break;
                  }
-                 intentoComodines--;
+               
                  pregunta.mostrarOpciones(pregunta);
          }
      }
@@ -149,13 +158,65 @@ public class Juego {//atributos
     
     
     public void mostrarComodines(TipoComodin k){
+        //System.out.println(k.Fifty_Fifty);
+        //System.out.println(k.ConsultaCompanero);
+        //System.out.println(k.ConsultaClase);
+        if(intentoComodines>=3){
+        System.out.println("comodines actuales:");
         System.out.println(k.Fifty_Fifty);
         System.out.println(k.ConsultaCompanero);
         System.out.println(k.ConsultaClase);
         
+        }
+        
+         
+        if((intentoComodines>=2) && (k==TipoComodin.Fifty_Fifty)){
+        System.out.println(k.ConsultaCompanero);
+        System.out.println(k.ConsultaClase);  
+        com50--;
+        k=null;
+            
+        }
+        if((intentoComodines>=2) && (k==TipoComodin.ConsultaCompanero)){
+        System.out.println(k.Fifty_Fifty);
+        System.out.println(k.ConsultaClase); 
+        comCon--;
+        k=null;
+        }
+        if((intentoComodines>=2) && (k==TipoComodin.ConsultaClase)){
+        System.out.println(k.Fifty_Fifty);
+        System.out.println(k.ConsultaCompanero);
+        comSal--;
+        k=null;
+        }
+        if(intentoComodines>=1 && comSal<=2 && k==TipoComodin.Fifty_Fifty  ){
+        
+        System.out.println(k.ConsultaCompanero);
+        
+        }
+        if(intentoComodines>=1 && comCon<=2 && k==TipoComodin.Fifty_Fifty ){
+        System.out.println(k.ConsultaClase);
+        
+        }
+        if(intentoComodines>=1 && comSal<=2 && k==TipoComodin.ConsultaCompanero ){
+        System.out.println(k.Fifty_Fifty);
+        }
+        if(intentoComodines>=1 && com50<=2 && k==TipoComodin.ConsultaCompanero ){
+        System.out.println(k.ConsultaClase);
+            
+    
+        }
+        if(intentoComodines>=1 && comCon<=2 && k==TipoComodin.ConsultaClase ){
+        System.out.println(k.Fifty_Fifty);
+        
+        }
+        if(intentoComodines>=1 && com50<=2 && k==TipoComodin.ConsultaClase  ){
+        System.out.println(k.ConsultaCompanero);
+        
         
         
      }
+    }
      
      
     

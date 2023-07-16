@@ -68,6 +68,7 @@ public class Pregunta { //atributos
     public void setPosible3(String z){
         posible3 = z;
     }
+    
      public ArrayList<String> opciones(){//metodo que me da la lista de opciones
      ArrayList<String> literales = new ArrayList<>();
      literales.add(correcta);
