@@ -17,6 +17,7 @@ public class Main {
         int query = 0;
         boolean flagMenu= false;
         do{
+            flagMenu = false;
             System.out.println("-----MENÚ PRINCIPAL-----");
             System.out.println("Ingrese el número para elegir una acción: ");
             System.out.println("1. Configuraciones");
@@ -134,15 +135,14 @@ public class Main {
                 
             case 3:
                 System.out.println("----Generar Reporte----");
-                System.out.print("Ingrese el termino academico: ");
+                System.out.println("Ingrese el termino academico: ");
                 String termino = input.nextLine();
-                System.out.print("Ingrese el codigo de materia: ");
+                System.out.println("Ingrese el codigo de materia: ");
                 String codigo = input.nextLine();
-                System.out.print("Ingrese el paralelo:          ");
+                System.out.println("Ingrese el paralelo:          ");
                 String paralelo = input.nextLine();
-                input.nextLine();
                 System.out.println("<<GENERANDO REPORTE>>");
-                
+                flagMenu = true;
                 break;
                 
             case 4:
