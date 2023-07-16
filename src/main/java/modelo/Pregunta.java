@@ -72,4 +72,5 @@ public class Pregunta { //atributos
      literales.add(posible3);
      return literales;
     }
+     
 }
