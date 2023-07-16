@@ -307,10 +307,10 @@ public class Main {
                              
                              }
                          }
-                   juegos.add(j1);           
+                            
                          
                          }
-                     
+                     juegos.add(j1);  
                  
                     
                                   
