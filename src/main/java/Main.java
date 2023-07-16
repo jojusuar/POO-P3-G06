@@ -133,6 +133,7 @@ public class Main {
                                 flagTermino = false;
                                 switch(query4){
                                     case 1:
+                                        //Se solicitan los datos para la creacion de la nueva materia
                                         System.out.println("<<INGRESANDO MATERIA>>");
                                         System.out.print("Ingrese el codigo de la materia: ");
                                         String codigoM = input.nextLine();
@@ -141,7 +142,12 @@ public class Main {
                                         System.out.print("Ingrese la cantidad de niveles : ");
                                         int nivelesM = input.nextInt();
                                         input.nextLine();
-
+                                        //Se crea un arrayList de preguntaas vacias que se llenaran en la parte de administrar preguntas.
+                                        ArrayList<Pregunta> preguntas = new ArrayList<>();
+                                        //Se crea la nueva materia
+                                        Materia nuevaMateria = new Materia(codigoM, nombreM, nivelesM, preguntas);
+                                        // se añade la materia a la lista de materias
+                                        materias.add(nuevaMateria);
                                         flagTermino = true;
                                         break;
                                     case 2:
