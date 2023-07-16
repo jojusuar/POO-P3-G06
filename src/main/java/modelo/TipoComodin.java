@@ -11,4 +11,7 @@ package modelo;
  */
 public enum TipoComodin {
     Fifty_Fifty, ConsultaCompanero, ConsultaClase;
+    
+    
+    
 }

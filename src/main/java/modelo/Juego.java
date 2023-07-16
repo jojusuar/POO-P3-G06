@@ -87,6 +87,7 @@ public class Juego {//atributos
     public void setComodin(TipoComodin k){
         comodin = k;
     }
+   
     public void usarComodin(TipoComodin comodin,Paralelo curso, Pregunta pregunta, Estudiante companiero){
      if (intentoComodines >0){
          ArrayList<String> opciones = pregunta.opciones();
@@ -98,12 +99,14 @@ public class Juego {//atributos
                      opciones.remove(opciones.get(index));
                  }
                  preguntaTrucada = new PreguntaTrucada(pregunta.getEnunciado(), pregunta.getNivel(), pregunta.getCorrecta(), opciones.get(0));//creo una copia especial de la pregunta en la cual solo hay la respuesta correcta y una falsa
-                 ;
+                 System.out.println(preguntaTrucada.getCorrecta());
+                 System.out.println(preguntaTrucada.getPosible());
+                 break;
              case ConsultaCompanero:
                  int index = (int)(opciones.size()*Math.random());
                  String sugerencia = opciones.get(index);
                  System.out.println(companiero.getNombre()+" cree que la respuesta es: "+sugerencia);
-                 ;
+                 break;
              case ConsultaClase:
                  int votos1 = 0;
                  int votos2 = 0;
@@ -134,12 +137,23 @@ public class Juego {//atributos
                   else{
                       System.out.println("No hubo concenso");
                   }
-            System.out.println("consultar al salon de clase");
+                      System.out.println("consultar al salon de clase");
+                  break;
                  }
+                 
      intentoComodines--;
          }
      }
     }
+    public void mostrarComodines(TipoComodin k){
+        System.out.println(k.Fifty_Fifty);
+        System.out.println(k.ConsultaCompanero);
+        System.out.println(k.ConsultaClase);
+        
+     }
+     
+     
+    
 
     public String toString(){
         String cadena = "Fecha del juego: " + fechajuego + " - Participante: " + participante + " - Nivel Maximo alcanzado: " + nivelJugador + " - Tiempo: " + tiempo + " - Cantidad de preguntas contestadas: " + (nivelJugador-1) + " - Comodines utilizados: " +(2-intentoComodines)+ " - Premio: " + premio;
