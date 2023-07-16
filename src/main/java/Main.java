@@ -441,25 +441,46 @@ public class Main {
                     String correcta;
                     
                      ArrayList<Pregunta> preguntando = materiaEscogida.getPreguntas();
+                     while(incorrectas<=0){
                      for(Pregunta prt: preguntando){
                        prt.mostrarOpciones(prt);
                          System.out.println("Ingrese su respuesta (no el literal) o ingrese * para usar un comodín:");
                          String respuesta = input.next();
                          input.nextLine();
+                         
+                         
+                         while(respuesta.equals("*")){
+                             System.out.println("Comodines disponiles");
+                             j1.mostrarComodines(comodin);
+                             if(j1.getIntentoComodines()>0){
+                                 System.out.println("Ingrese comodin a usar");
+                                 String komodin=input.nextLine();
+                                 comodin = TipoComodin.valueOf(komodin);
+                                 j1.usarComodin( comodin, p3, prt, apoyo);
+                                 System.out.println("Ingrese su respuesta");
+                                 respuesta = input.next();
+                                 input.nextLine();
+                             }
+                             else{
+                                 System.out.println("Se te acabaron los comodines");
+                                 System.out.println("Ingrese su respuesta");
+                                 break;}
+                           
+                             //String komodin=input.nextLine();
+                             //TipoComodin k = TipoComodin.valueOf(komodin);
+                             //j1.usarComodin( k, p3, prt, apoyo);
+                         }
+                            
                          if (respuesta.equals(prt.getCorrecta())){
                              System.out.println("respuesta correcta");
                          }
-                         else if (respuesta.equals("*")){
-                             System.out.println("Comodines disponiles");
-                             j1.mostrarComodines(comodin);
-                             System.out.println("Ingrese comodin a usar");
-                             String komodin=input.nextLine();
-                             TipoComodin k = TipoComodin.valueOf(komodin);
-                             j1.usarComodin( k, p3, prt, apoyo);
+                         else if (respuesta!=prt.getCorrecta()){
+                             incorrectas++;
+                             System.out.println("Respuesta incorrecta, game over");
+                             break;
                          }
-                            
-                         
-                         }
+                     }
+                     }
                      juegos.add(j1);  
                  
                     
