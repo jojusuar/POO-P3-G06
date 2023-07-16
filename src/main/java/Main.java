@@ -16,7 +16,7 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args){
         ArrayList<Estudiante> participantes = new ArrayList<>();
-        ArrayList<Pregunta> preguntas = new ArrayList<>();
+        ArrayList<Pregunta> preguntasMatematica = new ArrayList<>();
         ArrayList<Materia> materias = new ArrayList<>(); 
         ArrayList<Paralelo> paralelos = new ArrayList<>();
         ArrayList<Termino> terminos = new ArrayList<>();
@@ -24,9 +24,9 @@ public class Main {
         Termino t1 = new Termino(2023,1);//creando terminos academicos
         Termino t2 = new Termino(2023,1);
         Termino t3 = new Termino(2023,1);
-        Materia m1 = new Materia("001","mate",3,preguntas);//generando materias
-        Materia m2 = new Materia("002","fisica",3,preguntas);
-        Materia m3 = new Materia("003","poo",3,preguntas);
+        Materia m1 = new Materia("001","mate",3,preguntasMatematica);//generando materias
+        Materia m2 = new Materia("002","fisica",3,preguntasMatematica);
+        Materia m3 = new Materia("003","poo",3,preguntasMatematica);
         Paralelo p1 = new Paralelo(participantes,m1,t1,1);//creando paralelos
         Paralelo p2 = new Paralelo(participantes,m2,t2,2);
         Paralelo p3 = new Paralelo(participantes,m2,t3,3);
@@ -42,9 +42,9 @@ public class Main {
         participantes.add(al1);//agregando estudiantes
         participantes.add(al2);
         participantes.add(al3);
-        preguntas.add(pr1);//agregando preguntas
-        preguntas.add(pr2);
-        preguntas.add(pr3);
+        preguntasMatematica.add(pr1);//agregando preguntas
+        preguntasMatematica.add(pr2);
+        preguntasMatematica.add(pr3);
         paralelos.add(p1);//agregando paralelos
         paralelos.add(p2);
         paralelos.add(p3);
