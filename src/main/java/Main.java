@@ -30,11 +30,11 @@ public class Main {
         Paralelo p2 = new Paralelo(participantes,m2,t2,2);
         Paralelo p3 = new Paralelo(participantes,m2,t3,3);
         Estudiante al1 = new Estudiante("Angello","angbeand","202105946");//generando estudiantes
-        Estudiante al2 = new Estudiante("Julio","euclase","202105956");
-        Estudiante al3 = new Estudiante("Mateo","MateoTuPapa","202105966");
-        Pregunta pr1 = new Pregunta("cuanto es 2 +2",1,"4","5","7","8");//generando preguntas
-        Pregunta pr2 = new Pregunta("cuanto es 2 x 3",2,"6","9","7","8");
-        Pregunta pr3 = new Pregunta("cuanto es 4 /2",3,"2","9","7","8");
+        Estudiante al2 = new Estudiante("Julio","euclase","202105856");
+        Estudiante al3 = new Estudiante("Mateo","MateoTuPapa","202105976");
+        Pregunta pr1 = new Pregunta("cuanto es 2 +2?",1,"4","5","7","8");//generando preguntas
+        Pregunta pr2 = new Pregunta("cuanto es 2 x 3?",2,"6","9","7","8");
+        Pregunta pr3 = new Pregunta("cuanto es 4 /2?",3,"2","9","7","8");
         materias.add(m1);//agregando materias
         materias.add(m2);
         materias.add(m3);
@@ -185,7 +185,7 @@ public class Main {
                 break;
             
             case 2:
-                Materia materiaEscogida=null;
+                    Materia materiaEscogida=null;
                     Paralelo paraleloEscogido=null;
                     int nPreguntas;
                     String participante;
@@ -231,8 +231,8 @@ public class Main {
                     }
                     else{
                        for(Estudiante pr: participantes){
-                       if(pr.getMatricula().equals(participante)){}
-                       estudiante = pr;
+                       if(pr.getMatricula().equals(participante)){
+                       estudiante = pr;}
                        }
                        
                     }
@@ -241,16 +241,24 @@ public class Main {
                     System.out.println("Ingrese la matricula del companiero de apoyo o ingrese aletaorio para seleccionar un companiero aleatorio del listado");
                     consulta = input.next();                  
                     input.nextLine();
+                    
                     if (consulta.equals("aleatorio")){
+                        
                         Random random = new Random();
                         int indice = random.nextInt(participantes.size());
                         apoyo = participantes.get(indice);
+                        while(participantes.get(indice).getNombre().equals(estudiante.getNombre())){
+                        indice = random.nextInt(participantes.size());
+                        apoyo = participantes.get(indice);
+                        }
+                       
+                    
                     
                     }
                     else{
                        for(Estudiante pr: participantes){
-                       if(pr.getMatricula().equals(consulta)){}
-                       apoyo = pr;
+                       if(pr.getMatricula().equals(consulta)){
+                       apoyo = pr;}
                        }
                        
                     }
@@ -258,12 +266,58 @@ public class Main {
                     System.out.println("El juego tiene la siguiente configuracion");
                     System.out.println("Preguntas sobre la materia "+materiaEscogida.getNombre()+" con el total de "+materiaEscogida.getNiveles()+" niveles");
                     System.out.println("Participante a jugar:"+estudiante.getNombre()+" con matricula:"+estudiante.getMatricula()+" del paralelo "+paraleloEscogido.getNumero());
+                    String premio = null;
+                    String fechaJuego =null;
+                   
+                    int tiempo=0;
+                    int puntuacion=0;
                     
+                    TipoComodin comodin = null;
+                    Juego j1 = new Juego(materiaEscogida,paraleloEscogido,estudiante,apoyo,puntuacion,tiempo,premio,comodin,fechaJuego);
                     
+                    System.out.println("Comenzando juego...");
+                    System.out.println("Cargando...");
+                    int incorrectas = 0;
+                    int correctas = 0;
+                    String correcta;
+                    
+                     ArrayList<Pregunta> preguntando = materiaEscogida.getPreguntas();
+                     for(Pregunta prt: preguntando){
+                       prt.mostrarOpciones(prt);
+                         System.out.println("Ingrese su respuesta:");
+                         String respuesta = input.next();
+                         input.nextLine();
+                         if (respuesta.equals(prt.getCorrecta())){
+                             System.out.println("respuesta correcta");
+                         }
+                         else if (respuesta.equals("*")){
+                             System.out.println("Comodines disponiles");
+                             j1.mostrarComodines(comodin);
+                             System.out.println("Ingrese comodin a usar");
+                             String komodin=input.next();
+                             input.nextLine();
+                             switch(komodin){
+                                 case "Fifty_Fifty":
+                                  j1.usarComodin(comodin.Fifty_Fifty, paraleloEscogido, prt, apoyo);
+                                     //prt.mostrarOpciones(prt);
+                                     System.out.println("Ingrese su respuesta:");
+                                     respuesta = input.next();
+                                     input.nextLine();
+                             
+                             }
+                         }
+                               
+                         
+                         }
+                     
+                 
+                    
+                                  
                     flagMenu = true;
                      
                 
                 break;
+
                 
             case 3:
                 System.out.println("----Generar Reporte----");

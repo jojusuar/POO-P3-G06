@@ -5,6 +5,8 @@
  */
 package modelo;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Collections;
 /**
  *
  * @author jojusuar
@@ -72,5 +74,16 @@ public class Pregunta { //atributos
      literales.add(posible3);
      return literales;
     }
-     
-}
+     public void mostrarOpciones(Pregunta preguntas){
+        ArrayList<String> literales = preguntas.opciones();
+         Collections.shuffle(literales);
+         System.out.println(preguntas.getEnunciado());
+         System.out.println("A)"+literales.get(0));
+         System.out.println("B)"+literales.get(1));
+         System.out.println("C)"+literales.get(2));
+         System.out.println("D)"+literales.get(3));
+        }
+        
+        
+     }   
+
