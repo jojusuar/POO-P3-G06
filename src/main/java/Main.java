@@ -127,6 +127,8 @@ public class Main {
                                 switch(query4){
                                     case 1:
                                         System.out.println("<<INGRESANDO MATERIA>>");
+                                        System.out.println("Ingrese el codigo de la materia: ");
+                                        System.out.println("Ingrese el nombre de la materia: ");
                                         flagTermino = true;
                                         break;
                                     case 2:
@@ -362,11 +364,11 @@ public class Main {
                 
             case 3:
                 System.out.println("----Generar Reporte----");
-                System.out.println("Ingrese el termino academico: ");
+                System.out.print("Ingrese el termino academico: ");
                 String termino = input.nextLine();
-                System.out.println("Ingrese el codigo de materia: ");
+                System.out.print("Ingrese el codigo de materia: ");
                 String codigo = input.nextLine();
-                System.out.println("Ingrese el paralelo:          ");
+                System.out.print("Ingrese el paralelo:          ");
                 String paralelo = input.nextLine();
                 System.out.println("<<GENERANDO REPORTE>>");
                 for(Juego j: juegos){
