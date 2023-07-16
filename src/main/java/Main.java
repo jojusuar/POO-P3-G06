@@ -57,12 +57,11 @@ public class Main {
         do{
             flagMenu = false;
             System.out.println("-----MENÚ PRINCIPAL-----");
-            System.out.println("Ingrese el número para elegir una acción: ");
             System.out.println("1. Configuraciones");
             System.out.println("2. Nuevo juego");
             System.out.println("3. Reporte");
             System.out.println("4. Salir");
-            System.out.print("Seleccione una opcion: ");
+            System.out.print("Ingrese el número respectivo para seleccionar una opción: ");
             query = input.nextInt();
             input.nextLine();
             System.out.println("");
@@ -278,7 +277,7 @@ public class Main {
                                                 System.out.println("Ingrese el nivel de la pregunta (de 1 a "+m.getNiveles()+")");
                                                 int z = input.nextInt();
                                                 input.nextLine();
-                                                m.setPregunta(new Pregunta(enunciado, z, t, s, x, y));
+                                                m.setPregunta(new Pregunta(enunciado, z, t,s,x,y));
                                             }
                                         }
                                         flagTermino = true;
@@ -286,17 +285,21 @@ public class Main {
                                     case 3:
                                         System.out.println("Seleccione la materia ingresando su código:");
                                         String code3 = input.nextLine();
+                                        Materia dummy1  = new Materia();
+                                        Pregunta dummy2 = new Pregunta();
                                         for(Materia m: materias){
                                             if(code3.equals(m.getCodigo())){
+                                                dummy1 = m;
                                                 System.out.println("Ingrese el enunciado de la pregunta a eliminar:");
                                                 String del = input.nextLine();
                                                 for(Pregunta p: m.getPreguntas()){
                                                     if(del.equals(p.getEnunciado())){
-                                                        m.removePregunta(p);
+                                                        dummy2 = p;
                                                     }
                                                 }
                                             }
                                         }
+                                        dummy1.removePregunta(dummy2);
                                         flagTermino = true;
                                         break;
                                     case 4:
@@ -343,13 +346,13 @@ public class Main {
                      paraleloEscogido = elemento;
                      }}
                    
-                    System.out.println("Ingrese los");
+                    System.out.println("Ingrese el nivel hasta el cual jugar:");
                     nPreguntas = input.nextInt();
                    
                     while(nPreguntas!=materias.get(0).getNiveles()){
-                        System.out.println("Ingrese el numero de preguntas por nivel");
+                        System.out.println("No existe tal nivel en la materia. Ingrese un nivel válido:");
                         nPreguntas = input.nextInt();}
-                    System.out.println("Ingrese la matricula del participante o ingrese aletaorio para seleccionar un participante aleatorio del listado");
+                    System.out.println("Ingrese la matricula del participante o ingrese aleatorio para seleccionar un participante aleatorio del listado:");
                     
                     participante = input.next();
                     if (participante.equals("aleatorio")){
