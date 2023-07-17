@@ -90,6 +90,9 @@ public class Juego {//atributos
     public void setNivelJugador(int n ){
         nivelJugador = n;
     }
+    public void setFechajuego(String s){
+        fechajuego = s;
+    }
     public void setPreguntasRespondidas(int n){
         preguntasRespondidas = n;
     }

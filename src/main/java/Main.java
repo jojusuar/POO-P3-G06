@@ -362,6 +362,8 @@ public class Main {
                 String participante;
                 String consulta;
                 flagConfig = false;
+                System.out.println("Ingrese la fecha en formato YYYY-MM-DD");
+                String fecha = input.nextLine();
                 //Creamos los estudiantes para apoyo y participante
                 Estudiante estudiante = new Estudiante(null,null,null);
                 Estudiante apoyo = new Estudiante(null,null,null);
@@ -441,6 +443,7 @@ public class Main {
                 int puntuacion=0;
                 TipoComodin comodin = null;
                 Juego j1 = new Juego(paraleloEscogido,estudiante,apoyo,puntuacion,tiempo,premio,comodin,fechaJuego);
+                j1.setFechajuego(fecha);
                 System.out.println("Comenzando juego...");
                 System.out.println("Cargando...");
                 System.out.println("");
