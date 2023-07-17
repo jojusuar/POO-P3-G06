@@ -148,7 +148,6 @@ public class Juego {//atributos
                         intentoComodines--;
                         break;
                     }
-                    pregunta.mostrarOpciones(pregunta);
             }
         }
         return respuesta50;
