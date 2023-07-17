@@ -16,26 +16,26 @@ public class UtilitariaConfig {
                                         int anioAcademico = input.nextInt();
                                         System.out.println("INGRESE TERMINO ACADEMICO");
                                         int tAcademico = input.nextInt();
-                                        Termino t = new Termino(anioAcademico,tAcademico);
+                                        Termino t = new Termino(anioAcademico,tAcademico); //se crea término con los datos ingresados
                                         terminos.add(t);
     }
     public static void editarTermino(ArrayList<Termino> terminos, Scanner input){
         System.out.println("<<EDITANDO TÉRMINO>>");
                                         System.out.println("SELECCIONE EL NÚMERO DEL TÉRMINO A EDITAR");
-                                        int pEditar = input.nextInt()-1;
-                                        Termino tEditar = terminos.get(pEditar);
+                                        int pEditar = input.nextInt()-1; // se obtiene el índice del término 
+                                        Termino tEditar = terminos.get(pEditar); // se obtiene el término en el arreglo
                                         System.out.println("INGRESE EL NUEVO ANIO ACADEMICO");
-                                        int nAnio = input.nextInt();
+                                        int nAnio = input.nextInt(); 
                                         System.out.println("INGRESE EL NUEVO TERMINO ACADEMICO");
                                         int nTermino = input.nextInt();
-                                        tEditar.setAnio(nAnio);
+                                        tEditar.setAnio(nAnio); //se usa setters para editar el término
                                         tEditar.setNumTermino(nTermino); 
     }
     public static void seleccionarTermino(ArrayList<Termino> terminos, Scanner input){
         System.out.println("<<SELECCIONANDO TÉRMINO>>");
                                         System.out.println("SELECCIONE EL NÚMERO DEL TÉRMINO PARA EL JUEGO");
                                         int opcion = input.nextInt()-1;
-                                        Termino tJuego = terminos.get(opcion);
+                                        Termino tJuego = terminos.get(opcion); // se obtiene el término seleccionado
                                         System.out.println("Termino seleccionado:"+"PAO "+tJuego.getNumTermino()+" "+tJuego.getAnio());
                                         
     }
@@ -137,11 +137,11 @@ public class UtilitariaConfig {
     }
     public static void visualizarPreguntas(ArrayList<Materia> materias, Scanner input){
         System.out.println("Seleccione la materia ingresando su código:");
-                                        for(Materia m: materias){
+                                        for(Materia m: materias){ //se itera en la lista de materias para mostrarlas
                                             System.out.println(m);
                                         }
-                                        String code = input.nextLine();
-                                        for(Materia m: materias){
+                                        String code = input.nextLine(); // se pide el ingreso de una de las materias mostradas
+                                        for(Materia m: materias){ // si la ingresada coincide con una en la lista, se muestran sus preguntas
                                             if(code.equals(m.getCodigo())){
                                                 System.out.println(m.getPreguntas());
                                             }
@@ -151,7 +151,7 @@ public class UtilitariaConfig {
        System.out.println("Seleccione la materia ingresando su código:");
                                         String code2 = input.nextLine();
                                         for(Materia m: materias){
-                                            if(code2.equals(m.getCodigo())){
+                                            if(code2.equals(m.getCodigo())){ //se verifica que la materia exista
                                                 System.out.println("Ingrese el enunciado:");
                                                 String enunciado = input.nextLine();
                                                 System.out.println("Ingrese el literal correcto:");
@@ -165,27 +165,27 @@ public class UtilitariaConfig {
                                                 System.out.println("Ingrese el nivel de la pregunta (de 1 a "+m.getNiveles()+")");
                                                 int z = input.nextInt();
                                                 input.nextLine();
-                                                m.setPregunta(new Pregunta(enunciado, z, t,s,x,y));
+                                                m.setPregunta(new Pregunta(enunciado, z, t,s,x,y));//se agrega la pregunta nueva al arreglo de la materia
                                             }
                                         }
     }
     public static void eliminarPregunta(ArrayList<Materia> materias, Scanner input){
         System.out.println("Seleccione la materia ingresando su código:");
                                         String code3 = input.nextLine();
-                                        Materia dummy1  = new Materia();
+                                        Materia dummy1  = new Materia(); //instancio objetos materia y pregunta vacíos
                                         Pregunta dummy2 = new Pregunta();
                                         for(Materia m: materias){
                                             if(code3.equals(m.getCodigo())){
-                                                dummy1 = m;
+                                                dummy1 = m; //guardo la coincidencia en el dummy
                                                 System.out.println("Ingrese el enunciado de la pregunta a eliminar:");
                                                 String del = input.nextLine();
                                                 for(Pregunta p: m.getPreguntas()){
                                                     if(del.equals(p.getEnunciado())){
-                                                        dummy2 = p;
+                                                        dummy2 = p; // guardo la coincidencia en el dummy
                                                     }
                                                 }
                                             }
-                                        }
-                                        dummy1.removePregunta(dummy2);
+                                        }//de no haber hecho el respaldo en dummys, al intentar modificar un arreglo dentro de una iteración se hubiera generado una excepción al ejecutar
+                                        dummy1.removePregunta(dummy2); //ahora puedo eliminar la pregunta del banco de la materia
     }
 }

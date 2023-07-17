@@ -93,7 +93,7 @@ public class UtilitariaJuego {
                 System.out.println("");
                 System.out.println("El juego tiene la siguiente configuracion");
                 System.out.println("Preguntas sobre la materia "+materiaEscogida.getNombre()+" con el total de "+materiaEscogida.getNiveles()+" niveles");
-                System.out.println("Participante a jugar:"+estudiante.getNombre()+" con matricula:"+estudiante.getMatricula()+" del paralelo "+paraleloEscogido.getNumero()+"Materia: "+paraleloEscogido.getMateria());
+                System.out.println("Participante a jugar:"+estudiante.getNombre()+" con matricula:"+estudiante.getMatricula()+" del paralelo "+paraleloEscogido.getNumero()+" Materia: "+paraleloEscogido.getMateria());
                 String premio = null;  //inicializando variables donde se guardan los datos del juego
                 String fechaJuego =null;
                 int tiempo=0;
@@ -112,7 +112,7 @@ public class UtilitariaJuego {
                     //equivoque o conteste todo correctamente
                     for(Pregunta prt: preguntando){//recorrido de cada pregunta
                         ArrayList<String> respuestas = prt.mostrarOpciones(prt);//muestra de las opciones
-                        System.out.println("Ingrese su respuesta o ingrese '*' para usar un comodín:");
+                        System.out.println("Ingrese el literal en mayúscula de su respuesta o ingrese '*' para usar un comodín:");
                         String respuesta = input.nextLine();
                         boolean usando50 = false;
                         String respuesta50 = "";
