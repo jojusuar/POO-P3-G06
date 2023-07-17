@@ -441,7 +441,7 @@ public class Main {
                     String correcta;
                     
                      ArrayList<Pregunta> preguntando = materiaEscogida.getPreguntas();
-                     while(incorrectas<=0){
+                      while(incorrectas<=0 && correctas<materiaEscogida.getNiveles()){
                      for(Pregunta prt: preguntando){
                        prt.mostrarOpciones(prt);
                          System.out.println("Ingrese su respuesta (no el literal) o ingrese * para usar un comodín:");
@@ -473,6 +473,8 @@ public class Main {
                             
                          if (respuesta.equals(prt.getCorrecta())){
                              System.out.println("respuesta correcta");
+                              correctas++;
+
                          }
                          else if (respuesta!=prt.getCorrecta()){
                              incorrectas++;
@@ -481,6 +483,12 @@ public class Main {
                          }
                      }
                      }
+                     System.out.println("Felicidad!! haz completado todos los niveles");
+                     System.out.println("Ingrese el premio a recibir para el ganador");
+                     premio = input.nextLine();
+                     j1.setPremio(premio);
+                     System.out.println("El participante ha ganado lo siguiente:"+j1.getPremio());
+                     System.out.println("Gracias por jugar");
                      juegos.add(j1);  
                  
                     

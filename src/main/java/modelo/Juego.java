@@ -96,8 +96,8 @@ public class Juego {//atributos
                      opciones.remove(opciones.get(index));
                  }
                  preguntaTrucada = new PreguntaTrucada(pregunta.getEnunciado(), pregunta.getNivel(), pregunta.getCorrecta(), opciones.get(0));//creo una copia especial de la pregunta en la cual solo hay la respuesta correcta y una falsa
-                 System.out.println(preguntaTrucada.getCorrecta());
-                 System.out.println(preguntaTrucada.getPosible());
+                 System.out.println("A) "+preguntaTrucada.getCorrecta());
+                 System.out.println("B) "+preguntaTrucada.getPosible());
                  intentoComodines--;
                  break;
              case ConsultaCompanero:
