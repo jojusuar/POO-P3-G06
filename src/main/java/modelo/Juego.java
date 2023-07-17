@@ -21,6 +21,7 @@ public class Juego {//atributos
     private TipoComodin comodin;
     private PreguntaTrucada preguntaTrucada;
     private String fechajuego;
+    private int preguntasRespondidas;
     private int nivelJugador;
     private int com50=3;
     private int comCon=3;
@@ -37,6 +38,7 @@ public class Juego {//atributos
         comodin = k;
         fechajuego = f;
         nivelJugador = 1;
+        preguntasRespondidas = 0;
     }
     //getters
     public Paralelo getParalelo(){
@@ -85,66 +87,71 @@ public class Juego {//atributos
     public void setComodin(TipoComodin k){
         comodin = k;
     }
-    public void usarComodin(TipoComodin comodin,Paralelo curso, Pregunta pregunta, Estudiante companiero){
-     if (intentoComodines >0){
-         ArrayList<String> opciones = pregunta.opciones();
-         switch(comodin){
-             case Fifty_Fifty://comodin de 50 50 
-                 opciones.remove(opciones.get(0));//saco la respuesta correcta de la lista
-                 for(int i=0;i<2;i++){ //elimino una respuesta falsa por iteración
-                     int index = (int)(opciones.size()*Math.random());
-                     opciones.remove(opciones.get(index));
-                 }
-                 preguntaTrucada = new PreguntaTrucada(pregunta.getEnunciado(), pregunta.getNivel(), pregunta.getCorrecta(), opciones.get(0));//creo una copia especial de la pregunta en la cual solo hay la respuesta correcta y una falsa
-                 System.out.println("A) "+preguntaTrucada.getCorrecta());
-                 System.out.println("B) "+preguntaTrucada.getPosible());
-                 intentoComodines--;
-                 break;
-             case ConsultaCompanero:
-                 int index = (int)(opciones.size()*Math.random());
-                 String[] literales = {"A)","B)","C)","D)"};
-                 String sugerencia = literales[index];
-                 System.out.println(companiero.getNombre()+" cree que la respuesta es: "+sugerencia);
-                 intentoComodines--;
-                 break;
-             case ConsultaClase:
-                 int votos1 = 0;
-                 int votos2 = 0;
-                 int votos3 = 0;
-                 int votos4 = 0;
-                 for(Estudiante e: curso.getEstudiantes()){
-                     int opcion = (int)(opciones.size()*Math.random());
-                     switch(opcion){
-                         case 0: votos1++;
-                         case 1: votos2++;
-                         case 2: votos3++;
-                         case 3: votos4++;
-                     }
-                  int[] votos = {votos1, votos2, votos3, votos4};
-                  int max = Arrays.stream(votos).max().getAsInt();
-                  if(votos1==max){
-                      System.out.println("La mayoría de la clase cree que es: A)");
-                  }
-                  else if(votos2==max){
-                      System.out.println("La mayoría de la clase cree que es: B)");
-                  }
-                  else if(votos3==max){
-                      System.out.println("La mayoría de la clase cree que es: C)");
-                  }
-                  else if(votos4==max){
-                      System.out.println("La mayoría de la clase cree que es: D)");
-                  }
-                  else{
-                      System.out.println("No hubo concenso");
-                  }
-                      System.out.println("consultar al salón de clase");
-                  intentoComodines--;
-                  break;
-                 }
-               
-                 pregunta.mostrarOpciones(pregunta);
-         }
-     }
+    public void setNivelJugador(int n ){
+        nivelJugador = n;
+    }
+    public void setPreguntasRespondidas(int n){
+        preguntasRespondidas = n;
+    }
+    public String usarComodin(TipoComodin comodin,Paralelo curso, Pregunta pregunta, Estudiante companiero){
+        String respuesta50 = "";
+        if (intentoComodines >0){
+            ArrayList<String> opciones = pregunta.opciones();
+            switch(comodin){
+                case Fifty_Fifty://comodin de 50 50 
+                    opciones.remove(opciones.get(0));//saco la respuesta correcta de la lista
+                    for(int i=0;i<2;i++){ //elimino una respuesta falsa por iteración
+                        int index = (int)(opciones.size()*Math.random());
+                        opciones.remove(opciones.get(index));
+                    }
+                    preguntaTrucada = new PreguntaTrucada(pregunta.getEnunciado(), pregunta.getNivel(), pregunta.getCorrecta(), opciones.get(0));//creo una copia especial de la pregunta en la cual solo hay la respuesta correcta y una falsa
+                    System.out.println("A) "+preguntaTrucada.getCorrecta());
+                    System.out.println("B) "+preguntaTrucada.getPosible());
+                    respuesta50 = preguntaTrucada.getCorrecta();
+                    intentoComodines--;
+                    break;
+
+                case ConsultaCompanero:
+                    int index = (int)(opciones.size()*Math.random());
+                    String[] literales = {"A)","B)","C)","D)"};
+                    String sugerencia = literales[index];
+                    System.out.println(companiero.getNombre()+" cree que la respuesta es: "+sugerencia);
+                    intentoComodines--;
+                    break;
+                case ConsultaClase:
+                    int votos1 = 0;
+                    int votos2 = 0;
+                    int votos3 = 0;
+                    int votos4 = 0;
+                    for(Estudiante e: curso.getEstudiantes()){
+                        int opcion = (int)(opciones.size()*Math.random());
+                        switch(opcion){
+                            case 0: votos1++;
+                            case 1: votos2++;
+                            case 2: votos3++;
+                            case 3: votos4++;
+                        }
+                        int[] votos = {votos1, votos2, votos3, votos4};
+                        int max = Arrays.stream(votos).max().getAsInt();
+                        if(votos1==max){
+                            System.out.println("La mayoría de la clase cree que es: A)");
+                        }else if(votos2==max){
+                            System.out.println("La mayoría de la clase cree que es: B)");
+                        }else if(votos3==max){
+                            System.out.println("La mayoría de la clase cree que es: C)");
+                        }else if(votos4==max){
+                            System.out.println("La mayoría de la clase cree que es: D)");
+                        }else{
+                            System.out.println("No hubo concenso");
+                        }
+                            System.out.println("consultar al salón de clase");
+                        intentoComodines--;
+                        break;
+                    }
+                    pregunta.mostrarOpciones(pregunta);
+            }
+        }
+        return respuesta50;
     }
    
     
@@ -214,7 +221,7 @@ public class Juego {//atributos
     
 
     public String toString(){
-        String cadena = "Fecha del juego: " + fechajuego + " - Participante: " + participante + " - Nivel Maximo alcanzado: " + nivelJugador + " - Tiempo: " + tiempo + " - Cantidad de preguntas contestadas: " + (nivelJugador-1) + " - Comodines utilizados: " +(2-intentoComodines)+ " - Premio: " + premio;
+        String cadena = "Fecha del juego: " + fechajuego + " - Participante: " + participante + " - Nivel Maximo alcanzado: " + nivelJugador + " - Tiempo: " + tiempo + " - Cantidad de preguntas contestadas: " + preguntasRespondidas + " - Comodines utilizados: " +(3-intentoComodines)+ " - Premio: " + premio;
         return cadena;
     }
 }
