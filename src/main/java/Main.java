@@ -66,6 +66,7 @@ public class Main {
             input.nextLine();
             System.out.println("");
             switch(query){
+//-------CASO 1 CONFIGURACIONES-------
             case 1:
                 int query2 = 0;
                 boolean flagConfig = false;
@@ -81,7 +82,8 @@ public class Main {
                     System.out.println("");
                     flagConfig = false;
                     switch(query2){
-                        case 1://opciones para terminos academicos
+    // 1.1. ADMINISTRAR TERMINOS ACADEMICOS
+                        case 1:
                             int query3 = 0;
                             boolean flagTermino = false;
                             do{
@@ -99,9 +101,10 @@ public class Main {
                                 input.nextLine();
                                 flagTermino = false;
                                 switch(query3){
+        //1.1.1. INGRESAR TERMINO
                                     case 1:
                                         System.out.println("<<INGRESANDO TÉRMINO>>");
-                                        System.out.println("INGRESE ANIO ACADEMICO");
+                                        System.out.println("INGRESE AÑO ACADEMICO");
                                         int anioAcademico = input.nextInt();
                                         System.out.println("INGRESE TERMINO ACADEMICO");
                                         int tAcademico = input.nextInt();
@@ -109,6 +112,7 @@ public class Main {
                                         terminos.add(t);
                                         flagTermino = true;
                                         break;
+        //1.1.2. EDITAR TERMINO
                                     case 2:
                                         System.out.println("<<EDITANDO TÉRMINO>>");
                                         System.out.println("SELECCIONE EL TERMINO A EDITAR");
@@ -122,6 +126,7 @@ public class Main {
                                         tEditar.setNumTermino(nTermino);                                                                                                                                                                                                  
                                         flagTermino = true;
                                         break;
+        //1.1.3. CONFIGURAR TERMINO PARA JUEGO
                                     case 3:
                                         System.out.println("<<SELECCIONANDO TÉRMINO>>");
                                         System.out.println("SELECCIONE EL TERMINO PARA EL JUEGO");
@@ -138,6 +143,7 @@ public class Main {
                                 }
                             }while(flagTermino);
                             break;
+    //1.2. ADMINISTRAR MATERIAS Y PARALELOS
                         case 2:
                             int query4 = 0;
                             flagTermino = false;
@@ -154,6 +160,7 @@ public class Main {
                                 System.out.println("");
                                 flagTermino = false;
                                 switch(query4){
+        //1.2.1. INGRESAR MATERIA
                                     case 1:
                                         //Se solicitan los datos para la creacion de la nueva materia
                                         System.out.println("<<INGRESANDO MATERIA>>");
@@ -172,6 +179,7 @@ public class Main {
                                         materias.add(nuevaMateria);
                                         flagTermino = true;
                                         break;
+        //1.2.2. EDITAR MATERIA
                                     case 2:
                                         System.out.println("<<EDITANDO MATERIA>>");
                                         //Se pide nombre o codigo de materia
@@ -200,6 +208,7 @@ public class Main {
                                         System.out.println("");
                                         flagTermino = true;
                                         break;
+        //1.2.3. AGREGAR PARALELO
                                     case 3:
                                         //Se imprimen las materias disponibles
                                         System.out.println("Seleccione la materia en la cual se desee crear el nuevo paralelo:");
@@ -235,6 +244,7 @@ public class Main {
                                         System.out.println("<<PARALELO CREADO>>");
                                         flagTermino = true;
                                         break;
+        //1.2.4. ELIMINAR PARALELO
                                     case 4:
                                         System.out.println("Seleccione el paralelo que desea eliminar:");
                                         int n = 0;
@@ -261,6 +271,7 @@ public class Main {
                                 }
                             }while(flagTermino);
                             break;
+    // 1.3. ADMINISTRAR PREGUNTAS
                         case 3:
                             int query5 = 0;
                             flagTermino = false;
@@ -342,7 +353,7 @@ public class Main {
                     }
                 }while(flagConfig);
                 break;
-            
+//-------CASO 2 NUEVO JUEGO-------
             case 2:
                     Materia materiaEscogida=null;
                     Paralelo paraleloEscogido=null;
@@ -490,7 +501,7 @@ public class Main {
                 
                 break;
 
-                
+//-------CASO 3 GENERAR REPORTE-------
             case 3:
                 System.out.println("----Generar Reporte----");
                 //solicita los datos para generar el reporte
