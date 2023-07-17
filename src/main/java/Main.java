@@ -11,7 +11,6 @@
 import modelo.*;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Main {
     public static void main(String[] args){
@@ -21,8 +20,40 @@ public class Main {
         ArrayList<Termino> terminos = new ArrayList<>();
         ArrayList<Juego> juegos = new ArrayList<>();
         
-        materias.add(new Materia());
+
+        //OBJETOS REQUERIDOS PARA TESTEAR SEGÚN EL DOCUMENTO
+        ArrayList<Pregunta> preguntasPOO = new ArrayList<>();
+        int year = 2023;
+        int periodo = 1;
+        int lvlmat = 2;
+        int lvlpreg1 = 1;
+        int lvlpreg2 = 2;
+        Termino t1 = new Termino(year, periodo);
+        Pregunta p1 = new Pregunta("Pregunta 1", lvlpreg1, "si", "no","no","no");
+        Pregunta p2 = new Pregunta("Pregunta 2", lvlpreg1, "si", "no","no","no");
+        Pregunta p3 = new Pregunta("Pregunta 3", lvlpreg1, "si", "no","no","no");
+        Pregunta p4 = new Pregunta("Pregunta 4", lvlpreg2, "si", "no","no","no");
+        Pregunta p5 = new Pregunta("Pregunta 5", lvlpreg2, "si", "no","no","no");
+        Pregunta p6 = new Pregunta("Pregunta 6", lvlpreg2, "si", "no","no","no");
+        terminos.add(t1);
+        preguntasPOO.add(p1);
+        preguntasPOO.add(p2);
+        preguntasPOO.add(p3);
+        preguntasPOO.add(p4);
+        preguntasPOO.add(p5);
+        preguntasPOO.add(p6);
+        Materia poo = new Materia("CCPG1052", "POO",lvlmat,preguntasPOO);
+        materias.add(poo);
+        participantes.add(new Estudiante("ACELDO TORRES MARIA GRAZIA", "maactorr@espol.edu.ec", "202110136"));
+        participantes.add(new Estudiante("AGUILAR TINOCO JEAN CARLOS", "jcaguila@espol.edu.ec", "202108643"));
+        participantes.add(new Estudiante("AMORETTI SANCHEZ JUAN CARLOS", "jamorett@espol.edu.ec", "202111928"));
+        participantes.add(new Estudiante("ANDRADE VELASCO ANGELLO BERNIE", "angbeand@espol.edu.ec", "202105946"));
+        participantes.add(new Estudiante("ARAUJO ORTEGA DIEGO ENZO JAVIER", "dienarau@espol.edu.ec", "202211355"));
+        int numcurso = 3;
+        Paralelo curso = new Paralelo(participantes, poo, t1, numcurso );
+        paralelos.add(curso);
         
+        //MENÚ PRINCIPAL
         Scanner input = new Scanner(System.in);
         int query = 0;
         boolean flagMenu= false;
