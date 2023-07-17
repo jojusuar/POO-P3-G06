@@ -56,9 +56,9 @@ public class Main {
         //MENÚ PRINCIPAL
         Scanner input = new Scanner(System.in);
         int query = 0;
-        boolean flagMenu= false;
+        boolean flagMenu= false; // declaro una bandera para volver al menú principal
         do{
-            flagMenu = false;
+            flagMenu = false; // cada iteración la devuelvo a false, para que el programa no corra eternamente
             System.out.println("-----MENÚ PRINCIPAL-----");
             System.out.println("1. Configuraciones");
             System.out.println("2. Nuevo juego");
@@ -72,7 +72,7 @@ public class Main {
 //-------CASO 1 CONFIGURACIONES-------
             case 1:
                 int query2 = 0;
-                boolean flagConfig = false;
+                boolean flag2 = false; //bandera para volver al segundo nivel del menú
                 do{
                     System.out.println("-----Configuraciones-----");
                     System.out.println("1. Administrar términos académicos");
@@ -83,12 +83,12 @@ public class Main {
                     query2 = input.nextInt();
                     input.nextLine();
                     System.out.println("");
-                    flagConfig = false;
+                    flag2 = false;
                     switch(query2){
     // 1.1. ADMINISTRAR TERMINOS ACADEMICOS
                         case 1:
                             int query3 = 0;
-                            boolean flagTermino = false;
+                            boolean flag3 = false; // bandera para volver al tercer nivel del menú al ejecutar métodos utilitarios
                             do{
                                 System.out.println("-----Administrar términos académicos-----");//
                                 
@@ -104,34 +104,34 @@ public class Main {
                                 System.out.println("4. Regresar");
                                 query3 = input.nextInt();
                                 input.nextLine();
-                                flagTermino = false;
+                                flag3 = false; 
                                 switch(query3){
         //1.1.1. INGRESAR TERMINO
                                     case 1:
                                         UtilitariaConfig.ingresarTermino(terminos, input);
-                                        flagTermino = true;
+                                        flag3 = true; // al hacer true esta bandera, toda opción de cuarto nivel que la ejecute vuelve al tercer nivel automáticamente tras realizarse
                                         break;
         //1.1.2. EDITAR TERMINO
                                     case 2:
                                         UtilitariaConfig.ingresarTermino(terminos, input);
-                                        flagTermino = true;
+                                        flag3 = true;
                                         break;
         //1.1.3. CONFIGURAR TERMINO PARA JUEGO
                                     case 3:
                                         UtilitariaConfig.seleccionarTermino(terminos, input);
-                                        flagTermino = true;
+                                        flag3 = true;
                                         break;
                                     case 4:
-                                        flagConfig = true;
+                                        flag2 = true; // esta bandera nos permite volver al nivel dos del menú
                                         break;
                                         
                                 }
-                            }while(flagTermino);
+                            }while(flag3);
                             break;
     //1.2. ADMINISTRAR MATERIAS Y PARALELOS
                         case 2:
                             int query4 = 0;
-                            flagTermino = false;
+                            flag3 = false;
                             do{
                                 System.out.println("-----Administrar materias y paralelos-----");
                                 System.out.println("1. Ingresar materia");
@@ -143,39 +143,39 @@ public class Main {
                                 query4 = input.nextInt();
                                 input.nextLine();
                                 System.out.println("");
-                                flagTermino = false;
+                                flag3 = false;
                                 switch(query4){
         //1.2.1. INGRESAR MATERIA
                                     case 1:
                                         UtilitariaConfig.ingresarMateria(materias, input);
-                                        flagTermino = true;
+                                        flag3 = true;
                                         break;
         //1.2.2. EDITAR MATERIA
                                     case 2:
                                         UtilitariaConfig.editarMateria(materias, input);
-                                        flagTermino = true;
+                                        flag3 = true;
                                         break;
         //1.2.3. AGREGAR PARALELO
                                     case 3:
                                         UtilitariaConfig.agregarParalelo(materias, paralelos, participantes, input);
-                                        flagTermino = true;
+                                        flag3 = true;
                                         break;
         //1.2.4. ELIMINAR PARALELO
                                     case 4:
                                         
 
-                                        flagTermino = true;
+                                        flag3 = true;
                                         break;
                                     case 5:
-                                        flagConfig = true;
+                                        flag2 = true;
                                         break;
                                 }
-                            }while(flagTermino);
+                            }while(flag3);
                             break;
     // 1.3. ADMINISTRAR PREGUNTAS
                         case 3:
                             int query5 = 0;
-                            flagTermino = false;
+                            flag3 = false;
                             do{
                                 System.out.println("-----Administrar preguntas-----");
                                 System.out.println("1. Visualizar preguntas");
@@ -184,36 +184,36 @@ public class Main {
                                 System.out.println("4. Regresar");
                                 query5 = input.nextInt();
                                 input.nextLine();
-                                flagTermino = false;
+                                flag3 = false;
                                 switch(query5){
                                     case 1:
                                         UtilitariaConfig.visualizarPreguntas(materias, input);
-                                        flagTermino = true;
+                                        flag3 = true;
                                         break;
                                     case 2:
                                         
-                                        flagTermino = true;
+                                        flag3 = true;
                                         break;
                                     case 3:
                                        UtilitariaConfig.eliminarPregunta(materias, input);
-                                        flagTermino = true;
+                                        flag3 = true;
                                         break;
                                     case 4:
-                                        flagConfig = true;
+                                        flag2 = true;
                                         break;
                                 }
-                            }while(flagTermino);
+                            }while(flag3);
                             break;
                         case 4:
                             flagMenu = true;
                             break;
                     }
-                }while(flagConfig);
+                }while(flag2);
                 break;
 //-------CASO 2 NUEVO JUEGO-------
             case 2:
                 UtilitariaJuego.jugar(input, paralelos, participantes, juegos);
-                flagConfig = false;
+                flag2 = false;
                 flagMenu = true;
                 break;
 
@@ -225,11 +225,11 @@ public class Main {
                 
             case 4:
                 System.out.println("Vuelva pronto!");
-                flagMenu = false;
+                flagMenu = false; //con esto, el while se rompe y se cierra el programa
                 break;
         }
         }while(flagMenu);
-        input.close();
+        input.close(); //se cierra Scanner
     }
     
 }
