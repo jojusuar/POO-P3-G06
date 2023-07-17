@@ -69,26 +69,27 @@ public class Pregunta { //atributos
         posible3 = z;
     }
     
-     public ArrayList<String> opciones(){//metodo que me da la lista de opciones
-     ArrayList<String> literales = new ArrayList<>();
-     literales.add(correcta);
-     literales.add(posible1);
-     literales.add(posible2);
-     literales.add(posible3);
-     return literales;
+    public ArrayList<String> opciones(){//metodo que me da la lista de opciones
+        ArrayList<String> literales = new ArrayList<>();
+        literales.add(correcta);
+        literales.add(posible1);
+        literales.add(posible2);
+        literales.add(posible3);
+        return literales;
     }
-     public void mostrarOpciones(Pregunta preguntas){
+    public ArrayList<String> mostrarOpciones(Pregunta preguntas){
         ArrayList<String> literales = preguntas.opciones();
-         Collections.shuffle(literales);
-         System.out.println(preguntas.getEnunciado());
-         System.out.println("A)"+literales.get(0));
-         System.out.println("B)"+literales.get(1));
-         System.out.println("C)"+literales.get(2));
-         System.out.println("D)"+literales.get(3));
-        }
+        Collections.shuffle(literales);
+        System.out.println(preguntas.getEnunciado());
+        System.out.println("A)"+literales.get(0));
+        System.out.println("B)"+literales.get(1));
+        System.out.println("C)"+literales.get(2));
+        System.out.println("D)"+literales.get(3));
+        return literales;
+    }
         
-      public String toString(){
+    public String toString(){
           return enunciado;
-      }  
-     }   
+    }  
+}   
 
