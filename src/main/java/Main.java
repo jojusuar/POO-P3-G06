@@ -113,7 +113,7 @@ public class Main {
                                         break;
         //1.1.2. EDITAR TERMINO
                                     case 2:
-                                        UtilitariaConfig.ingresarTermino(terminos, input);
+                                        UtilitariaConfig.editarTermino(terminos, input);
                                         flag3 = true;
                                         break;
         //1.1.3. CONFIGURAR TERMINO PARA JUEGO
@@ -162,8 +162,7 @@ public class Main {
                                         break;
         //1.2.4. ELIMINAR PARALELO
                                     case 4:
-                                        
-
+                                        UtilitariaConfig.eliminarParalelo(materias, paralelos, participantes, input);
                                         flag3 = true;
                                         break;
                                     case 5:
@@ -191,7 +190,7 @@ public class Main {
                                         flag3 = true;
                                         break;
                                     case 2:
-                                        
+                                        UtilitariaConfig.agregarPreguntas(materias, input);
                                         flag3 = true;
                                         break;
                                     case 3:
