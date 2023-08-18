@@ -15,9 +15,10 @@ public class UtilitariaJuego {
         // Inicializamos valores
                 Materia materiaEscogida=null;
                 Paralelo paraleloEscogido=null;
-                int nPreguntas;
+                int nivelmax;
                 String participante;
                 String consulta;
+                int lastlvl = 0;
                 
                 System.out.println("Ingrese la fecha en formato YYYY-MM-DD");
                 String fecha = input.nextLine();
@@ -34,7 +35,7 @@ public class UtilitariaJuego {
                 int paralel = input.nextInt();
                 input.nextLine();
                 System.out.println("Ingrese el nivel hasta el cual jugar:");
-                nPreguntas = input.nextInt();
+                nivelmax = input.nextInt();
                 input.nextLine();
                 //se escoge paralelo, que tiene como atributo materia             
                 for(Paralelo elemento:paralelos){
@@ -47,9 +48,9 @@ public class UtilitariaJuego {
                 }
                 materiaEscogida = paraleloEscogido.getMateria();
                 //Validamos que el numero de preguntas no sea mayor al numero de niveles
-                while(nPreguntas>materiaEscogida.getNiveles()){
+                while(nivelmax>materiaEscogida.getNiveles()){
                     System.out.println("No existe tal nivel en la materia. Ingrese un nivel válido:");
-                    nPreguntas = input.nextInt();
+                    nivelmax = input.nextInt();
                     input.nextLine();
                 }
 
@@ -107,10 +108,15 @@ public class UtilitariaJuego {
                 int incorrectas = 0;//variables para validar respuestas correctas e incorrectas
                 int correctas = 0;
                 
-                ArrayList<Pregunta> preguntando = materiaEscogida.getPreguntas();
-                while(incorrectas<=0 && correctas<materiaEscogida.getNiveles()){//ciclo para seguir jugando hasta que el participante se 
-                    //equivoque o conteste todo correctamente
-                    for(Pregunta prt: preguntando){//recorrido de cada pregunta
+                ArrayList<Pregunta> todas = materiaEscogida.getPreguntas();
+                ArrayList<Pregunta> preguntando = new ArrayList<>();
+                for (Pregunta p: todas){
+                    if(p.getNivel()<=nivelmax){
+                        preguntando.add(p);
+                    }
+                }
+                for(Pregunta prt: preguntando){//recorrido de cada pregunta
+                        lastlvl = prt.getNivel(); 
                         ArrayList<String> respuestas = prt.mostrarOpciones(prt);//muestra de las opciones
                         System.out.println("Ingrese el literal en mayúscula de su respuesta o ingrese '*' para usar un comodín:");
                         String respuesta = input.nextLine();
@@ -160,24 +166,27 @@ public class UtilitariaJuego {
                             }
                         }
                         if (seleccion.equals(prt.getCorrecta())){//si el usuario acierta aumenta la variable de respuestas correcta
-                            System.out.println("respuesta correcta");
+                            System.out.println("Respuesta correcta");
                             correctas++;
-                        }else if (respuesta!=prt.getCorrecta()){//si se equivoca, pierde
+                        }else if (!respuesta.equals(prt.getCorrecta())){//si se equivoca, pierde
                             incorrectas++;
+                            lastlvl--;
                             System.out.println("Respuesta incorrecta, game over");
                             break;
                         }
                     }
+                premio = "sin premio";
+                if(incorrectas==0){
+                    System.out.println("Felicidades!! haz completado todos los niveles");//cuando pasa todos sus niveles, se acaba el bucle y se lo felicita
+                    System.out.println("Ingrese el premio a recibir para el ganador");//se le pide al profesor el premio del ganador
+                    premio = input.nextLine();     
+                    System.out.println("El participante ha ganado lo siguiente:"+premio);
                 }
-                System.out.println("Felicidades!! haz completado todos los niveles");//cuando pasa todos sus niveles, se acaba el bucle y se lo felicita
-                System.out.println("Ingrese el premio a recibir para el ganador");//se le pide al profesor el premio del ganador
-                premio = input.nextLine();
                 j1.setPremio(premio);
-                System.out.println("El participante ha ganado lo siguiente:"+j1.getPremio());
                 System.out.println("Gracias por jugar");
                 int preguntasRespondidas = correctas + incorrectas;
                 j1.setPreguntasRespondidas(preguntasRespondidas);//obtencion del total de preguntas respondidas
-                j1.setNivelJugador(correctas);//para las correctas
+                j1.setNivelJugador(lastlvl);//para las correctas
                 juegos.add(j1);        //se aniade dicha info a a lista general de juegos en caso de que se requiera el reporte de la partida
     }
 }
