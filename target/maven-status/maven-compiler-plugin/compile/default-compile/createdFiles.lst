@@ -1,0 +1,17 @@
+vistas\PrimaryController.class
+modelo\Pregunta.class
+modelo\Estudiante.class
+vistas\SecondaryController.class
+modelo\Materia.class
+modelo\Paralelo.class
+modelo\Juego$1.class
+modelo\UtilitariaConfig.class
+modelo\Juego.class
+modelo\Profesor.class
+modelo\Termino.class
+modelo\UtilitariaJuego.class
+module-info.class
+modelo\PreguntaTrucada.class
+modelo\TipoComodin.class
+modelo\UtilitariaReporte.class
+vistas\App.class
