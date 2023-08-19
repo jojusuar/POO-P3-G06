@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.TermController">
+    <children>
+        <Label prefHeight="14.0" prefWidth="140.0" text="ADMINISTRAR TÉRMINOS" />
+      <VBox id="vbTerminos" fx:id="vbTerminos" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="282.0">
+         <children>
+            <Label text="(mostrando los términos existentes)" />
+         </children></VBox>
+      <Button mnemonicParsing="false" text="Ingresar término académico" />
+      <Button mnemonicParsing="false" text="Editar término académico " />
+      <ComboBox id="cbTerminos" fx:id="cbTerminos" prefHeight="25.0" prefWidth="226.0" promptText="[seleccionar término para el juego]" />
+        <Button fx:id="leaveTerm" onAction="#leaveTerm" text="Volver a Configuraciones" />
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>
