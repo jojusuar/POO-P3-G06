@@ -49,22 +49,21 @@ public class UtilitariaConfig implements Serializable {
                                         System.out.println("Termino seleccionado:"+"PAO "+tJuego.getNumTermino()+" "+tJuego.getAnio());
                                         
     }
-    public static void ingresarMateria(ArrayList<Materia> materias, Scanner input){
+    public static void ingresarMateria(ArrayList<Materia> materias, String nombreM,String codigoM,int nivelesM){
         //Se solicitan los datos para la creacion de la nueva materia
-                                        System.out.println("<<INGRESANDO MATERIA>>");
-                                        System.out.print("Ingrese el codigo de la materia: ");
-                                        String codigoM = input.nextLine();
-                                        System.out.print("Ingrese el nombre de la materia: ");
-                                        String nombreM = input.nextLine();
-                                        System.out.print("Ingrese la cantidad de niveles : ");
-                                        int nivelesM = input.nextInt();
-                                        input.nextLine();
+                                        
                                         //Se crea un arrayList de preguntaas vacias que se llenaran en la parte de administrar preguntas.
                                         ArrayList<Pregunta> preguntas = new ArrayList<>();
                                         //Se crea la nueva materia
                                         Materia nuevaMateria = new Materia(codigoM, nombreM, nivelesM, preguntas);
                                         // se añade la materia a la lista de materias
                                         materias.add(nuevaMateria);
+                                        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/materias.ser"));){
+                                            out.writeObject(materias);
+                                        }
+                                        catch(IOException ex){
+                                            ex.printStackTrace();
+                                        }
     }
     public static void editarMateria(ArrayList<Materia> materias, Scanner input){
         System.out.println("<<EDITANDO MATERIA>>");
@@ -93,38 +92,18 @@ public class UtilitariaConfig implements Serializable {
                                         }
                                         System.out.println("");
     }
-    public static void agregarParalelo(ArrayList<Materia> materias, ArrayList<Paralelo> paralelos, ArrayList<Estudiante> participantes, Scanner input){
-        //Se imprimen las materias disponibles
-                                        System.out.println("Seleccione la materia en la cual se desee crear el nuevo paralelo:");
-                                        int i = 0;
-                                        for(Materia m: materias){
-                                            String nombreMateria = m.getNombre();
-                                            System.out.println(i +". "+nombreMateria);
-                                            i++;
-                                        }
-                                        //Se selecciona la materia deseada
-                                        System.out.print("Seleccione el numero de materia: ");
-                                        int indiceMateria = input.nextInt();
-                                        input.nextLine();
-                                        Materia materiaPar = materias.get(indiceMateria);
-                                        //Se ingresa el termino academico
-                                        System.out.print("Ingrese termino academico (2023-1): ");
-                                        String terminoA = input.nextLine();
-                                        String [] cadena = terminoA.split("-");
-                                        String anioc = cadena[0];
-                                        int anio = Integer.parseInt(anioc);
-                                        String terminoc = cadena[1];
-                                        int numTermino = Integer.parseInt(terminoc);
-                                        //Se crea el objeto termino
-                                        Termino termino = new Termino(anio, numTermino);
-                                        //Se pide el numero de paralelo
-                                        System.out.print("Ingrese el numero de paralelo      : ");
-                                        int numPar = input.nextInt();
-                                        input.nextLine();
-                                        //Se crea el objeto paralelo
-                                        Paralelo paraleloGenerado = new Paralelo(participantes, materiaPar, termino, numPar);
+    public static void agregarParalelo(VBox vbParalelos, Materia m, Termino t, ArrayList<Paralelo> paralelos, ArrayList<Estudiante> participantes,int num){
+                                        
+                                        Paralelo paraleloGenerado = new Paralelo(participantes, m, t, num);
                                         //Se añade nuestro paralelo a la lista de paralelos.
                                         paralelos.add(paraleloGenerado);
+                                        vbParalelos.getChildren().add(new Label(paraleloGenerado.toString()));
+                                        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/paralelos.ser"));){
+                                            out.writeObject(paralelos);
+                                        }
+                                        catch(IOException ex){
+                                            ex.printStackTrace();
+                                        }
                                         System.out.println("<<PARALELO CREADO>>");
     }
     public static void eliminarParalelo(ArrayList<Materia> materias, ArrayList<Paralelo> paralelos, ArrayList<Estudiante> participantes, Scanner input){

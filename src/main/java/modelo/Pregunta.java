@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Collections;
@@ -11,7 +12,7 @@ import java.util.Collections;
  *
  * @author jojusuar
  */
-public class Pregunta { //atributos
+public class Pregunta implements Serializable{ //atributos
     private String enunciado;
     private int nivel;
     private String correcta;

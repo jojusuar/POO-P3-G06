@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  *
  * @author jojusuar
  */
-public class Profesor {//Atributos
+public class Profesor implements Serializable{//Atributos
     private ArrayList<Materia> materias;
     private ArrayList<Paralelo> paralelos;
     //constructor

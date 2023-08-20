@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package modelo;
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  *
  * @author jojusuar
  */
-public class Materia { //atributos
+public class Materia implements Serializable{ //atributos
     private String codigo;
     private String nombre;
     private int niveles;

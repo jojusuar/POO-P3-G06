@@ -5,11 +5,13 @@
  */
 package modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author jojusuar
  */
-public enum TipoComodin {
+public enum TipoComodin implements Serializable{
     Fifty_Fifty, ConsultaCompanero, ConsultaClase;
     
     

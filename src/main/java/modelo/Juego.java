@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package modelo;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 /**
  *
  * @author jojusuar
  */
-public class Juego {//atributos
+public class Juego implements Serializable{//atributos
     private Paralelo paralelo;
     private Estudiante participante;
     private Estudiante companero;
