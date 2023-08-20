@@ -54,6 +54,7 @@ public class TermController implements Initializable {
         addTermStage.show();
         save.setOnAction(ev -> {
             UtilitariaConfig.ingresarTermino(terminos, Integer.parseInt(anio.getText()),Integer.parseInt(periodo.getText()),vbTerminos,cbTerminos);
+            addTermStage.close();
         });
         
     }

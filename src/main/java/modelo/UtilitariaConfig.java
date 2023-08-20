@@ -9,9 +9,13 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Scanner;
 import java.util.ArrayList;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 /**
  *
  * @author jojusuar
@@ -136,27 +140,37 @@ public class UtilitariaConfig implements Serializable {
                                             }
                                         }
     }
-    public static void agregarPreguntas(ArrayList<Materia> materias, Scanner input){
-       System.out.println("Seleccione la materia ingresando su código:");
-                                        String code2 = input.nextLine();
+    public static void agregarPreguntas(ArrayList<Materia> materias, Materia q){
                                         for(Materia m: materias){
-                                            if(code2.equals(m.getCodigo())){ //se verifica que la materia exista
-                                                System.out.println("Ingrese el enunciado:");
-                                                String enunciado = input.nextLine();
-                                                System.out.println("Ingrese el literal correcto:");
-                                                String t = input.nextLine();
-                                                System.out.println("Ingrese literal falso 1:");
-                                                String s = input.nextLine();
-                                                System.out.println("Ingrese literal falso 2:");
-                                                String x = input.nextLine();
-                                                System.out.println("Ingrese literal falso 3:");
-                                                String y = input.nextLine();
-                                                System.out.println("Ingrese el nivel de la pregunta (de 1 a "+m.getNiveles()+")");
-                                                int z = input.nextInt();
-                                                input.nextLine();
-                                                m.setPregunta(new Pregunta(enunciado, z, t,s,x,y));//se agrega la pregunta nueva al arreglo de la materia
+                                            if(q.getCodigo().equals(m.getCodigo())){ //se verifica que la materia exista
+                                                        Stage query = new Stage();
+        VBox fields = new VBox();
+        TextField enunciado = new TextField("Ingrese el enunciado");
+        TextField t = new TextField("Ingrese el literal correcto");
+        TextField s = new TextField("Ingrese literal falso 1");
+        TextField x = new TextField("Ingrese literal falso 2");
+        TextField y = new TextField("Ingrese literal falso 3");
+        TextField z = new TextField("Ingrese el nivel de la pregunta (de 1 a "+m.getNiveles()+")");
+        Button save = new Button("Agregar");
+        fields.getChildren().addAll(enunciado,t,s,x,y,z,save);
+        Stage popup = new Stage();
+        Scene layout = new Scene(fields,250,200);
+        popup.setScene(layout);
+        popup.show();
+        save.setOnAction(ev ->{
+            int lmao = Integer.parseInt(z.getText());
+            m.setPregunta(new Pregunta(enunciado.getText(),lmao, t.getText(),s.getText(),x.getText(),y.getText()));
+            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/materias.ser"));){
+                out.writeObject(materias);
+            }
+            catch(IOException ex){
+                ex.printStackTrace();
+            }
+            popup.close();
+        });
                                             }
                                         }
+                                        
     }
     public static void eliminarPregunta(ArrayList<Materia> materias, Scanner input){
         System.out.println("Seleccione la materia ingresando su código:");
