@@ -5,11 +5,13 @@
  */
 package modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author jojusuar
  */
-public class Estudiante { //atributos
+public class Estudiante implements Serializable{ //atributos
     private String nombre;
     private String correo;
     private String matricula;

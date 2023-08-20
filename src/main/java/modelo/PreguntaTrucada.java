@@ -4,11 +4,13 @@
  */
 package modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author jojusuar
  */
-public class PreguntaTrucada {
+public class PreguntaTrucada implements Serializable{
     private String enunciado;
     private int nivel;
     private String correcta;

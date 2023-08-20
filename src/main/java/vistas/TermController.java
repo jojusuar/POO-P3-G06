@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -60,16 +61,17 @@ public class TermController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // aqui inicializamos ese vbox vbTerminos y el combobox cbTerminos con los términos académicos disponibles
-        terminos = new ArrayList<>();
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/terminos.ser"));){
             terminos = (ArrayList<Termino>)in.readObject();
         }
         catch(IOException ex){
             System.out.println("Error al cargar los términos");
+            terminos = new ArrayList<>();
         }
         catch(ClassNotFoundException e){
             System.out.println("No se encontró la clase");
         }
+        
         for(Termino t: terminos){
             vbTerminos.getChildren().add(new Label(t.toString()));
             cbTerminos.getItems().addAll(t);

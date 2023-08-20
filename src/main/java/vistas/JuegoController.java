@@ -7,6 +7,11 @@ package vistas;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -15,12 +20,17 @@ import javafx.fxml.Initializable;
  */
 public class JuegoController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        VBox fields = new VBox(10);
+        TextField anio = new TextField("Ingrese el año");
+        TextField periodo = new TextField("Ingrese el período académico");
+        Button save = new Button("Ingresar");
+        fields.getChildren().addAll(anio, periodo, save);
+        Scene addTermScene = new Scene(fields,200,200);
+        Stage newGameData = new Stage();
+        newGameData.setScene(addTermScene);
+        newGameData.show();
     }    
     
 }
