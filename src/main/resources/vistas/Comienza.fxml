@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.ComienzaController">
+   <top>
+      <Label alignment="CENTER" contentDisplay="CENTER" text="QUIEN QUIERE SER MILLONARIO" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="117.0" text="OPCION A" />
+                  <TextField editable="false" prefHeight="49.0" prefWidth="474.0" text="POSIBLE1" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" text="OPCION B" />
+                  <TextField editable="false" prefHeight="50.0" prefWidth="474.0" text="POSIBLE 2" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="118.0" text="OPCION C" />
+                  <TextField editable="false" prefHeight="50.0" prefWidth="474.0" text="POSIBLE 3" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="43.0" prefWidth="118.0" text="OPCION D" />
+                  <TextField editable="false" prefHeight="45.0" prefWidth="475.0" text="POSIBLE 4" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+   <center>
+      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField alignment="CENTER" prefHeight="44.0" prefWidth="600.0" text="ENUNCIADO" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="COMODINES DISPONIBLES">
+                     <HBox.margin>
+                        <Insets right="45.0" top="22.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" text="COMODIN 1">
+                     <HBox.margin>
+                        <Insets right="40.0" top="20.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" text="COMODIN 2">
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" text="COMODIN 3">
+                     <HBox.margin>
+                        <Insets left="40.0" top="20.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="TIEMPO:" textAlignment="CENTER" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="250.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
