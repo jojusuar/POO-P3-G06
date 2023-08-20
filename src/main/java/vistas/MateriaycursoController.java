@@ -60,13 +60,14 @@ public class MateriaycursoController implements Initializable{
         addMateriaStage.show();
         save.setOnAction(ev -> {
             UtilitariaConfig.ingresarMateria(materias,name.getText(),code.getText(),Integer.parseInt(lvl.getText()));
+            addMateriaStage.close();
         });
     }
     @FXML
     private void addParalelo() throws IOException {
         VBox fields = new VBox(10);
         ComboBox<Materia> materiasdisp = new ComboBox<>();
-        materiasdisp.setPlaceholder(new Label("[seleccione una materia]"));
+        materiasdisp.setPromptText("[seleccione una materia]");
         if(!materias.isEmpty()){
             for(Materia m: materias){
                 materiasdisp.getItems().addAll(m);
@@ -83,7 +84,7 @@ public class MateriaycursoController implements Initializable{
             System.out.println("No se encontró la clase");
         }
         ComboBox<Termino> termdisp = new ComboBox<>();
-        termdisp.setPlaceholder(new Label("[seleccione un término académico]"));
+        termdisp.setPromptText("[seleccione un término académico]");
         if(!terminos.isEmpty()){
             for(Termino t: terminos){
                 termdisp.getItems().addAll(t);
@@ -97,12 +98,13 @@ public class MateriaycursoController implements Initializable{
         TextField number = new TextField("Ingrese el número del paralelo");
         Button save = new Button("Agregar el paralelo");
         fields.getChildren().addAll(materiasdisp, termdisp,load,number, save);
-        Scene query = new Scene(fields, 300,200);
+        Scene query = new Scene(fields, 300,180);
         Stage popup = new Stage();
         popup.setScene(query);
         popup.show();
         save.setOnAction(ev -> {
             UtilitariaConfig.agregarParalelo(vbParalelos,materiasdisp.getValue(),termdisp.getValue(),paralelos,estudiantes,Integer.parseInt(number.getText()));
+            popup.close();
         });
     }
     
