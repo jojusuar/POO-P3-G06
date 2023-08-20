@@ -5,11 +5,13 @@
  */
 package modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author jojusuar
  */
-public class Termino {//atributos
+public class Termino implements Serializable{//atributos
     private int anio;
     private int numTermino;
     //constructor

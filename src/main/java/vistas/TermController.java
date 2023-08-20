@@ -4,7 +4,10 @@
  */
 package vistas;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -22,7 +25,7 @@ import javafx.stage.Stage;
 import modelo.Termino;
 import modelo.UtilitariaConfig;
 
-public class TermController implements Initializable{
+public class TermController implements Initializable {
     private ArrayList<Termino> terminos;
     @FXML
     private Button leaveTerm;
@@ -58,7 +61,15 @@ public class TermController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         // aqui inicializamos ese vbox vbTerminos y el combobox cbTerminos con los términos académicos disponibles
         terminos = new ArrayList<>();
-        terminos.add(new Termino(2023,1));
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/terminos.ser"));){
+            terminos = (ArrayList<Termino>)in.readObject();
+        }
+        catch(IOException ex){
+            System.out.println("Error al cargar los términos");
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("No se encontró la clase");
+        }
         for(Termino t: terminos){
             vbTerminos.getChildren().add(new Label(t.toString()));
             cbTerminos.getItems().addAll(t);

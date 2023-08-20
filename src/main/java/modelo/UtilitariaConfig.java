@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Scanner;
 import java.util.ArrayList;
 import javafx.scene.control.ComboBox;
@@ -12,12 +16,18 @@ import javafx.scene.layout.VBox;
  *
  * @author jojusuar
  */
-public class UtilitariaConfig {
+public class UtilitariaConfig implements Serializable {
     public static void ingresarTermino(ArrayList<Termino> terminos, int x, int y, VBox vbTerminos, ComboBox cbTerminos){
                                         Termino t = new Termino(x,y); //se crea término con los datos ingresados
                                         terminos.add(t);
                                         vbTerminos.getChildren().add(new Label(t.toString()));
                                         cbTerminos.getItems().addAll(t);
+                                        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/terminos.ser"));){
+                                            out.writeObject(terminos);
+                                        }
+                                        catch(IOException ex){
+                                            ex.printStackTrace();
+                                        }
     }
     public static void editarTermino(ArrayList<Termino> terminos, Scanner input){
         System.out.println("<<EDITANDO TÉRMINO>>");
