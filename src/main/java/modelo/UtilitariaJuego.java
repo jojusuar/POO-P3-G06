@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -10,7 +11,7 @@ import java.util.Scanner;
  *
  * @author jojusuar
  */
-public class UtilitariaJuego {
+public class UtilitariaJuego implements Serializable{
     public static void jugar(Scanner input, ArrayList<Paralelo> paralelos, ArrayList<Estudiante> participantes, ArrayList<Juego> juegos){
         // Inicializamos valores
                 Materia materiaEscogida=null;

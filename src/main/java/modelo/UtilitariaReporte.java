@@ -3,13 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
  *
  * @author jojusuar
  */
-public class UtilitariaReporte {
+public class UtilitariaReporte implements Serializable{
     public static void generarReporte(Scanner input, ArrayList<Juego> juegos){
         System.out.println("----Generar Reporte----");
                 //solicita los datos para generar el reporte

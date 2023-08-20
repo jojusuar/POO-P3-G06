@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package modelo;
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  *
  * @author jojusuar
  */
-public class Paralelo {//atributos
+public class Paralelo implements Serializable{//atributos
     private ArrayList<Estudiante> estudiantes;
     private Materia materia;
     private Termino termino;
