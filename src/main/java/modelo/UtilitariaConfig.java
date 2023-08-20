@@ -5,19 +5,19 @@
 package modelo;
 import java.util.Scanner;
 import java.util.ArrayList;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 /**
  *
  * @author jojusuar
  */
 public class UtilitariaConfig {
-    public static void ingresarTermino(ArrayList<Termino> terminos, Scanner input){
-        System.out.println("<<INGRESANDO TÉRMINO>>");
-                                        System.out.println("INGRESE AÑO ACADEMICO");
-                                        int anioAcademico = input.nextInt();
-                                        System.out.println("INGRESE TERMINO ACADEMICO");
-                                        int tAcademico = input.nextInt();
-                                        Termino t = new Termino(anioAcademico,tAcademico); //se crea término con los datos ingresados
+    public static void ingresarTermino(ArrayList<Termino> terminos, int x, int y, VBox vbTerminos, ComboBox cbTerminos){
+                                        Termino t = new Termino(x,y); //se crea término con los datos ingresados
                                         terminos.add(t);
+                                        vbTerminos.getChildren().add(new Label(t.toString()));
+                                        cbTerminos.getItems().addAll(t);
     }
     public static void editarTermino(ArrayList<Termino> terminos, Scanner input){
         System.out.println("<<EDITANDO TÉRMINO>>");
