@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -35,7 +36,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="TERMINO ACADEMICO:" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="TÉRMINO ACADÉMICO:" textAlignment="CENTER">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -48,34 +49,32 @@
                   <Insets left="98.0" />
                </GridPane.margin>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="PARTICPANTE" GridPane.rowIndex="3">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="95.0" text="PARTICIPANTE" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="220.0" />
                </GridPane.margin>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="COMPANIERO DE APOYO" GridPane.rowIndex="4">
+            <Label alignment="CENTER" contentDisplay="CENTER" text="COMPAÑERO DE APOYO" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="158.0" />
                </GridPane.margin>
             </Label>
-            <TextField promptText="2023-1" GridPane.columnIndex="1" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
                   <Label contentDisplay="CENTER" text="MATERIA:" />
-                  <TextField alignment="TOP_LEFT" promptText="POO" />
+                  <ComboBox id="cbMaterias" fx:id="cbMaterias" prefHeight="25.0" prefWidth="155.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label text="PARALELO:" />
-                  <TextField alignment="TOP_LEFT" promptText="3" />
+                  <Button id="buscarParalelos" fx:id="buscarParalelos" mnemonicParsing="false" text="BUSCAR PARALELOS" />
                </children>
             </HBox>
-            <TextField promptText="5" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField id="tfNivel" fx:id="tfNivel" promptText="5" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <TextField promptText="202105946" />
-                  <Button mnemonicParsing="false" text="ALEATORIO">
+                  <ComboBox id="cbParticipante" fx:id="cbParticipante" prefHeight="25.0" prefWidth="191.0" />
+                  <Button id="partRandom" fx:id="partRandom" mnemonicParsing="false" text="ALEATORIO">
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
@@ -84,8 +83,8 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <TextField promptText="202205967" />
-                  <Button mnemonicParsing="false" text="ALEATORIO">
+                  <ComboBox id="cbApoyo" fx:id="cbApoyo" prefHeight="25.0" prefWidth="191.0" />
+                  <Button id="apoyoRandom" fx:id="apoyoRandom" mnemonicParsing="false" text="ALEATORIO">
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
@@ -97,6 +96,7 @@
                   <Button alignment="CENTER" contentDisplay="CENTER" layoutX="79.0" layoutY="15.0" mnemonicParsing="false" onAction="#iniciarJuego" prefHeight="25.0" prefWidth="138.0" text="INICIAR JUEGO" textAlignment="CENTER" />
                </children>
             </Pane>
+            <ComboBox id="cbTerminos" fx:id="cbTerminos" prefHeight="25.0" prefWidth="301.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </center>

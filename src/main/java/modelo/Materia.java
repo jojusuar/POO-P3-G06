@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author jojusuar
  */
-public class Materia implements Serializable{ //atributos
+public class Materia implements Serializable { //atributos
     private String codigo;
     private String nombre;
     private int niveles;
@@ -56,4 +56,5 @@ public class Materia implements Serializable{ //atributos
     public String toString(){
         return nombre+": "+codigo;
     }
+
 }
