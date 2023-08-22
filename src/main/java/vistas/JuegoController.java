@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -26,6 +29,7 @@ import modelo.Estudiante;
 import modelo.Juego;
 import modelo.Materia;
 import modelo.Paralelo;
+import modelo.Pregunta;
 import modelo.Termino;
 
 
@@ -152,16 +156,42 @@ public class JuegoController implements Initializable {
     
     @FXML
     private void iniciarJuego(ActionEvent event) throws IOException {
+        
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         Juego game = new Juego(selected, cbParticipante.getValue(),cbApoyo.getValue(),0,0,null,null, formatter.format(date));
-        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/juego.ser"));){
+        ArrayList<Pregunta> everyQuestion = game.getParalelo().getMateria().getPreguntas();
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
+        Collections.shuffle(everyQuestion);
+        for(Pregunta p: everyQuestion){
+            System.out.println("pregunta hallada: "+p);
+            int match = 0;
+            for(Pregunta q: preguntas){
+                if(p.getNivel()==q.getNivel()){
+                    match++;
+                }
+            }
+            if(match<Integer.parseInt(tfNivel.getText())){
+                System.out.println("pregunta que cumple: "+p);
+                preguntas.add(p);
+            }
+        }
+        if(preguntas.size()!=Integer.parseInt(tfNivel.getText())*game.getParalelo().getMateria().getNiveles()){
+           Alert a  = new Alert(AlertType.WARNING);
+           a.setContentText("NO HAY PREGUNTAS SUFICIENTES POR NIVEL");
+           a.show();
+        }
+        else{
+            game.setPreguntasDelJuego(preguntas);
+            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/juego.ser"));){
             out.writeObject(game);
         }
         catch(IOException ex){
             ex.printStackTrace();
         }
         App.setRoot("Comienza");
+        }
+        
     }
     
 
