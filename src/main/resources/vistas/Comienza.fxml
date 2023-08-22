@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -24,28 +23,36 @@
    <bottom>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="117.0" text="OPCION A" />
-                  <TextField editable="false" prefHeight="49.0" prefWidth="474.0" text="POSIBLE1" />
+                  <Label prefHeight="65.0" prefWidth="67.0" text="A)">
+                     <font>
+                        <Font name="Berlin Sans FB" size="59.0" />
+                     </font>
+                  </Label>
+                  <Button id="opcionA" fx:id="opcionA" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" text="OPCION A" />
+                  <Label prefHeight="65.0" prefWidth="67.0" text="B)">
+                     <font>
+                        <Font name="Berlin Sans FB" size="59.0" />
+                     </font>
+                  </Label>
+                  <Button id="opcionB" fx:id="opcionB" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="245.0" text="OPCION B" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="118.0" text="OPCION B" />
-                  <TextField editable="false" prefHeight="50.0" prefWidth="474.0" text="POSIBLE 2" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="118.0" text="OPCION C" />
-                  <TextField editable="false" prefHeight="50.0" prefWidth="474.0" text="POSIBLE 3" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="43.0" prefWidth="118.0" text="OPCION D" />
-                  <TextField editable="false" prefHeight="45.0" prefWidth="475.0" text="POSIBLE 4" />
+                  <Label text="C)">
+                     <font>
+                        <Font name="Berlin Sans FB" size="59.0" />
+                     </font>
+                  </Label>
+                  <Button id="opcionC" fx:id="opcionC" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="217.0" text="OPCION C" />
+                  <Label prefHeight="65.0" prefWidth="61.0" text="D)">
+                     <font>
+                        <Font name="Berlin Sans FB" size="59.0" />
+                     </font>
+                  </Label>
+                  <Button id="opcionD" fx:id="opcionD" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="237.0" text="OPCION D" />
                </children>
             </HBox>
          </children>
@@ -57,12 +64,11 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField alignment="CENTER" prefHeight="44.0" prefWidth="600.0" text="ENUNCIADO" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="COMODINES DISPONIBLES">
@@ -96,11 +102,16 @@
                   </Button>
                </children>
             </HBox>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="TIEMPO:" textAlignment="CENTER" GridPane.rowIndex="2">
+            <Label id="lbTime" fx:id="lbTime" alignment="CENTER" contentDisplay="CENTER" text="TIEMPO:" textAlignment="CENTER" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="250.0" />
                </GridPane.margin>
             </Label>
+            <Label id="lbCooldown" fx:id="lbCooldown" GridPane.rowIndex="2" />
+            <Label id="lbEnunciado" fx:id="lbEnunciado" alignment="CENTER" contentDisplay="CENTER" text="ENUNCIADO" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Bookman Old Style" size="24.0" />
+               </font></Label>
          </children>
       </GridPane>
    </center>

@@ -12,7 +12,7 @@ import java.util.Collections;
  *
  * @author jojusuar
  */
-public class Pregunta implements Serializable{ //atributos
+public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
     private String enunciado;
     private int nivel;
     private String correcta;
@@ -91,6 +91,12 @@ public class Pregunta implements Serializable{ //atributos
         
     public String toString(){
           return enunciado;
-    }  
+    }
+    public int compareTo(Pregunta p){
+        Integer x = this.getNivel();
+        Integer y = p.getNivel();
+        return x.compareTo(y);
+    }
+        
 }   
 

@@ -24,6 +24,7 @@ public class Juego implements Serializable{//atributos
     private String fechajuego;
     private int preguntasRespondidas;
     private int nivelJugador;
+    private ArrayList<Pregunta> preguntasDelJuego;
     private int com50=3;
     private int comCon=3;
     private int comSal=3;
@@ -40,6 +41,7 @@ public class Juego implements Serializable{//atributos
         fechajuego = f;
         nivelJugador = 1;
         preguntasRespondidas = 0;
+        preguntasDelJuego = new ArrayList<>();
     }
     //getters
     public Paralelo getParalelo(){
@@ -65,6 +67,9 @@ public class Juego implements Serializable{//atributos
     }
     public int getIntentoComodines(){
         return intentoComodines;
+    }
+    public ArrayList<Pregunta> getPreguntasDelJuego(){
+        return preguntasDelJuego;
     }
     //setters
     public void setParalelo(Paralelo p){
@@ -97,6 +102,10 @@ public class Juego implements Serializable{//atributos
     public void setPreguntasRespondidas(int n){
         preguntasRespondidas = n;
     }
+    public void setPreguntasDelJuego(ArrayList<Pregunta> p){
+        preguntasDelJuego = p;
+    }
+    
     public String usarComodin(TipoComodin comodin,Paralelo curso, Pregunta pregunta, Estudiante companiero){
         String respuesta50 = "";
         if (intentoComodines >0){
