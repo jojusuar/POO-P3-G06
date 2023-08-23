@@ -11,7 +11,8 @@ import java.util.Scanner;
  * @author jojusuar
  */
 public class UtilitariaReporte implements Serializable{
-    public static void generarReporte(Scanner input, ArrayList<Juego> juegos){
+    public static ArrayList<Juego> generarReporte(String termino, String codigo, String paralelo, ArrayList<Juego> juegos) throws Exception{
+            /*Scanner input, ArrayList<Juego> juegos){
         System.out.println("----Generar Reporte----");
                 //solicita los datos para generar el reporte
                 System.out.print("Ingrese el termino academico (2023-1): ");
@@ -22,7 +23,8 @@ public class UtilitariaReporte implements Serializable{
                 int paralelo = input.nextInt();
                 input.nextLine();
                 System.out.println("<<GENERANDO REPORTE>>");
-                System.out.println("");
+                System.out.println("")*/
+                int nparalelo = Integer.valueOf(paralelo);
                 //Crea un arrayList vacio que va a almacenar las los juegos que cumplan con los parametros
                 ArrayList<Juego> juegosReporte = new ArrayList<>();
                 //recorre la lista para validar uno por uno
@@ -39,7 +41,7 @@ public class UtilitariaReporte implements Serializable{
                         //Valida el termino deseado
                         if ((aniojuego == tJuego.getAnio())&&(terminojuego == tJuego.getNumTermino())){
                             //valida el paralelo deseado
-                            if(paralelo == pJuego.getNumero()){
+                            if(nparalelo == pJuego.getNumero()){
                                 juegosReporte.add(j);
                             }
                         }
@@ -57,5 +59,6 @@ public class UtilitariaReporte implements Serializable{
                     }
                     System.out.println("");
                 }
+                return juegosReporte;
     }
 }

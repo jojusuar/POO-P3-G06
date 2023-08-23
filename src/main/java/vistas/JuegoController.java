@@ -180,13 +180,15 @@ public class JuegoController implements Initializable {
            Alert a  = new Alert(AlertType.WARNING);
            a.setContentText("NO HAY PREGUNTAS SUFICIENTES POR NIVEL");
            a.show();
-        }else{
+        }
+        else{
             game.setPreguntasDelJuego(preguntas);
-            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/juego.ser", true));){
-                out.writeObject(game);
-            }catch(IOException ex){
+            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/juego.ser"));){
+            out.writeObject(game);
+        }
+        catch(IOException ex){
             ex.printStackTrace();
-            }
+        }
         App.setRoot("Comienza");
         }
         
