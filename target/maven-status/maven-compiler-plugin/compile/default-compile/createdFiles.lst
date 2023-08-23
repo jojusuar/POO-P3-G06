@@ -1,15 +1,20 @@
+vistas\ComienzaController$Countdown.class
 vistas\QuestionController.class
+vistas\PresentacionReporteController.class
 modelo\Pregunta.class
+vistas\ComienzaController.class
 vistas\TermController.class
 modelo\UtilitariaConfig.class
 modelo\Juego.class
 modelo\Termino.class
 modelo\UtilitariaJuego.class
 module-info.class
+vistas\JuegoController.class
 modelo\PreguntaTrucada.class
 modelo\TipoComodin.class
 modelo\UtilitariaReporte.class
 vistas\App.class
+vistas\DatosReporte.class
 vistas\PrimaryController.class
 modelo\Estudiante.class
 vistas\MateriaycursoController.class
@@ -19,3 +24,4 @@ modelo\Juego$1.class
 vistas\ConfigController.class
 vistas\ReporteController.class
 modelo\Profesor.class
+vistas\ComienzaController$Timer.class

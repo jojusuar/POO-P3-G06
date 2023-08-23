@@ -7,12 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.ReporteController">
    <children>
-      <VBox layoutX="106.0" layoutY="90.0" prefHeight="200.0" prefWidth="388.0">
+      <VBox fx:id="vb1" layoutX="106.0" layoutY="48.0" prefHeight="303.0" prefWidth="388.0">
          <children>
             <Label text="Ingrese los datos para generar el reporte:">
                <VBox.margin>
@@ -41,8 +43,21 @@
                   <TextField fx:id="entradaPeriodo" GridPane.columnIndex="1" />
                </children>
             </GridPane>
+            <Pane prefHeight="104.0" prefWidth="388.0" />
+            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="388.0">
+               <children>
+                  <Button fx:id="regresar" mnemonicParsing="false" onAction="#regresarMenuPrincipal" text="Regresar">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="60.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="generarReporte" mnemonicParsing="false" onAction="#generarReporte" text="Generar Reporte" />
+               </children>
+            </HBox>
          </children>
       </VBox>
-      <Button fx:id="generarReporte" layoutX="249.0" layoutY="290.0" mnemonicParsing="false" onAction="#generarReporte" text="Generar Reporte" />
    </children>
 </AnchorPane>
