@@ -42,9 +42,9 @@
                   <Label text="Ingrese el termino academico" />
                   <Label text="Ingrese el codigo de la materia" GridPane.rowIndex="1" />
                   <Label text="Ingrese el numero de paralelo" GridPane.rowIndex="2" />
-                  <TextField fx:id="entradaCodigoMateria" text="CCPG1052" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="entradaParalelo" text="3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="entradaPeriodo" promptText="####-#" text="2023-1" GridPane.columnIndex="1" />
+                  <TextField fx:id="entradaCodigoMateria" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="entradaParalelo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="entradaPeriodo" promptText="####-#" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <Pane prefHeight="104.0" prefWidth="388.0" />

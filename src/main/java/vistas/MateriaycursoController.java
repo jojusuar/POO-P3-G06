@@ -38,6 +38,9 @@ public class MateriaycursoController implements Initializable{
     private ArrayList<Estudiante> estudiantes;
     @FXML
     private VBox vbParalelos;
+    
+    @FXML
+    private VBox vbPrincipal;
 
     @FXML
     private Button leaveMateriaycurso;
