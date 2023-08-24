@@ -24,6 +24,7 @@ public class PreguntaRespondida extends Pregunta {
     }
     public void setComodinUsado(TipoComodin comodinUsado) {
         this.comodinUsado = comodinUsado;
+        System.out.println("Se uso comodin");
     }
     
 }
