@@ -91,24 +91,7 @@ public class ComienzaController implements Initializable {
         }
         else{
            x.setStyle("-fx-base: red");
-           Alert defeat = new Alert(AlertType.ERROR);
-           defeat.setContentText("PERDISTE, haz click para volver al menú principal");
-           die = true;
-           Optional<ButtonType> result = defeat.showAndWait();
-           ButtonType ok = result.orElse(ButtonType.OK);
-           if(ok==ButtonType.OK){
-               juego.setTiempo(totaltiempo);
-               juego.setPreguntasRespondidas(npregunta+1);
-               juego.setNivelJugador(actual.getNivel());
-               juegosPrevios.add(juego);
-               try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/juegoshistorial.ser"));){
-                   out.writeObject(juegosPrevios);
-               }
-               catch(IOException ex){
-                   ex.printStackTrace();
-               }
-               App.setRoot("primary");
-           }
+           lose();
         }
     }
     
@@ -285,11 +268,28 @@ public class ComienzaController implements Initializable {
     private void usarCurso(ActionEvent event) {
         consulta_curso.setDisable(true);
     }
+    public void lose() {
+        Alert defeat = new Alert(AlertType.ERROR);
+           defeat.setContentText("PERDISTE, haz click para volver al menú principal");
+           die = true;
+           Optional<ButtonType> result = defeat.showAndWait();
+           ButtonType ok = result.orElse(ButtonType.OK);
+           if(ok==ButtonType.OK){
+               juego.setTiempo(totaltiempo);
+               juego.setPreguntasRespondidas(npregunta+1);
+               juego.setNivelJugador(actual.getNivel());
+               juegosPrevios.add(juego);
+               try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/juegoshistorial.ser"));){
+                   out.writeObject(juegosPrevios);
+                   App.setRoot("primary");
+               }
+               catch(IOException ex){
+                   ex.printStackTrace();
 
+               } 
+           }
+    }
 
-
-  
-    
     class Timer extends Thread{
         public void run(){
             while(tiempo!=0){
@@ -317,6 +317,7 @@ public class ComienzaController implements Initializable {
                 }
                 }
             }
+            Platform.runLater(()-> lose());
         }
     }
     
