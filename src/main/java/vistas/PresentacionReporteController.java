@@ -83,8 +83,20 @@ public class PresentacionReporteController implements Initializable {
             String participante = juego.getParticipante().getNombre();
             String nivelMax = juego.getNivelJugador()+"";
             String sTiempo;
-            String preguntasContestadas = juego.getPreguntasRespondidas()+"";
-            String comodinesUsados = (3-juego.getIntentoComodines())+"";
+            ArrayList<PreguntaRespondida> listaPreguntas = juego.getpRespondidas();
+            String preguntasContestadas = listaPreguntas.size()+"";
+            int numComUsados = 0;
+            for(PreguntaRespondida p: listaPreguntas){
+                TipoComodin t1 = p.getComodinUsado();
+                System.out.print(t1+"---");
+                if(t1 == TipoComodin.Ninguno){
+                    System.out.println("No se usa comodin");
+                }else{
+                    System.out.println("Si se usa comodin");
+                    numComUsados++;
+                }
+            }
+            String comodinesUsados = numComUsados+"";
             String premio;
             
             if(juego.getPremio() == null){
@@ -209,5 +221,5 @@ public class PresentacionReporteController implements Initializable {
         vbReportes.getChildren().setAll(vbDatos,gpPreguntas, boton);
         
     }
-    
+
 }
