@@ -14,4 +14,16 @@ public class PreguntaRespondida extends Pregunta {
         super(p.getEnunciado(), p.getNivel(), p.getCorrecta(), p.getPosible1(), p.getPosible2(), p.getPosible3());
         comodinUsado = tipo;
     }
+    public PreguntaRespondida(Pregunta p){
+        super(p.getEnunciado(), p.getNivel(), p.getCorrecta(), p.getPosible1(), p.getPosible2(), p.getPosible3());
+        comodinUsado = TipoComodin.Ninguno;
+    }
+
+    public TipoComodin getComodinUsado() {
+        return comodinUsado;
+    }
+    public void setComodinUsado(TipoComodin comodinUsado) {
+        this.comodinUsado = comodinUsado;
+    }
+    
 }
