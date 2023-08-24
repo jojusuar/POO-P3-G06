@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -24,13 +25,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import modelo.Estudiante;
 import modelo.Juego;
 import modelo.Paralelo;
 import modelo.Pregunta;
 import modelo.Termino;
-
+import modelo.TipoComodin;
+import modelo.PreguntaTrucada;
 
 public class ComienzaController implements Initializable {
     Juego juego;
@@ -59,6 +65,24 @@ public class ComienzaController implements Initializable {
     @FXML
     Button opcionD;
     
+    @FXML
+    private Button consulta_companiero;
+    @FXML
+    private Button consulta_curso;
+    @FXML
+    private Button fifty_fifty;
+    
+    private boolean uso50 = false;
+    
+    @FXML
+    private ImageView comodin1;
+    @FXML
+    private HBox panel;
+    @FXML
+    private Label lC;
+    @FXML
+    private Label lD;
+    
     public void validar(Button x) throws IOException{
         totaltiempo += (60-tiempo);
         if(x.getText().equals(actual.getCorrecta())){
@@ -67,7 +91,24 @@ public class ComienzaController implements Initializable {
         }
         else{
            x.setStyle("-fx-base: red");
-           lose();
+           Alert defeat = new Alert(AlertType.ERROR);
+           defeat.setContentText("PERDISTE, haz click para volver al menú principal");
+           die = true;
+           Optional<ButtonType> result = defeat.showAndWait();
+           ButtonType ok = result.orElse(ButtonType.OK);
+           if(ok==ButtonType.OK){
+               juego.setTiempo(totaltiempo);
+               juego.setPreguntasRespondidas(npregunta+1);
+               juego.setNivelJugador(actual.getNivel());
+               juegosPrevios.add(juego);
+               try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/juegoshistorial.ser"));){
+                   out.writeObject(juegosPrevios);
+               }
+               catch(IOException ex){
+                   ex.printStackTrace();
+               }
+               App.setRoot("primary");
+           }
         }
     }
     
@@ -191,6 +232,63 @@ public class ComienzaController implements Initializable {
         opcionC.setStyle("-fx-base: lightgrey");
         opcionD.setStyle("-fx-base: lightgrey");
     }
+
+    @FXML
+    private void usarFiftyFifty(ActionEvent event) {
+        fifty_fifty.setDisable(true);
+        
+        ArrayList<String> literales = new ArrayList<>();
+        literales.add(actual.getCorrecta());
+        literales.add(actual.getPosible1());
+        literales.add(actual.getPosible2());
+        literales.add(actual.getPosible3());
+        literales.remove(literales.get(0));//saco la respuesta correcta de la lista
+                    for(int i=0;i<2;i++){ //elimino una respuesta falsa por iteración
+                        int index = (int)(literales.size()*Math.random());
+                        
+                        literales.remove(literales.get(index));
+                    }
+        PreguntaTrucada preguntaTrucada = new PreguntaTrucada(actual.getEnunciado(), actual.getNivel(), actual.getCorrecta(), literales.get(0)); //creo una copia especial de la pregunta en la cual solo hay la respuesta correcta y una falsa
+                    System.out.println("A) "+preguntaTrucada.getCorrecta());
+                    System.out.println("B) "+preguntaTrucada.getPosible());
+                    String rspt50 = preguntaTrucada.getCorrecta();
+                    literales.add(actual.getCorrecta());
+        TipoComodin comodin = TipoComodin.valueOf("Fifty_Fifty");
+        String respuesta50 = "";
+        Paralelo paraleloEscogido = juego.getParalelo();
+        actual = preguntas.get(npregunta);
+        Estudiante apoyo =juego.getCompanero();        
+        uso50 = true;
+        respuesta50 = juego.usarComodin( comodin, paraleloEscogido, actual, apoyo);
+        if(uso50){//validacion de la seleccion del literal correcto por parte del jugador  en el comodin de 50_50
+              
+              Collections.shuffle(literales);
+              opcionA.setText(literales.get(0));
+              opcionB.setText(literales.get(1));
+              opcionC.setText("RESPUESTA ELIMINADA");
+              opcionD.setText("RESPUESTA ELIMINADA");
+              panel.getChildren().remove(opcionC);
+              panel.getChildren().remove(opcionD);
+              panel.getChildren().remove(lC);
+              panel.getChildren().remove(lD);
+              //fifty_fifty.setDisable(true);
+                        }
+        
+    }
+    
+    @FXML
+    private void usaeCompanero(ActionEvent event) {
+        consulta_companiero.setDisable(true);
+    }
+
+    @FXML
+    private void usarCurso(ActionEvent event) {
+        consulta_curso.setDisable(true);
+    }
+
+
+
+  
     
     class Timer extends Thread{
         public void run(){
@@ -219,7 +317,6 @@ public class ComienzaController implements Initializable {
                 }
                 }
             }
-            Platform.runLater(()-> lose());
         }
     }
     
@@ -243,25 +340,4 @@ public class ComienzaController implements Initializable {
         }
     }
     
-    public void lose() {
-        Alert defeat = new Alert(AlertType.ERROR);
-           defeat.setContentText("PERDISTE, haz click para volver al menú principal");
-           die = true;
-           Optional<ButtonType> result = defeat.showAndWait();
-           ButtonType ok = result.orElse(ButtonType.OK);
-           if(ok==ButtonType.OK){
-               juego.setTiempo(totaltiempo);
-               juego.setPreguntasRespondidas(npregunta+1);
-               juego.setNivelJugador(actual.getNivel());
-               juegosPrevios.add(juego);
-               try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/juegoshistorial.ser"));){
-                   out.writeObject(juegosPrevios);
-                   App.setRoot("primary");
-               }
-               catch(IOException ex){
-                   ex.printStackTrace();
-                   
-               } 
-           }
-    }
 }
