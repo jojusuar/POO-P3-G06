@@ -48,6 +48,9 @@ public class ComienzaController implements Initializable {
     boolean die = false;
     int totaltiempo = 0;
     int cooldown = 5;
+    boolean control50 = true;
+    boolean controlC = true;
+    boolean controlCC = true;
     ArrayList<Juego> juegosPrevios;
     Pregunta actual;
     ArrayList<Pregunta> preguntas;
@@ -112,6 +115,10 @@ public class ComienzaController implements Initializable {
         }
         catch(IndexOutOfBoundsException ie){
             die = true;
+            opcionA.setDisable(true);
+            opcionB.setDisable(true);
+            opcionC.setDisable(true);
+            opcionD.setDisable(true);
             Stage popup = new Stage();
             VBox fields = new VBox(10);
             TextField premio = new TextField("VICTORIA MAGISTRAL!!! Ingrese el premio:");
@@ -258,6 +265,7 @@ public class ComienzaController implements Initializable {
     @FXML
     private void usarFiftyFifty(ActionEvent event) {
         fifty_fifty.setDisable(true);
+        control50 = false;
         guardar.setComodinUsado(TipoComodin.Fifty_Fifty);
         
         ArrayList<String> literales = new ArrayList<>();
@@ -303,6 +311,7 @@ public class ComienzaController implements Initializable {
     @FXML
     private void usaeCompanero(ActionEvent event) {
         guardar.setComodinUsado(TipoComodin.ConsultaCompanero);
+       controlC = false; 
         System.out.println("ejeje");
         consulta_companiero.setDisable(true);
         ArrayList<String> literales = new ArrayList<>();
@@ -340,6 +349,7 @@ public class ComienzaController implements Initializable {
     @FXML
     private void usarCurso(ActionEvent event) {
         guardar.setComodinUsado(TipoComodin.ConsultaClase);
+        controlCC = false;
         consulta_curso.setDisable(true);
         ArrayList<String> literales = new ArrayList<>();
         ArrayList<Button> opciones = new ArrayList<>();
@@ -421,9 +431,22 @@ public class ComienzaController implements Initializable {
         public void run(){
             while(cooldown!=0){
                 if(die){
+                    //fifty_fifty.setDisable(true);
+
                     stop();
+
                 }
                         Platform.runLater(() -> lbCooldown.setText("Próx. pregunta en: "+cooldown));
+                        
+                        fifty_fifty.setDisable(true);
+                        opcionA.setDisable(true);
+                        opcionB.setDisable(true);
+                        opcionC.setDisable(true);
+                        opcionD.setDisable(true);
+                        consulta_curso.setDisable(true);
+                        consulta_companiero.setDisable(true);
+                        //control = false;
+                        
                         cooldown--;
                         try{
                             sleep(1000);
@@ -432,9 +455,18 @@ public class ComienzaController implements Initializable {
                             ie.printStackTrace();
                         }
                     }
+                    if(control50){
+                    fifty_fifty.setDisable(false);}
+                    opcionA.setDisable(false);
+                    opcionB.setDisable(false);
+                    opcionC.setDisable(false);
+                    opcionD.setDisable(false);
+                    if(controlCC){
+                    consulta_curso.setDisable(false);}
+                    if(controlC){
+                    consulta_companiero.setDisable(false);}
                     cooldown = 5;
                     Platform.runLater(() -> callQuestion());
         }
     }
-    
 }
