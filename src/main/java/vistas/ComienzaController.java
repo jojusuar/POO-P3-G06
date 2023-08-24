@@ -88,7 +88,7 @@ public class ComienzaController implements Initializable {
     
     public void validar(Button x) throws IOException{
         totaltiempo += (60-tiempo);
-        pRespondidas.add(new PreguntaRespondida(actual));
+        //pRespondidas.add(new PreguntaRespondida(actual));
         
         if(x.getText().equals(actual.getCorrecta())){
            x.setStyle("-fx-base: green");
