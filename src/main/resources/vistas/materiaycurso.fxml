@@ -10,7 +10,7 @@
         <Label text="ADMINISTRAR MATERIAS Y PARALELOS" />
       <VBox id="vbParalelos" fx:id="vbParalelos" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label text="(mostrando todos los paralelos registrados)" />
+            <Label text="PARALELOS REGISTRADOS" />
          </children>
       </VBox>
       <Button mnemonicParsing="false" onAction="#addMateria" text="Ingresar materia" />
