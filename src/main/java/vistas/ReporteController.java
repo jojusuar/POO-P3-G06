@@ -51,37 +51,33 @@ public class ReporteController implements Initializable {
         entrada = entradaPeriodo.getText();
         codigoMateria = entradaCodigoMateria.getText();
         paralelo = entradaParalelo.getText();
-        ArrayList<Juego> listaJuegos = new ArrayList<>();
+        ArrayList<Juego> listaJuegos;
         ArrayList<Juego> juegosReporte;
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/juego.ser"))){
-            Juego juego;
-            while(true){
+        DatosReporte datos = new DatosReporte();
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/juegoshistorial.ser"))){
+            try{
+                listaJuegos = (ArrayList<Juego>)in.readObject();
+                System.out.println("Juegos registrados: "+listaJuegos.size());
                 try{
-                    juego = (Juego)in.readObject();
-                    System.out.println(juego+"");
-                    listaJuegos.add(juego);
-                }catch(EOFException e) {
-                    System.out.println("ya no hay mas objetos");
-                    break;
+                    System.out.println("Reportes que coinciden:");
+                    juegosReporte = UtilitariaReporte.generarReporte(entrada, codigoMateria, paralelo, listaJuegos);
+                }catch(Exception e){
+                    System.out.println("Datos incompletos o incorrectos");
+                    juegosReporte = new ArrayList<>();
                 }
+                datos.setListaJuegos(juegosReporte);
+                
+            }catch(EOFException e) {
+                System.out.println("no es de este tipo");
             }
-           
-        } catch (FileNotFoundException ex) {
+        }catch(FileNotFoundException ex){
             System.out.println("Archivo no encontrado");
-        } catch (IOException ex) {
+        }catch(IOException ex){
             System.out.println("IOException");
-        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex){
             System.out.println("Clase no encontrada");
         }
-        System.out.println(listaJuegos.size());
-        try{
-            juegosReporte = UtilitariaReporte.generarReporte(entrada, codigoMateria, paralelo, listaJuegos);
-        }catch(Exception e){
-            System.out.println("Datos incompletos o incorrectos");
-            juegosReporte = new ArrayList<>();
-        }
-        DatosReporte datos = new DatosReporte();
-        datos.setListaJuegos(juegosReporte);
         PresentacionReporteController presentacion = new PresentacionReporteController();
         presentacion.recibirDatos(datos);
         App.setRoot("PresentacionReporte");
@@ -104,6 +100,10 @@ public class ReporteController implements Initializable {
 }
 class DatosReporte{
     private ArrayList<Juego> listaJuegos;
+    
+    public DatosReporte(){
+        listaJuegos = new ArrayList<>();
+    }
     //getter
     public ArrayList<Juego> getListaJuegos(){
         return listaJuegos;
