@@ -34,6 +34,7 @@ import modelo.Estudiante;
 import modelo.Juego;
 import modelo.Paralelo;
 import modelo.Pregunta;
+import modelo.PreguntaRespondida;
 import modelo.Termino;
 import modelo.TipoComodin;
 import modelo.PreguntaTrucada;
@@ -49,6 +50,7 @@ public class ComienzaController implements Initializable {
     ArrayList<Juego> juegosPrevios;
     Pregunta actual;
     ArrayList<Pregunta> preguntas;
+    ArrayList<PreguntaRespondida> pRespondidas;
     
     @FXML
     Label lbTime;
@@ -85,6 +87,8 @@ public class ComienzaController implements Initializable {
     
     public void validar(Button x) throws IOException{
         totaltiempo += (60-tiempo);
+        pRespondidas.add(actual);
+        
         if(x.getText().equals(actual.getCorrecta())){
            x.setStyle("-fx-base: green");
            nextQuestion();
