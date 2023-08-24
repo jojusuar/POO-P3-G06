@@ -25,6 +25,7 @@ public class Juego implements Serializable{//atributos
     private int preguntasRespondidas;
     private int nivelJugador;
     private ArrayList<Pregunta> preguntasDelJuego;
+    private ArrayList<PreguntaRespondida> pRespondidas;
     private int com50=3;
     private int comCon=3;
     private int comSal=3;
@@ -42,6 +43,7 @@ public class Juego implements Serializable{//atributos
         nivelJugador = 1;
         preguntasRespondidas = 0;
         preguntasDelJuego = new ArrayList<>();
+        pRespondidas = new ArrayList<>();
     }
     //getters
     public Paralelo getParalelo(){
