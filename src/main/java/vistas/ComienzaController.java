@@ -35,6 +35,7 @@ import modelo.Estudiante;
 import modelo.Juego;
 import modelo.Paralelo;
 import modelo.Pregunta;
+import modelo.PreguntaRespondida;
 import modelo.Termino;
 import modelo.TipoComodin;
 import modelo.PreguntaTrucada;
@@ -50,6 +51,8 @@ public class ComienzaController implements Initializable {
     ArrayList<Juego> juegosPrevios;
     Pregunta actual;
     ArrayList<Pregunta> preguntas;
+    ArrayList<PreguntaRespondida> pRespondidas;
+    PreguntaRespondida guardar;
     
     @FXML
     Label lbTime;
@@ -85,6 +88,7 @@ public class ComienzaController implements Initializable {
     private Label lD;
     
     public void validar(Button x) throws IOException{
+        pRespondidas.add(guardar);
         totaltiempo += (60-tiempo);
         if(x.getText().equals(actual.getCorrecta())){
            x.setStyle("-fx-base: green");
@@ -121,6 +125,7 @@ public class ComienzaController implements Initializable {
                 juego.setTiempo(totaltiempo);
                 juego.setPreguntasRespondidas(npregunta);
                 juego.setNivelJugador(actual.getNivel());
+                juego.setpRespondidas(pRespondidas);
                 juegosPrevios.add(juego);
                 popup.close();
                 try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/juegoshistorial.ser"));){
@@ -158,6 +163,7 @@ public class ComienzaController implements Initializable {
             System.out.println("No se encontró la clase");
         }
         actual = new Pregunta();
+        pRespondidas = new ArrayList<>();
         preguntas = juego.getPreguntasDelJuego();
         Collections.sort(preguntas);
         callQuestion();
@@ -207,51 +213,52 @@ public class ComienzaController implements Initializable {
         consulta_curso.setTooltip(tooltip3);
     }
     private void callQuestion(){
+        
         if(uso50){
-        actual = preguntas.get(npregunta);
-        lbEnunciado.setText(actual.getEnunciado());
-        ArrayList<String> literales = new ArrayList<>();
-        literales.add(actual.getCorrecta());
-        literales.add(actual.getPosible1());
-        literales.add(actual.getPosible2());
-        literales.add(actual.getPosible3());
-        Collections.shuffle(literales);
-        opcionA.setText(literales.get(0));
-        opcionB.setText(literales.get(1));
-        opcionC.setText(literales.get(2));
-        opcionD.setText(literales.get(3));
-        opcionA.setStyle("-fx-base: lightgrey");
-        opcionB.setStyle("-fx-base: lightgrey");
-        opcionC.setStyle("-fx-base: lightgrey");
-        opcionD.setStyle("-fx-base: lightgrey");
+            
+            actual = preguntas.get(npregunta);
+            lbEnunciado.setText(actual.getEnunciado());
+            ArrayList<String> literales = new ArrayList<>();
+            literales.add(actual.getCorrecta());
+            literales.add(actual.getPosible1());
+            literales.add(actual.getPosible2());
+            literales.add(actual.getPosible3());
+            Collections.shuffle(literales);
+            opcionA.setText(literales.get(0));
+            opcionB.setText(literales.get(1));
+            opcionC.setText(literales.get(2));
+            opcionD.setText(literales.get(3));
+            opcionA.setStyle("-fx-base: lightgrey");
+            opcionB.setStyle("-fx-base: lightgrey");
+            opcionC.setStyle("-fx-base: lightgrey");
+            opcionD.setStyle("-fx-base: lightgrey");
+        }else{
+            panel.getChildren().addAll(lC,opcionC,lD,opcionD);
+            actual = preguntas.get(npregunta);
+            lbEnunciado.setText(actual.getEnunciado());
+            ArrayList<String> literales = new ArrayList<>();
+            literales.add(actual.getCorrecta());
+            literales.add(actual.getPosible1());
+            literales.add(actual.getPosible2());
+            literales.add(actual.getPosible3());
+            Collections.shuffle(literales);
+            opcionA.setText(literales.get(0));
+            opcionB.setText(literales.get(1));
+            opcionC.setText(literales.get(2));
+            opcionD.setText(literales.get(3));
+            opcionA.setStyle("-fx-base: lightgrey");
+            opcionB.setStyle("-fx-base: lightgrey");
+            opcionC.setStyle("-fx-base: lightgrey");
+            opcionD.setStyle("-fx-base: lightgrey");
+            uso50 = true;
         }
-        else{
-        panel.getChildren().addAll(lC,opcionC,lD,opcionD);
-        actual = preguntas.get(npregunta);
-        lbEnunciado.setText(actual.getEnunciado());
-        ArrayList<String> literales = new ArrayList<>();
-        literales.add(actual.getCorrecta());
-        literales.add(actual.getPosible1());
-        literales.add(actual.getPosible2());
-        literales.add(actual.getPosible3());
-        Collections.shuffle(literales);
-        opcionA.setText(literales.get(0));
-        opcionB.setText(literales.get(1));
-        opcionC.setText(literales.get(2));
-        opcionD.setText(literales.get(3));
-        opcionA.setStyle("-fx-base: lightgrey");
-        opcionB.setStyle("-fx-base: lightgrey");
-        opcionC.setStyle("-fx-base: lightgrey");
-        opcionD.setStyle("-fx-base: lightgrey");
-        uso50 = true;
-        
-        
-        }
+        guardar = new PreguntaRespondida(actual);
     }
 
     @FXML
     private void usarFiftyFifty(ActionEvent event) {
         fifty_fifty.setDisable(true);
+        guardar.setComodinUsado(TipoComodin.Fifty_Fifty);
         
         ArrayList<String> literales = new ArrayList<>();
         literales.add(actual.getCorrecta());
@@ -295,6 +302,7 @@ public class ComienzaController implements Initializable {
     
     @FXML
     private void usaeCompanero(ActionEvent event) {
+        guardar.setComodinUsado(TipoComodin.ConsultaCompanero);
         System.out.println("ejeje");
         consulta_companiero.setDisable(true);
         ArrayList<String> literales = new ArrayList<>();
@@ -331,6 +339,7 @@ public class ComienzaController implements Initializable {
 
     @FXML
     private void usarCurso(ActionEvent event) {
+        guardar.setComodinUsado(TipoComodin.ConsultaClase);
         consulta_curso.setDisable(true);
         ArrayList<String> literales = new ArrayList<>();
         ArrayList<Button> opciones = new ArrayList<>();
@@ -364,6 +373,7 @@ public class ComienzaController implements Initializable {
                juego.setTiempo(totaltiempo);
                juego.setPreguntasRespondidas(npregunta+1);
                juego.setNivelJugador(actual.getNivel());
+               juego.setpRespondidas(pRespondidas);
                juegosPrevios.add(juego);
                try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/juegoshistorial.ser"));){
                    out.writeObject(juegosPrevios);

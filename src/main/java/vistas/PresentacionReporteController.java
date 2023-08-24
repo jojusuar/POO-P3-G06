@@ -143,9 +143,9 @@ public class PresentacionReporteController implements Initializable {
         }
         String premio;
         if(j.getPremio() == null){
-            premio = "NINGUN PREMIO";
+            premio = "Premio : NINGUNO";
         }else{
-            premio = j.getPremio();
+            premio = "Premio" + j.getPremio();
         }
         Label detalleJuego = new Label("Detalle de juego");
         detalleJuego.setPadding(new javafx.geometry.Insets(5, 0, 0, 20));
@@ -180,12 +180,12 @@ public class PresentacionReporteController implements Initializable {
         gpPreguntas.add(enunciado,0,fila);
         gpPreguntas.add(nivel,1,fila);
         gpPreguntas.add(comodin,2,fila);
-        ArrayList<Pregunta> listaPreguntas = j.getPreguntasDelJuego();
-        for(Pregunta p:listaPreguntas){
+        ArrayList<PreguntaRespondida> listaPreguntas = j.getpRespondidas();
+        for(PreguntaRespondida p:listaPreguntas){
             fila++;
             Label preguntaEnunciado = new Label(p.getEnunciado());
             Label preguntaNivel = new Label(p.getNivel()+"");
-            Label preguntaComodin = new Label("-");
+            Label preguntaComodin = new Label(p.getComodinUsado()+"");
             
             preguntaEnunciado.setPadding(new javafx.geometry.Insets(0, 5, 0, 5));
             preguntaNivel.setPadding(new javafx.geometry.Insets(0, 5, 0, 5));

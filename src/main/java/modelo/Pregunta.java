@@ -97,6 +97,6 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
         Integer y = p.getNivel();
         return x.compareTo(y);
     }
-        
+    
 }   
 
