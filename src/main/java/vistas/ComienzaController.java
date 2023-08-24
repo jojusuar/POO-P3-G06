@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -195,7 +196,15 @@ public class ComienzaController implements Initializable {
                     ex.printStackTrace();
                 }
             });
-        
+        Tooltip tooltip1 = new Tooltip();
+        Tooltip tooltip2 = new Tooltip();
+        Tooltip tooltip3 = new Tooltip();
+        tooltip1.setText("Puedes eliminar dos opciones al azar quedando dos posibles respuestas");
+        tooltip2.setText("Puedes consultar a tu companiero: "+juego.getCompanero());
+        tooltip3.setText("Puedes consultar con tu curso cual puede ser la respuesta correcta");
+        fifty_fifty.setTooltip(tooltip1);
+        consulta_companiero.setTooltip(tooltip2);
+        consulta_curso.setTooltip(tooltip3);
     }
     private void callQuestion(){
         if(uso50){
@@ -323,6 +332,26 @@ public class ComienzaController implements Initializable {
     @FXML
     private void usarCurso(ActionEvent event) {
         consulta_curso.setDisable(true);
+        ArrayList<String> literales = new ArrayList<>();
+        ArrayList<Button> opciones = new ArrayList<>();
+        opciones.add(opcionA);
+        opciones.add(opcionB);
+        opciones.add(opcionC);
+        opciones.add(opcionD);
+        literales.add(actual.getCorrecta());
+        literales.add(actual.getPosible1());
+        literales.add(actual.getPosible2());
+        literales.add(actual.getPosible3());
+        int index = (int)(literales.size()*Math.random());
+        String respuesta = literales.get(index);
+        System.out.println(respuesta);
+        for(Button opcion:opciones){
+          if(opcion.getText().equals(respuesta)){
+              System.out.println("hola");
+           //opcion.setDisable(true);  
+           opcion.setStyle("-fx-base: blue");
+          }
+        }
     }
         
     public void lose() {
