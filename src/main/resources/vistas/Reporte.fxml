@@ -11,15 +11,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.ReporteController">
    <children>
-      <VBox fx:id="vb1" layoutX="106.0" layoutY="48.0" prefHeight="303.0" prefWidth="388.0">
+      <VBox fx:id="vb1" alignment="CENTER" layoutX="106.0" layoutY="48.0" prefHeight="303.0" prefWidth="388.0">
          <children>
             <Label text="Ingrese los datos para generar el reporte:">
                <VBox.margin>
-                  <Insets left="90.0" />
+                  <Insets />
                </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Label>
             <GridPane>
               <columnConstraints>
@@ -37,10 +41,10 @@
                <children>
                   <Label text="Ingrese el termino academico" />
                   <Label text="Ingrese el codigo de la materia" GridPane.rowIndex="1" />
-                  <Label text="Ingrese el paralelo" GridPane.rowIndex="2" />
+                  <Label text="Ingrese el numero de paralelo" GridPane.rowIndex="2" />
                   <TextField fx:id="entradaCodigoMateria" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="entradaParalelo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="entradaPeriodo" GridPane.columnIndex="1" />
+                  <TextField fx:id="entradaPeriodo" promptText="####-#" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <Pane prefHeight="104.0" prefWidth="388.0" />

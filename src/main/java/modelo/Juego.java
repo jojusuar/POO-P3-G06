@@ -71,6 +71,15 @@ public class Juego implements Serializable{//atributos
     public ArrayList<Pregunta> getPreguntasDelJuego(){
         return preguntasDelJuego;
     }
+    public String getFechaJuego(){
+        return fechajuego;
+    }
+    public int getNivelJugador(){
+        return nivelJugador;
+    }
+    public int getPreguntasRespondidas(){
+        return preguntasRespondidas;
+    }
     //setters
     public void setParalelo(Paralelo p){
         paralelo = p;
