@@ -38,9 +38,6 @@ public class MateriaycursoController implements Initializable{
     private ArrayList<Estudiante> estudiantes;
     @FXML
     private VBox vbParalelos;
-    
-    @FXML
-    private VBox vbPrincipal;
 
     @FXML
     private Button leaveMateriaycurso;
@@ -119,10 +116,10 @@ public class MateriaycursoController implements Initializable{
         File file = examinar.showOpenDialog(filebrowser);
         if(file!=null){
             try(BufferedReader read = new BufferedReader(new FileReader(file))){
-                String line = "";
+                String line = read.readLine();
                 while((line=read.readLine())!=null){
-                    String[] datos = line.split(",");
-                    e.add(new Estudiante(datos[0],datos[1],datos[2]));
+                    String[] datos = line.split(";");
+                    e.add(new Estudiante(datos[1],datos[2],datos[0]));
                 }
             }
             catch(IOException ie){
