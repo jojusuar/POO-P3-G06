@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public enum TipoComodin implements Serializable{
     Fifty_Fifty, ConsultaCompanero, ConsultaClase;
-    
+    //Ninguno
     
     
 }

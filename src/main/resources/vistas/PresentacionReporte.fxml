@@ -20,22 +20,19 @@
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
             </Label>
          </top>
-         <bottom>
-            <Button fx:id="regresar" mnemonicParsing="false" onAction="#Regresar" text="Regresar" BorderPane.alignment="CENTER_LEFT">
-               <BorderPane.margin>
-                  <Insets bottom="30.0" left="30.0" />
-               </BorderPane.margin>
-            </Button>
-         </bottom>
          <center>
-            <Pane prefHeight="297.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="297.0" prefWidth="600.0" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <VBox fx:id="vbReportes" alignment="TOP_CENTER" layoutX="15.0" layoutY="1.0" prefHeight="380.0" prefWidth="670.0">
+                  <VBox fx:id="vbReportes" alignment="TOP_CENTER" layoutX="15.0" layoutY="11.0" prefHeight="342.0" prefWidth="670.0">
                      <opaqueInsets>
                         <Insets left="10.0" />
                      </opaqueInsets></VBox>
+                  <Button fx:id="regresar" alignment="CENTER" layoutX="15.0" layoutY="353.0" mnemonicParsing="false" onAction="#Regresar" text="Regresar" />
                </children></Pane>
          </center>
       </BorderPane>
