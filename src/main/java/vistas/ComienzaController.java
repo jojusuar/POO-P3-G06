@@ -72,7 +72,7 @@ public class ComienzaController implements Initializable {
     @FXML
     private Button fifty_fifty;
     
-    private boolean uso50 = false;
+    private boolean uso50 = true;
     
     @FXML
     private ImageView comodin1;
@@ -198,6 +198,7 @@ public class ComienzaController implements Initializable {
         
     }
     private void callQuestion(){
+        if(uso50){
         actual = preguntas.get(npregunta);
         lbEnunciado.setText(actual.getEnunciado());
         ArrayList<String> literales = new ArrayList<>();
@@ -214,6 +215,29 @@ public class ComienzaController implements Initializable {
         opcionB.setStyle("-fx-base: lightgrey");
         opcionC.setStyle("-fx-base: lightgrey");
         opcionD.setStyle("-fx-base: lightgrey");
+        }
+        else{
+        panel.getChildren().addAll(lC,opcionC,lD,opcionD);
+        actual = preguntas.get(npregunta);
+        lbEnunciado.setText(actual.getEnunciado());
+        ArrayList<String> literales = new ArrayList<>();
+        literales.add(actual.getCorrecta());
+        literales.add(actual.getPosible1());
+        literales.add(actual.getPosible2());
+        literales.add(actual.getPosible3());
+        Collections.shuffle(literales);
+        opcionA.setText(literales.get(0));
+        opcionB.setText(literales.get(1));
+        opcionC.setText(literales.get(2));
+        opcionD.setText(literales.get(3));
+        opcionA.setStyle("-fx-base: lightgrey");
+        opcionB.setStyle("-fx-base: lightgrey");
+        opcionC.setStyle("-fx-base: lightgrey");
+        opcionD.setStyle("-fx-base: lightgrey");
+        uso50 = true;
+        
+        
+        }
     }
 
     @FXML
@@ -254,6 +278,7 @@ public class ComienzaController implements Initializable {
               panel.getChildren().remove(opcionD);
               panel.getChildren().remove(lC);
               panel.getChildren().remove(lD);
+              uso50 = false;
               //fifty_fifty.setDisable(true);
                         }
         
