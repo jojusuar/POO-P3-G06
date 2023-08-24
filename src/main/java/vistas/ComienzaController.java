@@ -286,13 +286,45 @@ public class ComienzaController implements Initializable {
     
     @FXML
     private void usaeCompanero(ActionEvent event) {
+        System.out.println("ejeje");
         consulta_companiero.setDisable(true);
-    }
+        ArrayList<String> literales = new ArrayList<>();
+        ArrayList<Button> opciones = new ArrayList<>();
+        opciones.add(opcionA);
+        opciones.add(opcionB);
+        opciones.add(opcionC);
+        opciones.add(opcionD);
+        literales.add(actual.getCorrecta());
+        literales.add(actual.getPosible1());
+        literales.add(actual.getPosible2());
+        literales.add(actual.getPosible3());
+        int index = (int)(literales.size()*Math.random());
+        String respuesta = literales.get(index);
+        System.out.println(respuesta);
+        for(Button opcion:opciones){
+          if(opcion.getText().equals(respuesta)){
+              System.out.println("hola");
+           //opcion.setDisable(true);  
+           opcion.setStyle("-fx-base: blue");
+          }
+        }
+        //if(opcionA.getText().equals(respuesta)){
+         //  opcionA.setStyle("-fx-background-color: blue");
+         // }
+       // else if (opcionB.getText().equals(respuesta)){
+        
+        
+        }
+                    //String[] liter = {"A)","B)","C)","D)"};
+                    //String sugerencia = liter[index];
+                   // System.out.println(Juego.getCompanero()+" cree que la respuesta es: "+sugerencia);
+    
 
     @FXML
     private void usarCurso(ActionEvent event) {
         consulta_curso.setDisable(true);
     }
+        
     public void lose() {
         Alert defeat = new Alert(AlertType.ERROR);
            defeat.setContentText("PERDISTE, haz click para volver al menú principal");
