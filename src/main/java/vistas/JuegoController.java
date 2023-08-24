@@ -129,8 +129,11 @@ public class JuegoController implements Initializable {
             popup.setScene(layout);
             popup.show();
             save.setOnAction(ev2 -> {
+                System.out.println("se añadio paralelo");
                 selected = cbParalelos.getValue();
+                System.out.println(selected);
                 for(Estudiante e: selected.getEstudiantes()){
+                    System.out.println(e);
                     cbParticipante.getItems().addAll(e);
                     cbApoyo.getItems().addAll(e);
                 }
