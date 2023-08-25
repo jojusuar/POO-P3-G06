@@ -14,7 +14,7 @@
          </children>
       </VBox>
       <Button mnemonicParsing="false" onAction="#addMateria" text="Ingresar materia" />
-      <Button mnemonicParsing="false" text="Editar materia" />
+      <Button mnemonicParsing="false" onAction="#editMateria" text="Editar materia" />
       <Button mnemonicParsing="false" onAction="#addParalelo" text="Agregar paralelo" />
       <Button mnemonicParsing="false" text="Editar paralelo" />
         <Button fx:id="leaveMateriaycurso" onAction="#leaveMateriaycurso" text="Volver a Configuraciones" />

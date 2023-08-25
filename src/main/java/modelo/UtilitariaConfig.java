@@ -88,32 +88,31 @@ public class UtilitariaConfig implements Serializable {
         }
     }
 
-    public static void editarMateria(ArrayList<Materia> materias, Scanner input) {
+    public static void editarMateria(ArrayList<Materia> materias,Materia sel, String x) {
         System.out.println("<<EDITANDO MATERIA>>");
-        //Se pide nombre o codigo de materia
-        System.out.print("Ingrese el codigo o el nombre de la materia a editar: ");
-        String entrada = input.nextLine();
-        for (Materia m : materias) {
-            String nMateria = m.getNombre();
-            String cMateria = m.getCodigo();
-            //Se compara con el nombre y codigo de cada materia con OR
-            if ((entrada.equals(nMateria)) || (entrada.equals(cMateria))) {
-                //Se pide nuevo nombre y nueva cantidad de niveles
-                System.out.print("Ingrese nuevo nombre (ingrese '*' si no desea modificar): ");
-                String nuevoNombre = input.nextLine();
-                System.out.print("Ingrese nueva cantidad de niveles (ingrese '0' si no desea modificar): ");
-                int nuevoNivel = input.nextInt();
-                input.nextLine();
-                //Se modifican los nombres y niveles
-                if (!(nuevoNombre.equals("*"))) {
-                    m.setNombre(nuevoNombre);
-                }
-                if (nuevoNivel != 0) {
-                    m.setNiveles(nuevoNivel);
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/materias.ser"));) {
+            out.writeObject(materias);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/paralelos.ser"));) {
+            ArrayList<Paralelo> paralelos = (ArrayList<Paralelo>) in.readObject();
+            for (Paralelo p : paralelos) {
+                if (p.getMateria().getCodigo().equals(x)) {
+                    p.setMateria(sel);
                 }
             }
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/paralelos.ser"));) {
+                out.writeObject(paralelos);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } catch (IOException ex) {
+            System.out.println("Nada que editar");
+        } catch (ClassNotFoundException e) {
+            System.out.println("No se encontró la clase");
         }
-        System.out.println("");
+        
     }
 
     public static void agregarParalelo(VBox vbParalelos, Materia m, Termino t, ArrayList<Paralelo> paralelos, ArrayList<Estudiante> participantes, int num) {
