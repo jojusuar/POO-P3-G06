@@ -129,23 +129,12 @@ public class UtilitariaConfig implements Serializable {
         System.out.println("<<PARALELO CREADO>>");
     }
 
-    public static void eliminarParalelo(ArrayList<Materia> materias, ArrayList<Paralelo> paralelos, ArrayList<Estudiante> participantes, Scanner input) {
-        System.out.println("Seleccione el paralelo que desea eliminar:");
-        int n = 0;
-        for (Paralelo p : paralelos) {
-            System.out.println(n + ". " + p);
-            n++;
+    public static void eliminarParalelo(ArrayList<Paralelo> paralelos) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/paralelos.ser"));) {
+            out.writeObject(paralelos);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-        System.out.print("Ingrese el numero del paralelo o '*' si desea cancelar: ");
-        String seleccion = input.nextLine();
-        if (seleccion.equals("*")) {
-            System.out.println("<<CANCELANDO>>");
-        } else {
-            int seleccionN = Integer.parseInt(seleccion);
-            paralelos.remove(seleccionN);
-            System.out.println("<<ELIMINANDO PARALELO>>");
-        }
-
     }
 
     public static void visualizarPreguntas(ArrayList<Materia> materias, Scanner input) {

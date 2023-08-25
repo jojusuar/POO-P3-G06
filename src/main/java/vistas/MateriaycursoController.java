@@ -162,6 +162,32 @@ public class MateriaycursoController implements Initializable {
         });
     }
 
+    @FXML
+    private void deleteParalelo() {
+        VBox fields = new VBox(10);
+        ComboBox<Paralelo> cb = new ComboBox<>();
+        for (Paralelo p : paralelos) {
+            cb.getItems().addAll(p);
+        }
+        cb.setPromptText("[seleccione el paralelo a eliminar]");
+        Button save = new Button("Eliminar");
+        fields.getChildren().addAll(cb, save);
+        Scene editCourseScene = new Scene(fields, 550, 75);
+        Stage editCourseStage = new Stage();
+        editCourseStage.setScene(editCourseScene);
+        editCourseStage.show();
+        save.setOnAction(ev -> {
+            paralelos.remove(cb.getValue());
+            UtilitariaConfig.eliminarParalelo(paralelos);
+            vbParalelos.getChildren().clear();
+            for(Paralelo p: paralelos){
+                vbParalelos.getChildren().add(new Label(p.toString()));
+            }
+            editCourseStage.close();
+        });
+
+    }
+
     private void cargarEstudiantes() {
         ArrayList<Estudiante> e = new ArrayList<>();
         FileChooser examinar = new FileChooser();
