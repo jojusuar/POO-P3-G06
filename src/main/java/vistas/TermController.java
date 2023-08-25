@@ -67,9 +67,10 @@ public class TermController implements Initializable {
         for (Termino t : terminos) {
             cb.getItems().addAll(t);
         }
-        Button save = new Button("Ingresar");
+        cb.setPromptText("[seleccione el término a editar]");
+        Button save = new Button("Editar");
         fields.getChildren().addAll(cb, save);
-        Scene editTermScene = new Scene(fields, 200, 100);
+        Scene editTermScene = new Scene(fields, 230, 75);
         Stage editTermStage = new Stage();
         editTermStage.setScene(editTermScene);
         editTermStage.show();
@@ -88,8 +89,8 @@ public class TermController implements Initializable {
             addTermStage.setScene(addTermScene);
             addTermStage.show();
             save2.setOnAction(ev2 -> {
-                selected.setAnio(Integer.parseInt(anio.getText()));
-                selected.setNumTermino(Integer.parseInt(periodo.getText()));
+                sel.setAnio(Integer.parseInt(anio.getText()));
+                sel.setNumTermino(Integer.parseInt(periodo.getText()));
                 vbTerminos.getChildren().clear();
                 for (Termino t : terminos) {
                     vbTerminos.getChildren().add(new Label(t.toString()));

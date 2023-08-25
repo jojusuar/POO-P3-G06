@@ -30,8 +30,8 @@ import modelo.Pregunta;
 import modelo.Termino;
 import modelo.UtilitariaConfig;
 
-public class MateriaycursoController implements Initializable{
-    
+public class MateriaycursoController implements Initializable {
+
     private ArrayList<Materia> materias;
     private ArrayList<Paralelo> paralelos;
     private ArrayList<Termino> terminos;
@@ -46,6 +46,7 @@ public class MateriaycursoController implements Initializable{
     private void leaveMateriaycurso() throws IOException {
         App.setRoot("config");
     }
+
     @FXML
     private void addMateria() throws IOException {
         VBox fields = new VBox(10);
@@ -54,39 +55,92 @@ public class MateriaycursoController implements Initializable{
         TextField lvl = new TextField("Ingrese el nivel máximo de la materia");
         Button save = new Button("Ingresar");
         fields.getChildren().addAll(name, code, lvl, save);
-        Scene addMateriaScene = new Scene(fields,230,130);
+        Scene addMateriaScene = new Scene(fields, 230, 130);
         Stage addMateriaStage = new Stage();
         addMateriaStage.setScene(addMateriaScene);
         addMateriaStage.show();
         save.setOnAction(ev -> {
-            UtilitariaConfig.ingresarMateria(materias,name.getText(),code.getText(),Integer.parseInt(lvl.getText()));
+            UtilitariaConfig.ingresarMateria(materias, name.getText(), code.getText(), Integer.parseInt(lvl.getText()));
             addMateriaStage.close();
         });
     }
+
+    @FXML
+    private void editMateria() throws IOException {
+        VBox fields = new VBox(10);
+        ComboBox<Materia> cb = new ComboBox<>();
+        for (Materia t : materias) {
+            cb.getItems().add(t);
+        }
+        cb.setPromptText("[seleccione la materia a editar]");
+        Button save = new Button("Editar");
+        fields.getChildren().addAll(cb, save);
+        Scene editMateriaScene = new Scene(fields, 230, 75);
+        Stage editMateriaStage = new Stage();
+        editMateriaStage.setScene(editMateriaScene);
+        editMateriaStage.show();
+        save.setOnAction(ev -> {
+            editMateriaStage.close();
+            Materia selected = cb.getValue();
+            Materia sel = materias.get(materias.indexOf(selected));
+            String previous = sel.getCodigo();
+            VBox fields2 = new VBox(10);
+            TextField name = new TextField(sel.getNombre());
+            TextField code = new TextField(sel.getCodigo());
+            TextField lvl = new TextField(sel.getNiveles() + "");
+            Button save2 = new Button("Ingresar");
+            fields2.getChildren().addAll(name, code, lvl, save2);
+            Scene addMateriaScene = new Scene(fields2, 230, 130);
+            Stage addMateriaStage = new Stage();
+            addMateriaStage.setScene(addMateriaScene);
+            addMateriaStage.show();
+            save2.setOnAction(ev2 -> {
+                sel.setNombre(name.getText());
+                sel.setCodigo(code.getText());
+                sel.setNiveles(Integer.parseInt(lvl.getText()));
+                UtilitariaConfig.editarMateria(materias, sel, previous);
+                try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/paralelos.ser"));) {
+                    paralelos = (ArrayList<Paralelo>) in.readObject();
+                } catch (IOException ex) {
+                    System.out.println("Error al cargar los paralelos, creando nuevo arreglo");
+                    paralelos = new ArrayList<>();
+                } catch (ClassNotFoundException e) {
+                    System.out.println("No se encontró la clase");
+                }
+                for (Paralelo p : paralelos) {
+                    vbParalelos.getChildren().add(new Label(p.toString()));
+                }
+                vbParalelos.getChildren().clear();
+                for (Paralelo p : paralelos) {
+                    vbParalelos.getChildren().add(new Label(p.toString()));
+                }
+                addMateriaStage.close();
+            });
+        });
+    }
+
     @FXML
     private void addParalelo() throws IOException {
         VBox fields = new VBox(10);
         ComboBox<Materia> materiasdisp = new ComboBox<>();
         materiasdisp.setPromptText("[seleccione una materia]");
-        if(!materias.isEmpty()){
-            for(Materia m: materias){
+        if (!materias.isEmpty()) {
+            for (Materia m : materias) {
                 materiasdisp.getItems().addAll(m);
             }
         }
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/terminos.ser"));){
-            terminos = (ArrayList<Termino>)in.readObject();
-        }
-        catch(IOException ex){
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/terminos.ser"));) {
+            terminos = (ArrayList<Termino>) in.readObject();
+        } catch (IOException ex) {
             System.out.println("Error al cargar los términos");
             terminos = new ArrayList<>();
-        }
-        catch(ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             System.out.println("No se encontró la clase");
         }
         ComboBox<Termino> termdisp = new ComboBox<>();
         termdisp.setPromptText("[seleccione un término académico]");
-        if(!terminos.isEmpty()){
-            for(Termino t: terminos){
+        if (!terminos.isEmpty()) {
+            for (Termino t : terminos) {
                 termdisp.getItems().addAll(t);
             }
         }
@@ -97,49 +151,46 @@ public class MateriaycursoController implements Initializable{
         });
         TextField number = new TextField("Ingrese el número del paralelo");
         Button save = new Button("Agregar el paralelo");
-        fields.getChildren().addAll(materiasdisp, termdisp,load,number, save);
-        Scene query = new Scene(fields, 300,180);
+        fields.getChildren().addAll(materiasdisp, termdisp, load, number, save);
+        Scene query = new Scene(fields, 300, 180);
         Stage popup = new Stage();
         popup.setScene(query);
         popup.show();
         save.setOnAction(ev -> {
-            UtilitariaConfig.agregarParalelo(vbParalelos,materiasdisp.getValue(),termdisp.getValue(),paralelos,estudiantes,Integer.parseInt(number.getText()));
+            UtilitariaConfig.agregarParalelo(vbParalelos, materiasdisp.getValue(), termdisp.getValue(), paralelos, estudiantes, Integer.parseInt(number.getText()));
             popup.close();
         });
     }
-    
-    private void cargarEstudiantes(){
+
+    private void cargarEstudiantes() {
         ArrayList<Estudiante> e = new ArrayList<>();
         FileChooser examinar = new FileChooser();
         examinar.setTitle("Cargar archivo .csv");
         Stage filebrowser = new Stage();
         File file = examinar.showOpenDialog(filebrowser);
-        if(file!=null){
-            try(BufferedReader read = new BufferedReader(new FileReader(file))){
+        if (file != null) {
+            try (BufferedReader read = new BufferedReader(new FileReader(file))) {
                 String line = read.readLine();
-                while((line=read.readLine())!=null){
+                while ((line = read.readLine()) != null) {
                     String[] datos = line.split(";");
-                    e.add(new Estudiante(datos[1],datos[2],datos[0]));
+                    e.add(new Estudiante(datos[1], datos[2], datos[0]));
                 }
-            }
-            catch(IOException ie){
+            } catch (IOException ie) {
                 ie.printStackTrace();
             }
         }
-        estudiantes=e;
+        estudiantes = e;
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // aqui inicializamos ese vbox vbMaterias con las materias y paralelos
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/materias.ser"));){
-            materias = (ArrayList<Materia>)in.readObject();
-        }
-        catch(IOException ex){
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/materias.ser"));) {
+            materias = (ArrayList<Materia>) in.readObject();
+        } catch (IOException ex) {
             System.out.println("Error al cargar las materias");
             materias = new ArrayList<>();
-        }
-        catch(ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             System.out.println("No se encontró la clase");
         }
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/paralelos.ser"));) {
@@ -150,7 +201,7 @@ public class MateriaycursoController implements Initializable{
         } catch (ClassNotFoundException e) {
             System.out.println("No se encontró la clase");
         }
-        for(Paralelo p: paralelos){
+        for (Paralelo p : paralelos) {
             vbParalelos.getChildren().add(new Label(p.toString()));
         }
     }
