@@ -26,7 +26,6 @@ import javafx.stage.Stage;
 import modelo.Estudiante;
 import modelo.Materia;
 import modelo.Paralelo;
-import modelo.Pregunta;
 import modelo.Termino;
 import modelo.UtilitariaConfig;
 
@@ -180,7 +179,7 @@ public class MateriaycursoController implements Initializable {
             paralelos.remove(cb.getValue());
             UtilitariaConfig.eliminarParalelo(paralelos);
             vbParalelos.getChildren().clear();
-            for(Paralelo p: paralelos){
+            for (Paralelo p : paralelos) {
                 vbParalelos.getChildren().add(new Label(p.toString()));
             }
             editCourseStage.close();

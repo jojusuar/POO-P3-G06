@@ -4,57 +4,68 @@
  * and open the template in the editor.
  */
 package modelo;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-/**
- *
- * @author jojusuar
- */
+
 public class Materia implements Serializable { //atributos
+
     private String codigo;
     private String nombre;
     private int niveles;
     private ArrayList<Pregunta> preguntas;
+
     //constructor
-    public Materia(){
+    public Materia() {
     }
-        public Materia(String c, String n, int v, ArrayList<Pregunta> p){
+
+    public Materia(String c, String n, int v, ArrayList<Pregunta> p) {
         codigo = c;
         nombre = n;
         niveles = v;
         preguntas = p;
     }
+
     //getters
-    public String getCodigo(){
+    public String getCodigo() {
         return codigo;
     }
-    public String getNombre(){
+
+    public String getNombre() {
         return nombre;
     }
-    public int getNiveles(){
+
+    public int getNiveles() {
         return niveles;
     }
-    public ArrayList<Pregunta> getPreguntas(){
+
+    public ArrayList<Pregunta> getPreguntas() {
         return preguntas;
     }
+
     //setters
-    public void setCodigo(String c){
+    public void setCodigo(String c) {
         codigo = c;
     }
-    public void setNombre(String n){
+
+    public void setNombre(String n) {
         nombre = n;
     }
-    public void setNiveles(int v){
+
+    public void setNiveles(int v) {
         niveles = v;
     }
-    public void setPregunta(Pregunta p){
+
+    public void setPregunta(Pregunta p) {
         preguntas.add(p);
     }
-    public void removePregunta(Pregunta p){
+
+    public void removePregunta(Pregunta p) {
         preguntas.remove(p);
     }
-    public String toString(){
-        return nombre+": "+codigo;
+
+    public String toString() {
+        return nombre + ": " + codigo;
     }
 
 }

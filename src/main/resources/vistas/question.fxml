@@ -14,7 +14,7 @@
             <ComboBox id="cbMaterias" fx:id="cbMaterias" prefWidth="150.0" promptText="[Elija una materia]" />
             <Button mnemonicParsing="false" onAction="#showQuestions" text="Mostrar preguntas" />
             <Button mnemonicParsing="false" onAction="#addQuestion" text="Agregar pregunta" />
-            <Button mnemonicParsing="false" text="Eliminar pregunta" />
+            <Button mnemonicParsing="false" onAction="#deleteQuestion" text="Eliminar pregunta" />
             <Button fx:id="leaveQuestionsButton" mnemonicParsing="false" onAction="#leaveQuestions" text="Volver a Configuraciones" />
          </children>
       </VBox>
