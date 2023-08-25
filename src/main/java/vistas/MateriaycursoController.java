@@ -142,14 +142,12 @@ public class MateriaycursoController implements Initializable{
         catch(ClassNotFoundException e){
             System.out.println("No se encontró la clase");
         }
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/paralelos.ser"));){
-            paralelos = (ArrayList<Paralelo>)in.readObject();
-        }
-        catch(IOException ex){
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/paralelos.ser"));) {
+            paralelos = (ArrayList<Paralelo>) in.readObject();
+        } catch (IOException ex) {
             System.out.println("Error al cargar los paralelos, creando nuevo arreglo");
             paralelos = new ArrayList<>();
-        }
-        catch(ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             System.out.println("No se encontró la clase");
         }
         for(Paralelo p: paralelos){

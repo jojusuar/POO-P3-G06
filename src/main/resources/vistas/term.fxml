@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
@@ -14,8 +13,7 @@
             <Label text="(mostrando los términos existentes)" />
          </children></VBox>
       <Button mnemonicParsing="false" onAction="#addTerm" text="Ingresar término académico" />
-      <Button mnemonicParsing="false" text="Editar término académico " />
-      <ComboBox id="cbTerminos" fx:id="cbTerminos" prefHeight="25.0" prefWidth="226.0" promptText="[seleccionar término para el juego]" />
+      <Button mnemonicParsing="false" onAction="#editTerm" text="Editar término académico " />
         <Button fx:id="leaveTerm" onAction="#leaveTerm" text="Volver a Configuraciones" />
     </children>
     <padding>
