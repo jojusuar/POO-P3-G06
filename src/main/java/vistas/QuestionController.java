@@ -47,6 +47,26 @@ public class QuestionController implements Initializable{
         popup.show();
     }
     @FXML
+    private void deleteQuestion() throws IOException {
+        VBox fields = new VBox(10);
+        ComboBox<Pregunta> cb = new ComboBox<>();
+        Materia course = cbMaterias.getValue();
+        for (Pregunta p : course.getPreguntas()) {
+            cb.getItems().addAll(p);
+        }
+        cb.setPromptText("[seleccione la pregunta a eliminar]");
+        Button save = new Button("Eliminar");
+        fields.getChildren().addAll(cb, save);
+        Scene editTermScene = new Scene(fields, 550, 75);
+        Stage editTermStage = new Stage();
+        editTermStage.setScene(editTermScene);
+        editTermStage.show();
+        save.setOnAction(ev -> {
+            course.getPreguntas().remove(cb.getValue());
+            UtilitariaConfig.editarMateria(materias, course, course.getCodigo());
+           });
+    }
+    @FXML
     private void leaveQuestions() throws IOException {
         App.setRoot("config");
     }

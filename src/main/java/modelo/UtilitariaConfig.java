@@ -10,11 +10,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Scanner;
 import java.util.ArrayList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -63,15 +61,6 @@ public class UtilitariaConfig implements Serializable {
         }
     }
 
-    public static void seleccionarTermino(ArrayList<Termino> terminos, Scanner input) {
-        System.out.println("<<SELECCIONANDO TÉRMINO>>");
-        System.out.println("SELECCIONE EL NÚMERO DEL TÉRMINO PARA EL JUEGO");
-        int opcion = input.nextInt() - 1;
-        Termino tJuego = terminos.get(opcion); // se obtiene el término seleccionado
-        System.out.println("Termino seleccionado:" + "PAO " + tJuego.getNumTermino() + " " + tJuego.getAnio());
-
-    }
-
     public static void ingresarMateria(ArrayList<Materia> materias, String nombreM, String codigoM, int nivelesM) {
         //Se solicitan los datos para la creacion de la nueva materia
 
@@ -88,7 +77,7 @@ public class UtilitariaConfig implements Serializable {
         }
     }
 
-    public static void editarMateria(ArrayList<Materia> materias,Materia sel, String x) {
+    public static void editarMateria(ArrayList<Materia> materias, Materia sel, String x) {
         System.out.println("<<EDITANDO MATERIA>>");
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/materias.ser"));) {
             out.writeObject(materias);
@@ -100,19 +89,19 @@ public class UtilitariaConfig implements Serializable {
             for (Paralelo p : paralelos) {
                 if (p.getMateria().getCodigo().equals(x)) {
                     p.setMateria(sel);
+                    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/paralelos.ser"));) {
+                        out.writeObject(paralelos);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
-            }
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/paralelos.ser"));) {
-                out.writeObject(paralelos);
-            } catch (IOException ex) {
-                ex.printStackTrace();
             }
         } catch (IOException ex) {
             System.out.println("Nada que editar");
         } catch (ClassNotFoundException e) {
             System.out.println("No se encontró la clase");
         }
-        
+
     }
 
     public static void agregarParalelo(VBox vbParalelos, Materia m, Termino t, ArrayList<Paralelo> paralelos, ArrayList<Estudiante> participantes, int num) {
@@ -137,68 +126,73 @@ public class UtilitariaConfig implements Serializable {
         }
     }
 
-    public static void visualizarPreguntas(ArrayList<Materia> materias, Scanner input) {
-        System.out.println("Seleccione la materia ingresando su código:");
-        for (Materia m : materias) { //se itera en la lista de materias para mostrarlas
-            System.out.println(m);
-        }
-        String code = input.nextLine(); // se pide el ingreso de una de las materias mostradas
-        for (Materia m : materias) { // si la ingresada coincide con una en la lista, se muestran sus preguntas
-            if (code.equals(m.getCodigo())) {
-                System.out.println(m.getPreguntas());
-            }
-        }
-    }
-
     public static void agregarPreguntas(ArrayList<Materia> materias, Materia q) {
-        for (Materia m : materias) {
-            if (q.getCodigo().equals(m.getCodigo())) { //se verifica que la materia exista
-                Stage query = new Stage();
-                VBox fields = new VBox();
-                TextField enunciado = new TextField("Ingrese el enunciado");
-                TextField t = new TextField("Ingrese el literal correcto");
-                TextField s = new TextField("Ingrese literal falso 1");
-                TextField x = new TextField("Ingrese literal falso 2");
-                TextField y = new TextField("Ingrese literal falso 3");
-                TextField z = new TextField("Ingrese el nivel de la pregunta (de 1 a " + m.getNiveles() + ")");
-                Button save = new Button("Agregar");
-                fields.getChildren().addAll(enunciado, t, s, x, y, z, save);
-                Stage popup = new Stage();
-                Scene layout = new Scene(fields, 250, 200);
-                popup.setScene(layout);
-                popup.show();
-                save.setOnAction(ev -> {
-                    int lmao = Integer.parseInt(z.getText());
-                    m.setPregunta(new Pregunta(enunciado.getText(), lmao, t.getText(), s.getText(), x.getText(), y.getText()));
-                    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/materias.ser"));) {
-                        out.writeObject(materias);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                    popup.close();
-                });
+        Stage query = new Stage();
+        VBox fields = new VBox();
+        TextField enunciado = new TextField("Ingrese el enunciado");
+        TextField t = new TextField("Ingrese el literal correcto");
+        TextField s = new TextField("Ingrese literal falso 1");
+        TextField x = new TextField("Ingrese literal falso 2");
+        TextField y = new TextField("Ingrese literal falso 3");
+        TextField z = new TextField("Ingrese el nivel de la pregunta (de 1 a " + q.getNiveles() + ")");
+        Button save = new Button("Agregar");
+        fields.getChildren().addAll(enunciado, t, s, x, y, z, save);
+        Stage popup = new Stage();
+        Scene layout = new Scene(fields, 250, 200);
+        popup.setScene(layout);
+        popup.show();
+        save.setOnAction(ev -> {
+            int lmao = Integer.parseInt(z.getText());
+            q.setPregunta(new Pregunta(enunciado.getText(), lmao, t.getText(), s.getText(), x.getText(), y.getText()));
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/materias.ser"));) {
+                out.writeObject(materias);
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
-        }
-
-    }
-
-    public static void eliminarPregunta(ArrayList<Materia> materias, Scanner input) {
-        System.out.println("Seleccione la materia ingresando su código:");
-        String code3 = input.nextLine();
-        Materia dummy1 = new Materia(); //instancio objetos materia y pregunta vacíos
-        Pregunta dummy2 = new Pregunta();
-        for (Materia m : materias) {
-            if (code3.equals(m.getCodigo())) {
-                dummy1 = m; //guardo la coincidencia en el dummy
-                System.out.println("Ingrese el enunciado de la pregunta a eliminar:");
-                String del = input.nextLine();
-                for (Pregunta p : m.getPreguntas()) {
-                    if (del.equals(p.getEnunciado())) {
-                        dummy2 = p; // guardo la coincidencia en el dummy
+            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/paralelos.ser"));) {
+                ArrayList<Paralelo> paralelos = (ArrayList<Paralelo>) in.readObject();
+                for (Paralelo p : paralelos) {
+                    if (p.getMateria().toString().equals(q.toString())) {
+                        p.setMateria(q);
                     }
                 }
+                try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/paralelos.ser"));) {
+                    out.writeObject(paralelos);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            } catch (IOException ex) {
+                System.out.println("Nada que editar");
+            } catch (ClassNotFoundException e) {
+                System.out.println("No se encontró la clase");
             }
-        }//de no haber hecho el respaldo en dummys, al intentar modificar un arreglo dentro de una iteración se hubiera generado una excepción al ejecutar
-        dummy1.removePregunta(dummy2); //ahora puedo eliminar la pregunta del banco de la materia
+            popup.close();
+        });
+
+    }
+
+    public static void eliminarPregunta(ArrayList<Termino> terminos, Termino sel, String x) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/terminos.ser"));) {
+            out.writeObject(terminos);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/paralelos.ser"));) {
+            ArrayList<Paralelo> paralelos = (ArrayList<Paralelo>) in.readObject();
+            for (Paralelo p : paralelos) {
+                if (p.getTermino().toString().equals(x)) {
+                    p.setTermino(sel);
+                }
+            }
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/paralelos.ser"));) {
+                out.writeObject(paralelos);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } catch (IOException ex) {
+            System.out.println("Nada que editar");
+        } catch (ClassNotFoundException e) {
+            System.out.println("No se encontró la clase");
+        }
     }
 }
