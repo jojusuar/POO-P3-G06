@@ -22,7 +22,10 @@ import modelo.Materia;
 import modelo.Pregunta;
 import modelo.UtilitariaConfig;
 
-
+/**
+ *
+ * @author Euclasio
+ */
 public class QuestionController implements Initializable{
     private ArrayList<Materia> materias;
     @FXML
@@ -70,6 +73,12 @@ public class QuestionController implements Initializable{
     private void leaveQuestions() throws IOException {
         App.setRoot("config");
     }
+
+    /**
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // aqui inicializamos ese combobox cbMaterias con las materias a las que agregarles preguntas

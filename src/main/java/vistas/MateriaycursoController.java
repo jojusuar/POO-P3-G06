@@ -29,6 +29,10 @@ import modelo.Paralelo;
 import modelo.Termino;
 import modelo.UtilitariaConfig;
 
+/**
+ *
+ * @author Euclasio
+ */
 public class MateriaycursoController implements Initializable {
 
     private ArrayList<Materia> materias;
@@ -207,6 +211,11 @@ public class MateriaycursoController implements Initializable {
         estudiantes = e;
     }
 
+    /**
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // aqui inicializamos ese vbox vbMaterias con las materias y paralelos

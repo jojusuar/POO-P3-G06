@@ -13,25 +13,55 @@ public class Profesor implements Serializable{//Atributos
     private ArrayList<Materia> materias;
     private ArrayList<Paralelo> paralelos;
     //constructor
+
+    /**
+     *
+     * @param m
+     * @param p
+     */
     public Profesor(ArrayList<Materia> m, ArrayList<Paralelo> p){
         materias = m;
         paralelos = p;
     }
     //getters
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<Materia> getMaterias(){
         return materias;
     }
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<Paralelo> getParalelos(){
         return paralelos;
     }
     //setters
+
+    /**
+     *
+     * @param m
+     */
     public void setMaterias(ArrayList<Materia> m){
         materias = m;
     }
+
+    /**
+     *
+     * @param p
+     */
     public void setParalelos(ArrayList<Paralelo> p){
         paralelos = p;
     }
     //métodos
+
+    /**
+     *
+     */
     public void mostrarInformacion(){
         System.out.println("Materias del docente:");
         for(Materia m: materias){

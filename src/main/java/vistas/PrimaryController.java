@@ -3,6 +3,10 @@ package vistas;
 import java.io.IOException;
 import javafx.fxml.FXML;
 
+/**
+ *
+ * @author Euclasio
+ */
 public class PrimaryController {
 
     @FXML

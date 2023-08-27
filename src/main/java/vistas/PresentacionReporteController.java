@@ -29,26 +29,42 @@ import mail.Email;
  * @author mateo
  */
 public class PresentacionReporteController implements Initializable {
+
+    /**
+     *
+     */
     @FXML
     public Button regresar;
+
+    /**
+     *
+     */
     @FXML
     public VBox vbReportes;
     @FXML
     GridPane gpPresentacion;
     private static ArrayList<Juego> listaJuegos;
     
-    
-    
-    
+    /**
+     *
+     * @throws Exception
+     */
     public void Regresar()throws Exception{
         App.setRoot("Reporte");
     }
+
+    /**
+     *
+     * @param datos
+     */
     public void recibirDatos(DatosReporte datos){
         listaJuegos = datos.getListaJuegos();
     }
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -138,6 +154,11 @@ public class PresentacionReporteController implements Initializable {
         
         
     }
+
+    /**
+     *
+     * @param j
+     */
     public void presentarReporteJuego(Juego j){
         VBox vbDatos = new VBox();
         String fechaJuego = "Fecha: "+ j.getFechaJuego();

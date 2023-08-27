@@ -10,6 +10,16 @@ import java.util.ArrayList;
  * @author jojusuar
  */
 public class UtilitariaReporte implements Serializable{
+
+    /**
+     *
+     * @param termino
+     * @param codigo
+     * @param paralelo
+     * @param juegos
+     * @return
+     * @throws Exception
+     */
     public static ArrayList<Juego> generarReporte(String termino, String codigo, String paralelo, ArrayList<Juego> juegos) throws Exception{
         int nparalelo = Integer.valueOf(paralelo);
         //Crea un arrayList vacio que va a almacenar las los juegos que cumplan con los parametros

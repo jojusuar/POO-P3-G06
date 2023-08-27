@@ -38,6 +38,10 @@ import modelo.PreguntaRespondida;
 import modelo.TipoComodin;
 import modelo.PreguntaTrucada;
 
+/**
+ *
+ * @author Euclasio
+ */
 public class ComienzaController implements Initializable {
     Juego juego;
     int npregunta = 0;
@@ -88,6 +92,11 @@ public class ComienzaController implements Initializable {
     @FXML
     private Label lD;
     
+    /**
+     *
+     * @param x
+     * @throws IOException
+     */
     public void validar(Button x) throws IOException{
         pRespondidas.add(guardar);
         totaltiempo += (60-tiempo);
@@ -101,6 +110,10 @@ public class ComienzaController implements Initializable {
         }
     }
     
+    /**
+     *
+     * @throws IOException
+     */
     public void nextQuestion() throws IOException{
         npregunta ++; 
         tiempo = 60;
@@ -146,6 +159,11 @@ public class ComienzaController implements Initializable {
         
     }
 
+    /**
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/juego.ser"));){
@@ -371,6 +389,9 @@ public class ComienzaController implements Initializable {
         }
     }
         
+    /**
+     *
+     */
     public void lose() {
         Alert defeat = new Alert(AlertType.ERROR);
            defeat.setContentText("PERDISTE, haz click para volver al menú principal");
