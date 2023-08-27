@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import modelo.Termino;
 import modelo.UtilitariaConfig;
 
+
 public class TermController implements Initializable {
 
     private ArrayList<Termino> terminos;

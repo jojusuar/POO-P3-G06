@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Pos;
+import mail.Email;
 
 
 
@@ -45,6 +46,7 @@ public class PresentacionReporteController implements Initializable {
     public void recibirDatos(DatosReporte datos){
         listaJuegos = datos.getListaJuegos();
     }
+    
     /**
      * Initializes the controller class.
      */
@@ -133,6 +135,8 @@ public class PresentacionReporteController implements Initializable {
         gpPresentacion.setHgap(5);
         vbReportes.getChildren().setAll(gpPresentacion);
         
+        
+        
     }
     public void presentarReporteJuego(Juego j){
         VBox vbDatos = new VBox();
@@ -157,7 +161,7 @@ public class PresentacionReporteController implements Initializable {
         if(j.getPremio() == null){
             premio = "Premio : NINGUNO";
         }else{
-            premio = "Premio" + j.getPremio();
+            premio = "Premio: " + j.getPremio();
         }
         Label detalleJuego = new Label("Detalle de juego");
         detalleJuego.setPadding(new javafx.geometry.Insets(5, 0, 0, 20));
@@ -220,6 +224,8 @@ public class PresentacionReporteController implements Initializable {
         });
         vbReportes.getChildren().setAll(vbDatos,gpPreguntas, boton);
         
+        String correo = fechaJuego+ "\r\n"+partJuego+"\r\n"+companiero+"\r\n"+nivelMax+"\r\n"+sTiempo+"\r\n"+premio;
+        Email.sendEmail(j.getParticipante(), correo);
     }
 
 }
