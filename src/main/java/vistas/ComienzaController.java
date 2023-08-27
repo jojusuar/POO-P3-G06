@@ -26,7 +26,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -36,7 +35,6 @@ import modelo.Juego;
 import modelo.Paralelo;
 import modelo.Pregunta;
 import modelo.PreguntaRespondida;
-import modelo.Termino;
 import modelo.TipoComodin;
 import modelo.PreguntaTrucada;
 
