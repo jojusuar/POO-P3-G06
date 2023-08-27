@@ -19,17 +19,16 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- *
- * @author jojusuar
+ *Métodos estáticos auxiliares para la funcionalidad de las configuraciones del Juego.
  */
 public class UtilitariaConfig implements Serializable {
 
     /**
-     *
-     * @param terminos
-     * @param x
-     * @param y
-     * @param vbTerminos
+     *Método que crea un Término.
+     * @param terminos Lista de todo Término registrado.
+     * @param x Año del Término a registrar.
+     * @param y Período académico del Término a registrar.
+     * @param vbTerminos VBox que muestra etiquetas asociadas a los términos registrados.
      */
     public static void ingresarTermino(ArrayList<Termino> terminos, int x, int y, VBox vbTerminos) {
         Termino t = new Termino(x, y); //se crea término con los datos ingresados
@@ -43,10 +42,10 @@ public class UtilitariaConfig implements Serializable {
     }
 
     /**
-     *
-     * @param terminos
-     * @param sel
-     * @param x
+     *Método que edita un término registrado.
+     * @param terminos Lista de todo Término registrado.
+     * @param sel Término a editar en la lista.
+     * @param x String que representa al Término.
      */
     public static void editarTermino(ArrayList<Termino> terminos, Termino sel, String x) {
         System.out.println("<<EDITANDO TÉRMINO>>");
@@ -75,11 +74,11 @@ public class UtilitariaConfig implements Serializable {
     }
 
     /**
-     *
-     * @param materias
-     * @param nombreM
-     * @param codigoM
-     * @param nivelesM
+     *Método que crea una Materia.
+     * @param materias Lista de toda Materia registrada.
+     * @param nombreM Nombre de la Materia.
+     * @param codigoM Código de la Materia.
+     * @param nivelesM Nivel máximo de las preguntas en la Materia.
      */
     public static void ingresarMateria(ArrayList<Materia> materias, String nombreM, String codigoM, int nivelesM) {
         //Se solicitan los datos para la creacion de la nueva materia
@@ -98,10 +97,10 @@ public class UtilitariaConfig implements Serializable {
     }
 
     /**
-     *
-     * @param materias
-     * @param sel
-     * @param x
+     *Método que edita una Materia registrada.
+     * @param materias  Lista de toda Materia registrada.
+     * @param sel Materia a ser editada.
+     * @param x String que representa a la Materia a editar.
      */
     public static void editarMateria(ArrayList<Materia> materias, Materia sel, String x) {
         System.out.println("<<EDITANDO MATERIA>>");
@@ -131,13 +130,13 @@ public class UtilitariaConfig implements Serializable {
     }
 
     /**
-     *
-     * @param vbParalelos
-     * @param m
-     * @param t
-     * @param paralelos
-     * @param participantes
-     * @param num
+     *Método que crea un Paralelo.
+     * @param vbParalelos VBox que muestra etiquetas asociadas a los Paralelos registrados.
+     * @param m Materia asociada al Paralelo.
+     * @param t Término del Paralelo.
+     * @param paralelos Lista de todo Paralelo registrado.
+     * @param participantes Lista de Estudiantes inscritos en el Paralelo.
+     * @param num Número del Paralelo.
      */
     public static void agregarParalelo(VBox vbParalelos, Materia m, Termino t, ArrayList<Paralelo> paralelos, ArrayList<Estudiante> participantes, int num) {
 
@@ -154,8 +153,8 @@ public class UtilitariaConfig implements Serializable {
     }
 
     /**
-     *
-     * @param paralelos
+     *Método que elimina un Paralelo registrado.
+     * @param paralelos Lista de todo Paralelo registrado.
      */
     public static void eliminarParalelo(ArrayList<Paralelo> paralelos) {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/paralelos.ser"));) {
@@ -166,9 +165,9 @@ public class UtilitariaConfig implements Serializable {
     }
 
     /**
-     *
-     * @param materias
-     * @param q
+     *Método que crea una Pregunta y la agrega a la Materia asignada.
+     * @param materias Lista de toda Materia registrada.
+     * @param q Materia registrada a la cual se agrega la pregunta.
      */
     public static void agregarPreguntas(ArrayList<Materia> materias, Materia q) {
         Stage query = new Stage();
@@ -213,36 +212,5 @@ public class UtilitariaConfig implements Serializable {
             popup.close();
         });
 
-    }
-
-    /**
-     *
-     * @param terminos
-     * @param sel
-     * @param x
-     */
-    public static void eliminarPregunta(ArrayList<Termino> terminos, Termino sel, String x) {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/terminos.ser"));) {
-            out.writeObject(terminos);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/paralelos.ser"));) {
-            ArrayList<Paralelo> paralelos = (ArrayList<Paralelo>) in.readObject();
-            for (Paralelo p : paralelos) {
-                if (p.getTermino().toString().equals(x)) {
-                    p.setTermino(sel);
-                }
-            }
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/paralelos.ser"));) {
-                out.writeObject(paralelos);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        } catch (IOException ex) {
-            System.out.println("Nada que editar");
-        } catch (ClassNotFoundException e) {
-            System.out.println("No se encontró la clase");
-        }
     }
 }

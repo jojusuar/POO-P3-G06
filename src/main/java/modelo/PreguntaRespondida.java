@@ -1,20 +1,19 @@
 package modelo;
 
 /**
- *
- * @author mateo
+ *Representa una Pregunta respondida en el Juego, hereda de la clase Pregunta.
  */
 public class PreguntaRespondida extends Pregunta {
     private TipoComodin comodinUsado;
-
+    
     /**
-     *
-     * @param e
-     * @param n
-     * @param t
-     * @param x
-     * @param y
-     * @param z
+     *Constructor sin Pregunta ni Comodín.
+     * @param e Enunciado de la Pregunta.
+     * @param n Nivel de la Pregunta.
+     * @param t Respuesta correcta de la Pregunta.
+     * @param x Respuesta falsa 1.
+     * @param y Respuesta falsa 2.
+     * @param z Respuesta falsa 3.
      */
     public PreguntaRespondida(String e, int n, String t, String x, String y, String z){
         super(e, n, t, x, y, z);
@@ -22,9 +21,9 @@ public class PreguntaRespondida extends Pregunta {
     }
 
     /**
-     *
-     * @param p
-     * @param tipo
+     * Constructor con comodín.
+     * @param p Objeto de tipo Pregunta.
+     * @param tipo Tipo de Comodín.
      */
     public PreguntaRespondida(Pregunta p, TipoComodin tipo){
         super(p.getEnunciado(), p.getNivel(), p.getCorrecta(), p.getPosible1(), p.getPosible2(), p.getPosible3());
@@ -32,8 +31,8 @@ public class PreguntaRespondida extends Pregunta {
     }
 
     /**
-     *
-     * @param p
+     *Constructor sin Comodín.
+     * @param p Tipo de Comodín.
      */
     public PreguntaRespondida(Pregunta p){
         super(p.getEnunciado(), p.getNivel(), p.getCorrecta(), p.getPosible1(), p.getPosible2(), p.getPosible3());
@@ -41,8 +40,8 @@ public class PreguntaRespondida extends Pregunta {
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return Devuelve el Comodín usado en la Pregunta respondida.
      */
     public TipoComodin getComodinUsado() {
         return comodinUsado;
@@ -50,7 +49,7 @@ public class PreguntaRespondida extends Pregunta {
 
     /**
      *
-     * @param comodinUsado
+     * @param comodinUsado Sobreescribe el Comodín usado en la Pregunta respondida.
      */
     public void setComodinUsado(TipoComodin comodinUsado) {
         this.comodinUsado = comodinUsado;

@@ -8,8 +8,7 @@ package modelo;
 import java.io.Serializable;
 
 /**
- *
- * @author jojusuar
+ *Representa a un término académico universitario.
  */
 public class Termino implements Serializable{//atributos
     private int anio;
@@ -17,9 +16,9 @@ public class Termino implements Serializable{//atributos
     //constructor
 
     /**
-     *
-     * @param a
-     * @param n
+     * Constructor de la instancia.
+     * @param a Año del término.
+     * @param n Período académico del término.
      */
     public Termino(int a, int n){
         anio = a;
@@ -29,7 +28,7 @@ public class Termino implements Serializable{//atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el año de la instancia.
      */
     public int getAnio(){
         return anio;
@@ -37,7 +36,7 @@ public class Termino implements Serializable{//atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el período académico de la instancia.
      */
     public int getNumTermino(){
         return numTermino;
@@ -46,7 +45,7 @@ public class Termino implements Serializable{//atributos
 
     /**
      *
-     * @param a
+     * @param a Sobreescribe el año de la instancia.
      */
     public void setAnio(int a){
         anio = a;
@@ -54,7 +53,7 @@ public class Termino implements Serializable{//atributos
 
     /**
      *
-     * @param n
+     * @param n Sobreescribe el período académico de la instancia.
      */
     public void setNumTermino(int n){
         numTermino = n;
@@ -62,7 +61,7 @@ public class Termino implements Serializable{//atributos
 
     /**
      *
-     * @return
+     * @return Devuelve un String que representa a la instancia.
      */
     public String toString(){
         String cadena = anio + "-" + numTermino;

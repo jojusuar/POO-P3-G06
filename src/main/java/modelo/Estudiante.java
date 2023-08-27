@@ -8,8 +8,7 @@ package modelo;
 import java.io.Serializable;
 
 /**
- *
- * @author jojusuar
+ * Representa a un estudiante.
  */
 public class Estudiante implements Serializable { //atributos
 
@@ -20,10 +19,10 @@ public class Estudiante implements Serializable { //atributos
     //constructor
 
     /**
-     *
-     * @param n
-     * @param c
-     * @param m
+     * Constructor de la instancia.
+     * @param n Nombre del estudiante.
+     * @param c Dirección de correo electrónico del estudiante.
+     * @param m Número de matrícula en ESPOL del estudiante.
      */
     public Estudiante(String n, String c, String m) {
         nombre = n;
@@ -35,7 +34,7 @@ public class Estudiante implements Serializable { //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el String nombre de la instancia.
      */
     public String getNombre() {
         return nombre;
@@ -43,7 +42,7 @@ public class Estudiante implements Serializable { //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el String correo de la instancia.
      */
     public String getCorreo() {
         return correo;
@@ -51,7 +50,7 @@ public class Estudiante implements Serializable { //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el String matrícula de la instancia.
      */
     public String getMatricula() {
         return matricula;
@@ -61,7 +60,7 @@ public class Estudiante implements Serializable { //atributos
 
     /**
      *
-     * @param n
+     * @param n Sobreescribe el nombre de la instancia.
      */
     public void setNombre(String n) {
         nombre = n;
@@ -69,7 +68,7 @@ public class Estudiante implements Serializable { //atributos
 
     /**
      *
-     * @param c
+     * @param c Sobreescribe el correo de la instancia.
      */
     public void setCorreo(String c) {
         correo = c;
@@ -77,7 +76,7 @@ public class Estudiante implements Serializable { //atributos
 
     /**
      *
-     * @param m
+     * @param m Sobreescribe la matrícula de la instancia.
      */
     public void setMatricula(String m) {
         matricula = m;
@@ -85,7 +84,7 @@ public class Estudiante implements Serializable { //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el nombre del objeto al intentar convertirlo a String.
      */
     public String toString() {
         return nombre;
