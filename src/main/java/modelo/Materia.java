@@ -9,8 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
- * @author Euclasio
+ *Representa una materia.
  */
 public class Materia implements Serializable { //atributos
 
@@ -22,17 +21,17 @@ public class Materia implements Serializable { //atributos
     //constructor
 
     /**
-     *
+     *Constructor por defecto.
      */
     public Materia() {
     }
 
     /**
-     *
-     * @param c
-     * @param n
-     * @param v
-     * @param p
+     * Constructor de la instancia.
+     * @param c Código único de la materia.
+     * @param n Nombre de la materia.
+     * @param v Nivel máximo de las preguntas aceptadas en la materia.
+     * @param p Preguntas asociadas a la materia.
      */
     public Materia(String c, String n, int v, ArrayList<Pregunta> p) {
         codigo = c;
@@ -45,7 +44,7 @@ public class Materia implements Serializable { //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el código de la instancia.
      */
     public String getCodigo() {
         return codigo;
@@ -53,7 +52,7 @@ public class Materia implements Serializable { //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el nombre de la instancia.
      */
     public String getNombre() {
         return nombre;
@@ -61,7 +60,7 @@ public class Materia implements Serializable { //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el nivel máximo de las preguntas en la instancia.
      */
     public int getNiveles() {
         return niveles;
@@ -69,7 +68,7 @@ public class Materia implements Serializable { //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve la lista de preguntas asociadas a la instancia.
      */
     public ArrayList<Pregunta> getPreguntas() {
         return preguntas;
@@ -79,7 +78,7 @@ public class Materia implements Serializable { //atributos
 
     /**
      *
-     * @param c
+     * @param c Sobreescribe el código de la instancia.
      */
     public void setCodigo(String c) {
         codigo = c;
@@ -87,7 +86,7 @@ public class Materia implements Serializable { //atributos
 
     /**
      *
-     * @param n
+     * @param n Sobreescribe el nombre de la materia.
      */
     public void setNombre(String n) {
         nombre = n;
@@ -95,7 +94,7 @@ public class Materia implements Serializable { //atributos
 
     /**
      *
-     * @param v
+     * @param v Sobreescribe el nivel máximo de las preguntas de la instancia.
      */
     public void setNiveles(int v) {
         niveles = v;
@@ -103,15 +102,15 @@ public class Materia implements Serializable { //atributos
 
     /**
      *
-     * @param p
+     * @param p Sobreescribe la lista de preguntas asociadas a la instancia.
      */
     public void setPregunta(Pregunta p) {
         preguntas.add(p);
     }
 
     /**
-     *
-     * @param p
+     * Elimina una pregunta de la lista de preguntas de la instancia.
+     * @param p Pregunta a eliminar.
      */
     public void removePregunta(Pregunta p) {
         preguntas.remove(p);
@@ -119,7 +118,7 @@ public class Materia implements Serializable { //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve un String que representa a la instancia.
      */
     public String toString() {
         return nombre + ": " + codigo;

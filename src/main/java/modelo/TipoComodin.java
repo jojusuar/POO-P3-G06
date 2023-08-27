@@ -8,28 +8,27 @@ package modelo;
 import java.io.Serializable;
 
 /**
- *
- * @author jojusuar
+ *Enumera los Comodines.
  */
 public enum TipoComodin implements Serializable{
 
     /**
-     *
+     *Representa al Comodín 50/50.
      */
     Fifty_Fifty,
 
     /**
-     *
+     *Representa al Comodín Consulta al Compañero.
      */
     ConsultaCompanero,
 
     /**
-     *
+     *Representa al Comodín Consulta a la Clase.
      */
     ConsultaClase,
 
     /**
-     *
+     *Representa el no-uso de comodines.
      */
     Ninguno;
     

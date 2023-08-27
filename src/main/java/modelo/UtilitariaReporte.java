@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 /**
  *
- * @author jojusuar
+ *
  */
 public class UtilitariaReporte implements Serializable{
 

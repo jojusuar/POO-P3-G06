@@ -67,6 +67,7 @@ public class QuestionController implements Initializable{
         save.setOnAction(ev -> {
             course.getPreguntas().remove(cb.getValue());
             UtilitariaConfig.editarMateria(materias, course, course.getCodigo());
+            editTermStage.close();
            });
     }
     @FXML

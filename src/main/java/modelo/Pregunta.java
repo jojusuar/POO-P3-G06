@@ -6,11 +6,9 @@
 package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Collections;
 /**
- *
- * @author jojusuar
+ *Representa una pregunta.
  */
 public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
     private String enunciado;
@@ -23,19 +21,19 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
     //constructor
 
     /**
-     *
+     *Constructor por defecto.
      */
     public Pregunta(){
     }
 
     /**
-     *
-     * @param e
-     * @param n
-     * @param t
-     * @param x
-     * @param y
-     * @param z
+     *Constructor de la instancia.
+     * @param e Enunciado de la Pregunta.
+     * @param n Nivel de la Pregunta.
+     * @param t Respuesta correcta de la Pregunta.
+     * @param x Respuesta falsa 1.
+     * @param y Respuesta falsa 2.
+     * @param z Respuesta falsa 3.
      */
     public Pregunta(String e, int n, String t, String x, String y, String z){
         enunciado = e;
@@ -49,7 +47,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el enunciado de la Instancia.
      */
     public String getEnunciado(){
         return enunciado;
@@ -57,7 +55,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el nivel de la Pregunta instanciada.
      */
     public int getNivel(){
         return nivel;
@@ -65,7 +63,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve la respuesta correcta de la instancia.
      */
     public String getCorrecta(){
         return correcta;
@@ -73,7 +71,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve la respuesta falsa 1.
      */
     public String getPosible1(){
         return posible1;
@@ -81,7 +79,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve la respuesta falsa 2.
      */
     public String getPosible2(){
         return posible2;
@@ -89,7 +87,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @return
+     * @return Devuelve la respuesta falsa 3.
      */
     public String getPosible3(){
         return posible3;
@@ -98,7 +96,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @param e
+     * @param e Sobreescribe el enunciado de la instancia.
      */
     public void setEnunciado(String e){
         enunciado = e;
@@ -106,7 +104,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @param n
+     * @param n Sobreescribe el nivel de la Pregunta instanciada.
      */
     public void setNivel(int n){
         nivel = n;
@@ -114,7 +112,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @param t
+     * @param t Sobreescribe la respuesta correcta.
      */
     public void setCorrecta(String t){
         correcta = t;
@@ -122,7 +120,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @param x
+     * @param x Sobreescribe la respuesta falsa 1.
      */
     public void setPosible1(String x){
         posible1 = x;
@@ -130,7 +128,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @param y
+     * @param y Sobreescribe la respuesta falsa 1.
      */
     public void setPosible2(String y){
         posible2 = y;
@@ -138,7 +136,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
 
     /**
      *
-     * @param z
+     * @param z Sobreescribe la respuesta falsa 1.
      */
     public void setPosible3(String z){
         posible3 = z;
@@ -146,7 +144,7 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
     
     /**
      *
-     * @return
+     * @return 
      */
     public ArrayList<String> opciones(){//metodo que me da la lista de opciones
         ArrayList<String> literales = new ArrayList<>();
@@ -156,35 +154,19 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
         literales.add(posible3);
         return literales;
     }
-
+    
     /**
      *
-     * @param preguntas
-     * @return
-     */
-    public ArrayList<String> mostrarOpciones(Pregunta preguntas){
-        ArrayList<String> literales = preguntas.opciones();
-        Collections.shuffle(literales);
-        System.out.println(preguntas.getEnunciado());
-        System.out.println("A)"+literales.get(0));
-        System.out.println("B)"+literales.get(1));
-        System.out.println("C)"+literales.get(2));
-        System.out.println("D)"+literales.get(3));
-        return literales;
-    }
-        
-    /**
-     *
-     * @return
+     * @return Devuelve un String que representa a la instancia.
      */
     public String toString(){
           return enunciado;
     }
 
     /**
-     *
-     * @param p
-     * @return
+     * Criterio de ordenamiento natural de la clase Pregunta.
+     * @param p Objeto de tipo Pregunta.
+     * @return Devuelve un entero del intervalo [-1,1] que representa la comparación.
      */
     public int compareTo(Pregunta p){
         Integer x = this.getNivel();

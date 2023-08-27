@@ -7,8 +7,7 @@ package modelo;
 import java.io.Serializable;
 
 /**
- *
- * @author jojusuar
+ *Representa a una Pregunta en la cual se usó el Comodín Fifty-Fifty.
  */
 public class PreguntaTrucada implements Serializable{
     private String enunciado;
@@ -17,13 +16,12 @@ public class PreguntaTrucada implements Serializable{
     private String posible;
     
     //constructor
-
     /**
-     *
-     * @param e
-     * @param n
-     * @param t
-     * @param x
+     *Constructor de la instancia.
+     * @param e Enunciado de la Pregunta.
+     * @param n Nivel de la Pregunta.
+     * @param t Respuesta correcta de la Pregunta.
+     * @param x Respuesta falsa.
      */
     public PreguntaTrucada(String e, int n, String t, String x){
         enunciado = e;
@@ -35,7 +33,7 @@ public class PreguntaTrucada implements Serializable{
 
     /**
      *
-     * @return
+     * @return Devuelve el enunciado de la Pregunta trucada.
      */
     public String getEnunciado(){
         return enunciado;
@@ -43,7 +41,7 @@ public class PreguntaTrucada implements Serializable{
 
     /**
      *
-     * @return
+     * @return Devuelve el nivel de la Pregunta trucada.
      */
     public int getNivel(){
         return nivel;
@@ -51,7 +49,7 @@ public class PreguntaTrucada implements Serializable{
 
     /**
      *
-     * @return
+     * @return Devuelve la respuesta correcta.
      */
     public String getCorrecta(){
         return correcta;
@@ -59,7 +57,7 @@ public class PreguntaTrucada implements Serializable{
 
     /**
      *
-     * @return
+     * @return Devuelve la respuesta falsa.
      */
     public String getPosible(){
         return posible;
@@ -69,7 +67,7 @@ public class PreguntaTrucada implements Serializable{
 
     /**
      *
-     * @param e
+     * @param e Sobreescribe el enunciado de la instancia.
      */
     public void setEnunciado(String e){
         enunciado = e;
@@ -77,7 +75,7 @@ public class PreguntaTrucada implements Serializable{
 
     /**
      *
-     * @param n
+     * @param n Sobreescribe el nivel de la Pregunta instanciada.
      */
     public void setNivel(int n){
         nivel = n;
@@ -85,7 +83,7 @@ public class PreguntaTrucada implements Serializable{
 
     /**
      *
-     * @param t
+     * @param t Sobreescribe la respuesta correcta de la instancia.
      */
     public void setCorrecta(String t){
         correcta = t;
@@ -93,7 +91,7 @@ public class PreguntaTrucada implements Serializable{
 
     /**
      *
-     * @param x
+     * @param x Sobreescribe la respuesta incorrecta de la instancia.
      */
     public void setPosible(String x){
         posible = x;

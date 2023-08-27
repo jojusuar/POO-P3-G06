@@ -7,8 +7,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 /**
- *
- * @author jojusuar
+ * Representa a un Paralelo.
  */
 public class Paralelo implements Serializable{//atributos
     private ArrayList<Estudiante> estudiantes;
@@ -18,11 +17,11 @@ public class Paralelo implements Serializable{//atributos
     //constructor
 
     /**
-     *
-     * @param e
-     * @param m
-     * @param t
-     * @param n
+     * Constructor de la instancia.
+     * @param e Lista de Estudiantes inscritos en el Paralelo.
+     * @param m Materia asociada al Paralelo.
+     * @param t Término asociado al Paralelo.
+     * @param n Número del Paralelo.
      */
     public Paralelo(ArrayList<Estudiante> e, Materia m, Termino t, int n){
         estudiantes = e;
@@ -34,7 +33,7 @@ public class Paralelo implements Serializable{//atributos
 
     /**
      *
-     * @return
+     * @return Devuelve la lista de Estudiantes de la instancia.
      */
     public ArrayList<Estudiante> getEstudiantes(){
         return estudiantes;
@@ -42,7 +41,7 @@ public class Paralelo implements Serializable{//atributos
 
     /**
      *
-     * @return
+     * @return Devuelve la Materia Asociada a la instancia.
      */
     public Materia getMateria(){
         return materia;
@@ -50,7 +49,7 @@ public class Paralelo implements Serializable{//atributos
 
     /**
      *
-     * @return
+     * @return devuelve el Término asociado a la instancia.
      */
     public Termino getTermino(){
         return termino;
@@ -58,7 +57,7 @@ public class Paralelo implements Serializable{//atributos
 
     /**
      *
-     * @return
+     * @return Devuelve el número del Paralelo instanciado.
      */
     public int getNumero(){
         return numero;
@@ -67,7 +66,7 @@ public class Paralelo implements Serializable{//atributos
 
     /**
      *
-     * @param e
+     * @param e Sobreescribe la lista de Estudiantes de la instancia.
      */
     public void setEstudiantes(ArrayList<Estudiante> e){
         estudiantes = e;
@@ -75,7 +74,7 @@ public class Paralelo implements Serializable{//atributos
 
     /**
      *
-     * @param m
+     * @param m Sobreescribe la materia asociada a la instancia.
      */
     public void setMateria(Materia m){
         materia = m;
@@ -83,7 +82,7 @@ public class Paralelo implements Serializable{//atributos
 
     /**
      *
-     * @param t
+     * @param t Sobreescribe el Término asociado a la instancia.
      */
     public void setTermino(Termino t){
         termino = t;
@@ -91,7 +90,7 @@ public class Paralelo implements Serializable{//atributos
 
     /**
      *
-     * @param n
+     * @param n Sobreescribe el número del Paralelo instanciado.
      */
     public void setNumero(int n){
         numero = n;
@@ -99,7 +98,7 @@ public class Paralelo implements Serializable{//atributos
 
     /**
      *
-     * @param e
+     * @param e Añade un Estudiante a la lista del Paralelo.
      */
     public void agregarEstudiantes(Estudiante e){
         estudiantes.add(e);
@@ -107,7 +106,7 @@ public class Paralelo implements Serializable{//atributos
 
     /**
      *
-     * @return
+     * @return Devuelve un String que representa a la instancia.
      */
     public String toString(){
         String cadena = "Materia: "+ materia +", Termino academico: "+ termino +", Numero de Paralelo: " + numero;
