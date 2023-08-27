@@ -13,8 +13,14 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import modelo.Estudiante;
 
+/**
+ * Clase que contiene al método estático para enviar Emails
+ */
 public class Email {
-
+/**
+ * @param e Estudiante pertenenciente al objeto juego cuyo reporte se genera
+ * @param cuerpo Texto del correo
+ */
     public static void sendEmail(Estudiante e, String cuerpo) {
         String remitente = "poop3g06@gmail.com";
         String claveemail = "jmlewdkxishhcltk";

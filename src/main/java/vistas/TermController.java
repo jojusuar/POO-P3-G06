@@ -23,7 +23,10 @@ import javafx.stage.Stage;
 import modelo.Termino;
 import modelo.UtilitariaConfig;
 
-
+/**
+ *
+ * @author Euclasio
+ */
 public class TermController implements Initializable {
 
     private ArrayList<Termino> terminos;
@@ -99,7 +102,12 @@ public class TermController implements Initializable {
         });
 
     }
-
+    
+    /**genera una verga gigante
+     * 
+     * @param url es una verga que no se
+     * @param rb  es otra que ni puta idea
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // aqui inicializamos ese vbox vbTerminos y el combobox cbTerminos con los términos académicos disponibles

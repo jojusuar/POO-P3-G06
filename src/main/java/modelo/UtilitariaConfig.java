@@ -24,6 +24,13 @@ import javafx.stage.Stage;
  */
 public class UtilitariaConfig implements Serializable {
 
+    /**
+     *
+     * @param terminos
+     * @param x
+     * @param y
+     * @param vbTerminos
+     */
     public static void ingresarTermino(ArrayList<Termino> terminos, int x, int y, VBox vbTerminos) {
         Termino t = new Termino(x, y); //se crea término con los datos ingresados
         terminos.add(t);
@@ -35,6 +42,12 @@ public class UtilitariaConfig implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param terminos
+     * @param sel
+     * @param x
+     */
     public static void editarTermino(ArrayList<Termino> terminos, Termino sel, String x) {
         System.out.println("<<EDITANDO TÉRMINO>>");
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/terminos.ser"));) {
@@ -61,6 +74,13 @@ public class UtilitariaConfig implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param materias
+     * @param nombreM
+     * @param codigoM
+     * @param nivelesM
+     */
     public static void ingresarMateria(ArrayList<Materia> materias, String nombreM, String codigoM, int nivelesM) {
         //Se solicitan los datos para la creacion de la nueva materia
 
@@ -77,6 +97,12 @@ public class UtilitariaConfig implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param materias
+     * @param sel
+     * @param x
+     */
     public static void editarMateria(ArrayList<Materia> materias, Materia sel, String x) {
         System.out.println("<<EDITANDO MATERIA>>");
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/materias.ser"));) {
@@ -104,6 +130,15 @@ public class UtilitariaConfig implements Serializable {
 
     }
 
+    /**
+     *
+     * @param vbParalelos
+     * @param m
+     * @param t
+     * @param paralelos
+     * @param participantes
+     * @param num
+     */
     public static void agregarParalelo(VBox vbParalelos, Materia m, Termino t, ArrayList<Paralelo> paralelos, ArrayList<Estudiante> participantes, int num) {
 
         Paralelo paraleloGenerado = new Paralelo(participantes, m, t, num);
@@ -118,6 +153,10 @@ public class UtilitariaConfig implements Serializable {
         System.out.println("<<PARALELO CREADO>>");
     }
 
+    /**
+     *
+     * @param paralelos
+     */
     public static void eliminarParalelo(ArrayList<Paralelo> paralelos) {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/paralelos.ser"));) {
             out.writeObject(paralelos);
@@ -126,6 +165,11 @@ public class UtilitariaConfig implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param materias
+     * @param q
+     */
     public static void agregarPreguntas(ArrayList<Materia> materias, Materia q) {
         Stage query = new Stage();
         VBox fields = new VBox();
@@ -171,6 +215,12 @@ public class UtilitariaConfig implements Serializable {
 
     }
 
+    /**
+     *
+     * @param terminos
+     * @param sel
+     * @param x
+     */
     public static void eliminarPregunta(ArrayList<Termino> terminos, Termino sel, String x) {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/resources/memory/terminos.ser"));) {
             out.writeObject(terminos);

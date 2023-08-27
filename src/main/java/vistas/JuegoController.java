@@ -61,6 +61,11 @@ public class JuegoController implements Initializable {
     @FXML
     Button buscarParalelos;
 
+    /**
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/terminos.ser"));){

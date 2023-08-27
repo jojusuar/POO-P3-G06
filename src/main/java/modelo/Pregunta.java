@@ -21,8 +21,22 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
     private String posible3;
     
     //constructor
+
+    /**
+     *
+     */
     public Pregunta(){
     }
+
+    /**
+     *
+     * @param e
+     * @param n
+     * @param t
+     * @param x
+     * @param y
+     * @param z
+     */
     public Pregunta(String e, int n, String t, String x, String y, String z){
         enunciado = e;
         nivel = n;
@@ -32,44 +46,108 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
         posible3 = z;   
     }
     //getters
+
+    /**
+     *
+     * @return
+     */
     public String getEnunciado(){
         return enunciado;
     }
+
+    /**
+     *
+     * @return
+     */
     public int getNivel(){
         return nivel;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getCorrecta(){
         return correcta;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getPosible1(){
         return posible1;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getPosible2(){
         return posible2;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getPosible3(){
         return posible3;
     }
     //setters
+
+    /**
+     *
+     * @param e
+     */
     public void setEnunciado(String e){
         enunciado = e;
     }
+
+    /**
+     *
+     * @param n
+     */
     public void setNivel(int n){
         nivel = n;
     }
+
+    /**
+     *
+     * @param t
+     */
     public void setCorrecta(String t){
         correcta = t;
     }
+
+    /**
+     *
+     * @param x
+     */
     public void setPosible1(String x){
         posible1 = x;
     }
+
+    /**
+     *
+     * @param y
+     */
     public void setPosible2(String y){
         posible2 = y;
     }
+
+    /**
+     *
+     * @param z
+     */
     public void setPosible3(String z){
         posible3 = z;
     }
     
+    /**
+     *
+     * @return
+     */
     public ArrayList<String> opciones(){//metodo que me da la lista de opciones
         ArrayList<String> literales = new ArrayList<>();
         literales.add(correcta);
@@ -78,6 +156,12 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
         literales.add(posible3);
         return literales;
     }
+
+    /**
+     *
+     * @param preguntas
+     * @return
+     */
     public ArrayList<String> mostrarOpciones(Pregunta preguntas){
         ArrayList<String> literales = preguntas.opciones();
         Collections.shuffle(literales);
@@ -89,9 +173,19 @@ public class Pregunta implements Serializable, Comparable<Pregunta>{ //atributos
         return literales;
     }
         
+    /**
+     *
+     * @return
+     */
     public String toString(){
           return enunciado;
     }
+
+    /**
+     *
+     * @param p
+     * @return
+     */
     public int compareTo(Pregunta p){
         Integer x = this.getNivel();
         Integer y = p.getNivel();

@@ -18,6 +18,13 @@ public class Estudiante implements Serializable { //atributos
     private String matricula;
 
     //constructor
+
+    /**
+     *
+     * @param n
+     * @param c
+     * @param m
+     */
     public Estudiante(String n, String c, String m) {
         nombre = n;
         correo = c;
@@ -25,31 +32,61 @@ public class Estudiante implements Serializable { //atributos
     }
 
     //getters
+
+    /**
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCorreo() {
         return correo;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMatricula() {
         return matricula;
     }
 
     //setters
+
+    /**
+     *
+     * @param n
+     */
     public void setNombre(String n) {
         nombre = n;
     }
 
+    /**
+     *
+     * @param c
+     */
     public void setCorreo(String c) {
         correo = c;
     }
 
+    /**
+     *
+     * @param m
+     */
     public void setMatricula(String m) {
         matricula = m;
     }
 
+    /**
+     *
+     * @return
+     */
     public String toString() {
         return nombre;
     }

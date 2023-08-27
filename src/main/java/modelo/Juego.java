@@ -30,6 +30,18 @@ public class Juego implements Serializable{//atributos
     private int comCon=3;
     private int comSal=3;
     //constructor
+
+    /**
+     *
+     * @param p
+     * @param x
+     * @param y
+     * @param s
+     * @param t
+     * @param h
+     * @param k
+     * @param f
+     */
     public Juego(Paralelo p, Estudiante x, Estudiante y, int s, int t, String h, TipoComodin k, String f){
         paralelo = p;
         participante = x;
@@ -46,84 +58,217 @@ public class Juego implements Serializable{//atributos
         pRespondidas = new ArrayList<>();
     }
     //getters
+
+    /**
+     *
+     * @return
+     */
     public Paralelo getParalelo(){
         return paralelo;
     }
+
+    /**
+     *
+     * @return
+     */
     public Estudiante getParticipante(){
         return participante;
     }
+
+    /**
+     *
+     * @return
+     */
     public Estudiante getCompanero(){
         return companero;
     }
+
+    /**
+     *
+     * @return
+     */
     public int getPuntuacion(){
         return puntuacion;
     }
+
+    /**
+     *
+     * @return
+     */
     public int getTiempo(){
         return tiempo;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getPremio(){
         return premio;
     }
+
+    /**
+     *
+     * @return
+     */
     public TipoComodin getComodin(){
         return comodin;
     }
+
+    /**
+     *
+     * @return
+     */
     public int getIntentoComodines(){
         return intentoComodines;
     }
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<Pregunta> getPreguntasDelJuego(){
         return preguntasDelJuego;
     }
+
+    /**
+     *
+     * @return
+     */
     public String getFechaJuego(){
         return fechajuego;
     }
+
+    /**
+     *
+     * @return
+     */
     public int getNivelJugador(){
         return nivelJugador;
     }
+
+    /**
+     *
+     * @return
+     */
     public int getPreguntasRespondidas(){
         return preguntasRespondidas;
     }
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<PreguntaRespondida> getpRespondidas() {
         return pRespondidas;
     }
     
     //setters
+
+    /**
+     *
+     * @param p
+     */
     public void setParalelo(Paralelo p){
         paralelo = p;
     }
+
+    /**
+     *
+     * @param x
+     */
     public void setParticipante(Estudiante x){
         participante = x;
     }
+
+    /**
+     *
+     * @param y
+     */
     public void setCompanero(Estudiante y){
         companero = y;
     }
+
+    /**
+     *
+     * @param s
+     */
     public void setPuntuacion(int s){
         puntuacion = s;
     }
+
+    /**
+     *
+     * @param t
+     */
     public void setTiempo(int t){
         tiempo = t;
     }
+
+    /**
+     *
+     * @param h
+     */
     public void setPremio(String h){
         premio = h;
     }
+
+    /**
+     *
+     * @param k
+     */
     public void setComodin(TipoComodin k){
         comodin = k;
     }
+
+    /**
+     *
+     * @param n
+     */
     public void setNivelJugador(int n ){
         nivelJugador = n;
     }
+
+    /**
+     *
+     * @param s
+     */
     public void setFechajuego(String s){
         fechajuego = s;
     }
+
+    /**
+     *
+     * @param n
+     */
     public void setPreguntasRespondidas(int n){
         preguntasRespondidas = n;
     }
+
+    /**
+     *
+     * @param p
+     */
     public void setPreguntasDelJuego(ArrayList<Pregunta> p){
         preguntasDelJuego = p;
     }
+
+    /**
+     *
+     * @param pRespondidas
+     */
     public void setpRespondidas(ArrayList<PreguntaRespondida> pRespondidas) {
         this.pRespondidas = pRespondidas;
     }
     
+    /**
+     *
+     * @param comodin
+     * @param curso
+     * @param pregunta
+     * @param companiero
+     * @return
+     */
     public String usarComodin(TipoComodin comodin,Paralelo curso, Pregunta pregunta, Estudiante companiero){
         String respuesta50 = "";
         if (intentoComodines >0){
@@ -184,8 +329,10 @@ public class Juego implements Serializable{//atributos
         return respuesta50;
     }
    
-    
-    
+    /**
+     *
+     * @param k
+     */
     public void mostrarComodines(TipoComodin k){
         //System.out.println(k.Fifty_Fifty);
         //System.out.println(k.ConsultaCompanero);
@@ -247,9 +394,10 @@ public class Juego implements Serializable{//atributos
      }
     }
      
-     
-    
-
+    /**
+     *
+     * @return
+     */
     public String toString(){
         String cadena = "Fecha del juego: " + fechajuego + " - Participante: " + participante + " - Nivel Maximo alcanzado: " + nivelJugador + " - Tiempo: " + tiempo + " - Cantidad de preguntas contestadas: " + preguntasRespondidas + " - Comodines utilizados: " +(3-intentoComodines)+ " - Premio: " + premio;
         return cadena;
