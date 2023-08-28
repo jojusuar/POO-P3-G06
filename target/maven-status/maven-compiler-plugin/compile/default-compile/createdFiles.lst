@@ -8,8 +8,6 @@ vistas\TermController.class
 modelo\UtilitariaConfig.class
 modelo\Juego.class
 modelo\Termino.class
-modelo\UtilitariaJuego.class
-module-info.class
 vistas\JuegoController.class
 modelo\PreguntaTrucada.class
 modelo\TipoComodin.class
@@ -21,8 +19,8 @@ modelo\Estudiante.class
 vistas\MateriaycursoController.class
 modelo\Materia.class
 modelo\Paralelo.class
+mail\Email.class
 modelo\Juego$1.class
 vistas\ConfigController.class
 vistas\ReporteController.class
-modelo\Profesor.class
 vistas\ComienzaController$Timer.class
