@@ -159,7 +159,11 @@ public class JuegoController implements Initializable {
             cbApoyo.setValue(anyone);
         });
     }    
-    
+    /**
+     * 
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void iniciarJuego(ActionEvent event) throws IOException {
         

@@ -16,8 +16,8 @@ public class App extends Application {
     private static Scene scene;
 
     /**
-     *
-     * @param stage
+     *Método que corre el programa.
+     * @param stage Ventana principal
      * @throws IOException
      */
     @Override
