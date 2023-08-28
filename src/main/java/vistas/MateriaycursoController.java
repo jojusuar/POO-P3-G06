@@ -30,8 +30,7 @@ import modelo.Termino;
 import modelo.UtilitariaConfig;
 
 /**
- *
- * @author Euclasio
+ *Visualiza las opciones y el layout de la configuración de Materias y Paralelos.
  */
 public class MateriaycursoController implements Initializable {
 
@@ -44,12 +43,20 @@ public class MateriaycursoController implements Initializable {
 
     @FXML
     private Button leaveMateriaycurso;
-
+    
+    /**
+     * Redirecciona al controlador de Configuraciones.
+     * @throws IOException 
+     */
     @FXML
     private void leaveMateriaycurso() throws IOException {
         App.setRoot("config");
     }
 
+    /**
+     * Despliega TextFields para ingresar información de la materia a crear y la almacena en la base de datos.
+     * @throws IOException 
+     */
     @FXML
     private void addMateria() throws IOException {
         VBox fields = new VBox(10);
@@ -68,6 +75,10 @@ public class MateriaycursoController implements Initializable {
         });
     }
 
+    /**
+     * Despliega las Materias disponibles para elegir cuál editar y actualiza la base de datos.
+     * @throws IOException 
+     */
     @FXML
     private void editMateria() throws IOException {
         VBox fields = new VBox(10);
@@ -122,6 +133,10 @@ public class MateriaycursoController implements Initializable {
         });
     }
 
+    /**
+     * Despliega los términos y materias registradas, carga el archivo de estudiantes y crea un Paralelo en la base de datos.
+     * @throws IOException 
+     */
     @FXML
     private void addParalelo() throws IOException {
         VBox fields = new VBox(10);
@@ -165,6 +180,9 @@ public class MateriaycursoController implements Initializable {
         });
     }
 
+    /**
+     * Despliega los Paralelos registrados para elegir cuál eliminar de la base de datos.
+     */
     @FXML
     private void deleteParalelo() {
         VBox fields = new VBox(10);
@@ -191,6 +209,9 @@ public class MateriaycursoController implements Initializable {
 
     }
 
+    /**
+     * Abre una ventana del explorador de archivos para cargar el archivo de estudiantes.
+     */
     private void cargarEstudiantes() {
         ArrayList<Estudiante> e = new ArrayList<>();
         FileChooser examinar = new FileChooser();
@@ -212,7 +233,7 @@ public class MateriaycursoController implements Initializable {
     }
 
     /**
-     *
+     *Inicializa los elementos visuales del menú de Materias y Paralelos.
      * @param url
      * @param rb
      */
