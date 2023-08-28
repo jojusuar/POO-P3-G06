@@ -19,6 +19,7 @@ modelo\Estudiante.class
 vistas\MateriaycursoController.class
 modelo\Materia.class
 modelo\Paralelo.class
+mail\Email.class
 modelo\Juego$1.class
 vistas\ConfigController.class
 vistas\ReporteController.class
