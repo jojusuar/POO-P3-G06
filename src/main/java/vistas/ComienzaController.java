@@ -287,7 +287,7 @@ public class ComienzaController implements Initializable {
 
 
     /**
-     *
+     *Método que elimina dos opciones aleatorias y deja dos respuestas posibles
      * @param event
      */
     @FXML
@@ -337,7 +337,8 @@ public class ComienzaController implements Initializable {
     }
 
     /**
-     *
+     *Método que te permite consultar a un companiero dando una respuesta aleatoria
+     * como recomendacion a la respuesta correcta
      * @param event
      */
     @FXML
@@ -367,7 +368,8 @@ public class ComienzaController implements Initializable {
         }      
         }        
     /**
-     *
+     *Método que te permite consultar al curso y da una respuesta aleatoria
+     * como recomendación
      * @param event
      */
     @FXML
