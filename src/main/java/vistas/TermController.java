@@ -24,8 +24,7 @@ import modelo.Termino;
 import modelo.UtilitariaConfig;
 
 /**
- *
- * @author Euclasio
+ *Gestiona los elementos visuales del menú Términos y los asocia a sus respectivos métodos.
  */
 public class TermController implements Initializable {
 
@@ -38,11 +37,19 @@ public class TermController implements Initializable {
     @FXML
     private Button ingresarTermino;
 
+    /**
+     * Redirecciona al controlador de Configuraciones.
+     * @throws IOException 
+     */
     @FXML
     private void leaveTerm() throws IOException {
         App.setRoot("config");
     }
 
+    /**
+     * Despliega una ventana con TextFields que reciben la información del Término a crear, y lo guarda en la base de datos.
+     * @throws IOException 
+     */
     @FXML
     private void addTerm() throws IOException {
         VBox fields = new VBox(10);
@@ -61,6 +68,10 @@ public class TermController implements Initializable {
 
     }
 
+    /**
+     * Despliega una ventana con todo término registrado, para elegir cuál editar y actualizar la base de datos.
+     * @throws IOException 
+     */
     @FXML
     private void editTerm() throws IOException {
         VBox fields = new VBox(10);
@@ -103,10 +114,10 @@ public class TermController implements Initializable {
 
     }
     
-    /**genera una verga gigante
-     * 
-     * @param url es una verga que no se
-     * @param rb  es otra que ni puta idea
+    /**
+     *Inicializa los elementos visuales del menú de Términos.
+     * @param url
+     * @param rb  
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

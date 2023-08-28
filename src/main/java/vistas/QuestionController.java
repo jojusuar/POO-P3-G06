@@ -23,32 +23,46 @@ import modelo.Pregunta;
 import modelo.UtilitariaConfig;
 
 /**
- *
- * @author Euclasio
+ * Despliega los elementos visuales y controla el layout del menú de Preguntas.
  */
-public class QuestionController implements Initializable{
+public class QuestionController implements Initializable {
+
     private ArrayList<Materia> materias;
     @FXML
     private Button leaveQuestionsButton;
     @FXML
     private ComboBox<Materia> cbMaterias;
+
+    /**
+     * Redirecciona al método utilitario agregarPreguntas().
+     */
     @FXML
     private void addQuestion() throws IOException {
         Materia m = cbMaterias.getValue();
         UtilitariaConfig.agregarPreguntas(materias, m);
     }
+
+    /**
+     * Despliega una ventana con un VBox que contiene a las preguntas de la
+     * materia seleccionada.
+     */
     @FXML
     private void showQuestions() throws IOException {
         VBox vbPreguntas = new VBox(10);
         Materia m = cbMaterias.getValue();
-        for(Pregunta p:m.getPreguntas()){
+        for (Pregunta p : m.getPreguntas()) {
             vbPreguntas.getChildren().add(new Label(p.toString()));
         }
-        Scene layout = new Scene(vbPreguntas,200,200);
+        Scene layout = new Scene(vbPreguntas, 200, 200);
         Stage popup = new Stage();
         popup.setScene(layout);
         popup.show();
     }
+
+    /**
+     * Despliega las preguntas pertenecientes a la materia seleccionada para seleccionar cuál será eliminada, acutalizando la materia asociada y los paralelos que la contengan.
+     * @throws IOException 
+     */
     @FXML
     private void deleteQuestion() throws IOException {
         VBox fields = new VBox(10);
@@ -68,34 +82,37 @@ public class QuestionController implements Initializable{
             course.getPreguntas().remove(cb.getValue());
             UtilitariaConfig.editarMateria(materias, course, course.getCodigo());
             editTermStage.close();
-           });
+        });
     }
+
+    /**
+     * Redirecciona al controlador de Configuraciones.
+     * @throws IOException 
+     */
     @FXML
     private void leaveQuestions() throws IOException {
         App.setRoot("config");
     }
 
     /**
-     *
+     *Inicializa los elementos visuales del menú de preguntas.
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // aqui inicializamos ese combobox cbMaterias con las materias a las que agregarles preguntas
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/materias.ser"));){
-            materias = (ArrayList<Materia>)in.readObject();
-        }
-        catch(IOException ex){
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("src/main/resources/memory/materias.ser"));) {
+            materias = (ArrayList<Materia>) in.readObject();
+        } catch (IOException ex) {
             System.out.println("Error al cargar las materias");
             materias = new ArrayList<>();
-        }
-        catch(ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             System.out.println("No se encontró la clase");
         }
-        for(Materia m: materias){
+        for (Materia m : materias) {
             cbMaterias.getItems().addAll(m);
         }
     }
-    
+
 }
