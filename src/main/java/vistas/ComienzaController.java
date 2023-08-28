@@ -292,7 +292,10 @@ public class ComienzaController implements Initializable {
      */
     @FXML
     private void usarFiftyFifty(ActionEvent event) {
+        
         fifty_fifty.setDisable(true);//deshabilito el comodin cuando lo uso
+        consulta_curso.setDisable(true);
+        consulta_companiero.setDisable(true);
         control50 = false;
         guardar.setComodinUsado(TipoComodin.Fifty_Fifty);//se guarda el comodin usado 
         
@@ -342,9 +345,11 @@ public class ComienzaController implements Initializable {
      * @param event
      */
     @FXML
-    private void usaeCompanero(ActionEvent event) {
+    private void usaeCompanero(ActionEvent event) {     
         guardar.setComodinUsado(TipoComodin.ConsultaCompanero);//guardo el comodin si lo uso
-       controlC = false; 
+        consulta_curso.setDisable(true);
+        fifty_fifty.setDisable(true);
+        controlC = false; 
        
         consulta_companiero.setDisable(true);//deshabilito el boton del comodin cuando lo use
         ArrayList<String> literales = new ArrayList<>();//creo las opciones de nuevo
@@ -377,6 +382,8 @@ public class ComienzaController implements Initializable {
         guardar.setComodinUsado(TipoComodin.ConsultaClase);//guarda el comodin si se lo usa
         controlCC = false;
         consulta_curso.setDisable(true);//deshabilita el comodin si se lo usa
+        fifty_fifty.setDisable(true);
+        consulta_companiero.setDisable(true);
         ArrayList<String> literales = new ArrayList<>();
         ArrayList<Button> opciones = new ArrayList<>();
         opciones.add(opcionA);
@@ -490,15 +497,23 @@ public class ComienzaController implements Initializable {
                         }
                     }
                     if(control50){//queda deshabilitado el comodin por el resto del juego si ya se lo usó
-                    fifty_fifty.setDisable(false);}
+                    fifty_fifty.setDisable(false);
+
+                    
+                    }
                     opcionA.setDisable(false);//se vuelven a habilitar las opciones despues de pasar a la siguiente pregunta
                     opcionB.setDisable(false);
                     opcionC.setDisable(false);
                     opcionD.setDisable(false);
                     if(controlCC){//se deshabilita el comodin consulta_curso por el resto del juego despues de haberlo usado
-                    consulta_curso.setDisable(false);}
+                    consulta_curso.setDisable(false);
+
+                    }
                     if(controlC){//se deshabilita el comodin conculta_companiero por el resto del juego despues de haberlo usado
-                    consulta_companiero.setDisable(false);}
+                    consulta_companiero.setDisable(false);
+
+                    
+                    }
                     cooldown = 5;
                     Platform.runLater(() -> callQuestion());
         }
